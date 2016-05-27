@@ -1,0 +1,21 @@
+@impprt "component/normalize";
+.fog {
+  display: none; }
+
+body {
+  font-family: 'San se'; }
+
+.relative {
+  position: relative; }
+
+.popup {
+  display: none;
+  color: white; }
+
+.popup.search_artist {
+  z-index: 99;
+  position: absolute;
+  margin-top: 10px;
+  background: #2ecc71; }
+
+/*# sourceMappingURL=app.css.map */

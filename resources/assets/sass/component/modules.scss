@@ -1,0 +1,11 @@
+.popup{
+  display: none;
+  color: white;
+}
+.popup.search_artist{
+  z-index: 99;
+  //width: 100%;
+  position: absolute;
+  margin-top: 10px;
+  background: $color1;
+}
