@@ -11,7 +11,7 @@
 
                 {{--Bang: nghe si--}}
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered datatable">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -32,7 +32,7 @@
                                 <td>{{$song->song_title}}</td>
                                 <td>
                                     @foreach($song->artists as $artist)
-                                        {{$artist->artist_title}}
+                                        <a href="{{url("artist/$artist->id/edit")}}" class="badge">{{$artist->artist_title}}</a>
                                     @endforeach
                                 </td>
                                 <td>{{$song->cate->cate_title}}</td>

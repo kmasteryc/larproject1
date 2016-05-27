@@ -16,7 +16,11 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
 		view()->composer(
-			['songs.*'],
+			[
+				'songs.edit','songs.create',
+				'playlists.edit','playlists.create',
+				'cates.edit','cates.create'
+			],
 			'App\Http\ViewComposer\CateComposer');
     }
 

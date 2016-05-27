@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if (isset($mycss))
+        @foreach($mycss as $css)
+            <link rel="stylesheet" href="{{asset("css/$css")}}">
+        @endforeach
+    @endif
 
 </head>
 <body id="app-layout">

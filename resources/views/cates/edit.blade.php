@@ -3,9 +3,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-info ">
+        <div class="panel panel-primary ">
             <div class="panel-heading">
-                <h4>Edit category {{$cate->cate_title}}</h4>
+                Chinh sua chu de {{$cate->cate_title}}
             </div>
             <div class="panel-body">
                 <form action="{{url("cate/$cate->id")}}" class="form-horizontal" method="POST">
@@ -36,6 +36,42 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-primary">
+        	  <div class="panel-heading">
+        			<h3 class="panel-title">Danh sach nhac thuoc {{$cate->cate_title}}</h3>
+        	  </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Hanh dong</th>
+                            <th>Ten danh sach bai hat</th>
+                            <th>So bai hat</th>
+                            <th>Luot nghe</th>
+                            <th>Cap nhat cuoi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($cate->playlists as $playlist)
+                            <tr>
+                                <td>{{$playlist->id}}</td>
+                                <td><a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> - <a
+                                            href="{{url("playlist/$playlist->id/delete")}}">Delete</a></td>
+                                <td>{{$playlist->playlist_title}}</td>
+                                <td>{{count($playlist->songs)}}</td>
+                                <td>{{$playlist->playlist_view}}</td>
+                                <td>{{$playlist->updated_at}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

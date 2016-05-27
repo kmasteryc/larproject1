@@ -14,7 +14,7 @@ class Cate extends Model
 	protected $fillable = ['cate_title','cate_parent'];
 
 	public function playlists(){
-		return $this->belongsToMany(Playlist::class);
+		return $this->hasMany(Playlist::class);
 	}
 	public function songs()
 	{

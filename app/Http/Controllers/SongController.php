@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Song;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
 class SongController extends Controller
@@ -15,17 +14,11 @@ class SongController extends Controller
 	public function index()
 	{
 		$songs = Song::all();
-		return view('songs.index', ['songs' => $songs]);
-	}
-
-	public function delete(Song $song, Request $request)
-	{
-		if (!Gate::check('is-admin')) abort(404);
-
-		$song->delete();
-
-		$request->session()->flash('succeeds', 'Your done!');
-		return back();
+		return view('songs.index', [
+			'myjs' => ['jquery.dynatable.js'],
+			'mycss' => ['jquery.dynatable.css'],
+			'songs' => $songs
+		]);
 	}
 
 	public function create()
@@ -33,6 +26,46 @@ class SongController extends Controller
 		return view('songs.create',[
 			'myjs'=> ['songs/create.js']
 		]);
+	}
+
+	public function store(Request $request)
+	{
+		// Validate required field
+		$this->validate($request, [
+			'song_title' => 'required|unique:songs,song_title',
+			'uploaded_mp3' => 'mimetypes:audio/mpeg',
+			'cate_id' => 'required|integer',
+			'song_artists' => 'required'
+		]);
+
+		// Move upload file to appriciate location
+		$upload_mp3 = $request->file('uploaded_mp3');
+		$upload_mp3->move(base_path('public/uploads/mp3'), $upload_mp3->getClientOriginalName());
+
+		// After uploading was done. Do insert info to DB
+		$link = asset('uploads/mp3/' . $upload_mp3->getClientOriginalName());
+
+		// Initialize new Song object to save
+
+		$song = new Song;
+		$song->song_title = $request->song_title;
+		$song->song_mp3 = $link;
+		$song->cate_id = $request->cate_id;
+		$song->save();
+
+		// Process song_artists
+		$artists = explode(',',$request->song_artists);
+
+		/*Here i have 2 opts:
+		first: $song->artists()->attach($artist)
+		second: $artist->songs()->attach($song->id);*/
+
+		foreach ($artists as $artist)
+		{
+			if ($artist != '') $song->artists()->attach($artist);
+		}
+
+		return redirect('song')->with('succeeds', 'Tao bai hat thanh cong!');
 	}
 
 	public function edit(Song $song)
@@ -93,43 +126,21 @@ class SongController extends Controller
 		return back()->with('succeeds', 'Cap nhat bai hat thanh cong!');
 	}
 
-	public function store(Request $request)
+
+
+	public function delete(Song $song, Request $request)
 	{
-		// Validate required field
-		$this->validate($request, [
-			'song_title' => 'required|unique:songs,song_title',
-			'uploaded_mp3' => 'mimetypes:audio/mpeg',
-			'cate_id' => 'required|integer',
-			'song_artists' => 'required'
-		]);
+		if (!Gate::check('is-admin')) abort(404);
 
-		// Move upload file to appriciate location
-		$upload_mp3 = $request->file('uploaded_mp3');
-		$upload_mp3->move(base_path('public/uploads/mp3'), $upload_mp3->getClientOriginalName());
+		$song->delete();
 
-		// After uploading was done. Do insert info to DB
-		$link = asset('uploads/mp3/' . $upload_mp3->getClientOriginalName());
+		$request->session()->flash('succeeds', 'Your done!');
+		return back();
+	}
 
-		// Initialize new Song object to save
-
-		$song = new Song;
-		$song->song_title = $request->song_title;
-		$song->song_mp3 = $link;
-		$song->cate_id = $request->cate_id;
-		$song->save();
-
-		// Process song_artists
-		$artists = explode(',',$request->song_artists);
-
-		/*Here i have 2 opts:
-		first: $song->artists()->attach($artist)
-		second: $artist->songs()->attach($song->id);*/
-
-		foreach ($artists as $artist)
-		{
-			if ($artist != '') $song->artists()->attach($artist);
-		}
-
-		return redirect('song')->with('succeeds', 'Tao bai hat thanh cong!');
+	public function ajax_search($search='')
+	{
+		$result = Song::where('song_title','like','%'.$search.'%')->get();
+		return $result;
 	}
 }

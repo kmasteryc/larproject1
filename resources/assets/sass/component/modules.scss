@@ -1,11 +1,17 @@
-.popup{
-  display: none;
-  color: white;
-}
-.popup.search_artist{
+@mixin popup1{
   z-index: 99;
   //width: 100%;
   position: absolute;
   margin-top: 10px;
   background: $color1;
+}
+.popup{
+  display: none;
+  color: white;
+}
+.popup.search_artist{
+  @include popup1();
+}
+.popup.search_song{
+  @include popup1();
 }

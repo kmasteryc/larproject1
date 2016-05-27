@@ -30,7 +30,11 @@ class ArtistController extends Controller
 	}
 	public function edit (Artist $artist)
 	{
-		return view('artists.edit', ['artist'=>$artist]);
+		return view('artists.edit', [
+			'myjs' => ['jquery.dynatable.js'],
+			'mycss' => ['jquery.dynatable.css'],
+			'artist'=>$artist
+		]);
 	}
 	public function update(Request $request, Artist $artist)
 	{

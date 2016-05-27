@@ -34,7 +34,8 @@ class CateController extends Controller
 	public function edit(Cate $cate)
 	{
 		return view('cates.edit', [
-			'cates' => Cate::all(),
+			'myjs' => ['jquery.dynatable.js'],
+			'mycss' => ['jquery.dynatable.css'],
 			'cate' => $cate
 		]);
 	}

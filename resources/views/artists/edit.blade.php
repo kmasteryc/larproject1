@@ -72,9 +72,39 @@
                             </button>
                         </div>
                     </div>
-
-
                 </form>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Cac bai hat cua {{$artist->artist_title}}
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                        <tr>
+                            <th>Hanh dong</th>
+                            <th>Ten bai hat</th>
+                            <th>Ngay dang</th>
+                            <th>Luot nghe</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($artist->songs as $song)
+                            <tr>
+                                <td>
+                                    <a href="{{url("song/$song->id/edit")}}">Edit</a>
+                                    - <a href="{{url("song/$song->id/delete")}}">Delete</a>
+                                </td>
+                                <td>{{$song->song_title}}</td>
+                                <td>{{$song->created_at}}</td>
+                                <td>{{$song->song_view}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

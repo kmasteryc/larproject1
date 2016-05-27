@@ -42,6 +42,18 @@ Route::group(['prefix' => 'song', 'middleware' => 'auth'], function () {
 	Route::get('{song}/delete','SongController@delete');
 	Route::put('{song}', 'SongController@update');
 	Route::post('store','SongController@store');
+	Route::get('ajax_search/{search?}','SongController@ajax_search');
+
+});
+
+Route::group(['prefix' => 'playlist', 'middleware' => 'auth'], function () {
+
+	Route::get('{playlist}/edit','PlaylistController@edit');
+	Route::get('/','PlaylistController@index');
+	Route::get('create','PlaylistController@create');
+	Route::get('{playlist}/delete','PlaylistController@delete');
+	Route::put('{playlist}', 'PlaylistController@update');
+	Route::post('store','PlaylistController@store');
 
 });
 

@@ -2,6 +2,9 @@
 .fog {
   display: none; }
 
+thead {
+  background: #9b59b6; }
+
 body {
   font-family: 'San se'; }
 
@@ -13,6 +16,12 @@ body {
   color: white; }
 
 .popup.search_artist {
+  z-index: 99;
+  position: absolute;
+  margin-top: 10px;
+  background: #2ecc71; }
+
+.popup.search_song {
   z-index: 99;
   position: absolute;
   margin-top: 10px;
