@@ -16,6 +16,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Hanh dong</th>
+                            <th>Anh</th>
                             <th>Ten danh sach bai hat</th>
                             <th>The loai</th>
                             <th>So bai hat</th>
@@ -29,6 +30,7 @@
                                 <td>{{$playlist->id}}</td>
                                 <td><a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> - <a
                                             href="{{url("playlist/$playlist->id/delete")}}">Delete</a></td>
+                                <td><img src="{{$playlist->image['image_path']}}" alt="" height="50px" width="50px"></td>
                                 <td>{{$playlist->playlist_title}}</td>
                                 <td><a href="{{url("cate/".$playlist->cate->id."/edit")}}">{{$playlist->cate->cate_title}}</a></td>
                                 <td>{{count($playlist->songs)}}</td>

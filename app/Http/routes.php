@@ -58,9 +58,8 @@ Route::group(['prefix' => 'playlist', 'middleware' => 'auth'], function () {
 });
 
 Route::get('/test', function(){
-//	if (Storage::disk('mp3')->files('hehe')) echo 'Exists!';
-//	Storage::disk('mp3')->put('my.txt','Welcome!');
-//	echo Storage::disk('mp3')->get('my.txt');
+	$playlist = App\Playlist::find(13);
+	dd($playlist->image);
 });
 
 Route::resource('API','API');

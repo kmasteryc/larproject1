@@ -10,7 +10,8 @@
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
-    "guzzle/http": "^3.9"
+    "guzzle/http": "^3.9",
+    "barryvdh/laravel-debugbar": "^2.2"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

@@ -13,7 +13,8 @@ class SongController extends Controller
 {
 	public function index()
 	{
-		$songs = Song::all();
+		$songs = Song::with('artists','cate')->get();
+//		dd($songs);
 		return view('songs.index', [
 			'myjs' => ['jquery.dynatable.js'],
 			'mycss' => ['jquery.dynatable.css'],
