@@ -11,6 +11,9 @@
     "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
     "guzzle/http": "^3.9",
+    "guzzlehttp/guzzle" : "*",
+    "guzzlehttp/psr7": "~1.1",
+    "guzzlehttp/promises": "~1.0",
     "barryvdh/laravel-debugbar": "^2.2"
   },
   "require-dev": {

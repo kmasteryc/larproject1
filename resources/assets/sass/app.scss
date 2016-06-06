@@ -1,6 +1,7 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "component/normalize";
 @import "component/var";
-@impprt "component/normalize";
+@import "component/nav";
 @import "component/global";
 @import "component/typography";
 @import "component/layout";

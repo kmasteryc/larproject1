@@ -1,0 +1,51 @@
+.navbar {
+  margin-bottom: 5px;
+}
+.k-menu {
+  padding: 0 0 0 5px;
+  list-style: none;
+  height: 40px;
+  & > li {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    width: 50px;
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    &:hover {
+      border-bottom: 2px solid crimson;
+      .k-sub-menu {
+        display: block;
+      }
+    }
+    .k-sub-menu {
+      padding: 10px 0 0 0;
+      display: none;
+      width: 300px;
+      position: absolute;
+      border: 1px solid seashell;
+      z-index: 99;
+      background: white;
+      list-style: none;
+      li.column {
+        text-align: left;
+        float: left;
+        width: 25%;
+        a:hover {
+          color: darkblue;
+        }
+      }
+    }
+  }
+}
+.red-foot{
+  border-bottom: 2px solid crimson;
+}
+.blue-foot{
+  border-bottom: 2px solid darkblue;
+}

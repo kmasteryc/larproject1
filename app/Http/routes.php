@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-	return view('welcome');
+	return view('index');
 });
 
 Route::group(['prefix' => 'cate', 'middleware' => 'auth'], function () {
@@ -61,6 +61,9 @@ Route::get('/test', function(){
 	$playlist = App\Playlist::find(13);
 	dd($playlist->image);
 });
+
+Route::get('import/create','ImportController@create');
+Route::post('import','ImportController@store');
 
 Route::resource('API','API');
 Route::auth();

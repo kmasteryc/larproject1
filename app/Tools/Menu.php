@@ -17,6 +17,7 @@ class Menu
 	protected $_closeitem="</td>";
 	protected $_baseurl;
 	protected $_data;
+	protected $_data2;
 	protected $_result="";
 	protected $_select='';
 
@@ -54,6 +55,7 @@ class Menu
 			$pa=$value['cate_parent'];
 			$this->_data[$pa][]=$value;
 		}
+		$this->_data2 = $menu;
 		// Assign default select
 		if ($select) $this->_select = $select;
 		// Call menu depending on select or td
@@ -114,6 +116,33 @@ class Menu
 				$this->_result .= '</option>';
 
 				$this->call_menu_slc($id);
+			}
+
+		}
+		return $this->_result;
+	}
+
+	public function call_menu_nav($cate_parent=0)
+	{
+//		dd($this->_data);
+		if (isset($this->_data[$cate_parent])) {
+
+			foreach ($this->_data[$cate_parent] as $value) {
+
+				$id = $value['id'];
+				$this->_result .= "<li class='column'>";
+				$this->_result .= "<div class='clearfix'><b class='blue-foot'>". $value['cate_title'] . "</b>";
+				foreach ($this->_data2 as $child)
+				{
+					if ($child['cate_parent'] == $id)
+					{
+						$this->_result .= "<p>".$child['cate_title'] . "</p>";
+					}
+				}
+//				$this->call_menu_nav($id);
+				$this->_result .= '</li>';
+
+
 			}
 
 		}
