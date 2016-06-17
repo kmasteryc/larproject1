@@ -136,6 +136,7 @@ class PlaylistController extends Controller
 	{
 		if (!Gate::check('is-admin')) abort(404);
 
+		$playlist->songs()->detach();
 		$playlist->delete();
 
 		$request->session()->flash('succeeds', 'Your done!');

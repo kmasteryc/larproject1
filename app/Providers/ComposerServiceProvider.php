@@ -20,7 +20,7 @@ class ComposerServiceProvider extends ServiceProvider
 				'songs.edit','songs.create',
 				'playlists.edit','playlists.create',
 				'cates.edit','cates.create',
-				'layouts.app'
+				'layouts.app','imports.create'
 			],
 			'App\Http\ViewComposer\CateComposer');
     }
