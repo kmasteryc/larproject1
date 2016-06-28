@@ -34,7 +34,7 @@ Route::group(['prefix' => 'artist', 'middleware' => 'auth'], function () {
 
 });
 
-Route::group(['prefix' => 'song', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'song'], function () {
 
 	Route::get('{song}/edit','SongController@edit');
 	Route::get('/','SongController@index');
@@ -43,6 +43,8 @@ Route::group(['prefix' => 'song', 'middleware' => 'auth'], function () {
 	Route::put('{song}', 'SongController@update');
 	Route::post('store','SongController@store');
 	Route::get('ajax_search/{search?}','SongController@ajax_search');
+
+	Route::get('{song}', 'SongController@show');
 
 });
 

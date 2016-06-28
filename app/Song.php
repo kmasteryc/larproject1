@@ -21,6 +21,10 @@ class Song extends Model
 	{
 		return $this->belongsToMany(Playlist::class);
 	}
+	public function lyrics()
+	{
+		return $this->hasMany(Lyric::class);
+	}
 	public function str_artists()
 	{
 		$song_artists = $this->artists;

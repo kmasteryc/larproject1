@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Artist;
 use App\Image;
+use App\Lyric;
 use App\Playlist;
 use App\Song;
 use Illuminate\Http\Request;
@@ -50,6 +51,16 @@ class ImportController extends Controller
 				$newsong->cate_id = $request->cate_id;
 				$newsong->song_mp3 = $song['source'];
 				$newsong->save();
+
+				//Create lyric if exist
+				if ($song['lyric']!='')
+				{
+					$lyric = new Lyric;
+					$lyric->lyric_content = file_get_contents($song['lyric']);
+					$lyric->user_id = auth()->user()->id;
+					$lyric->song_id = $newsong->id;
+					$lyric->save();
+				}
 
 				// Process artists
 				// Create new artist if not exist, attach songs to artist

@@ -1,9 +1,12 @@
 body{
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
-.fog{
-  display: none;
-}
 thead{
   background: $color2;
+}
+.content{
+  padding: 5px;
+}
+.fog{
+  display: none;
 }

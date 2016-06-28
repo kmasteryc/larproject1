@@ -1,6 +1,6 @@
 @inject('menu','Tools\Menu')
 
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
 

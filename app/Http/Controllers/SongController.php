@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Gate;
 
 class SongController extends Controller
 {
+	public function show(Song $song)
+	{
+		return view('songs.show',[
+			'song'=>$song,
+			'myjs'=>['player.js']
+		]);
+	}
 	public function index()
 	{
 		$songs = Song::with('artists','cate')->get();
@@ -126,8 +133,6 @@ class SongController extends Controller
 
 		return back()->with('succeeds', 'Cap nhat bai hat thanh cong!');
 	}
-
-
 
 	public function delete(Song $song, Request $request)
 	{

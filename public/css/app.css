@@ -45,11 +45,14 @@
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif; }
 
-.fog {
-  display: none; }
-
 thead {
   background: #A7DBD8; }
+
+.content {
+  padding: 5px; }
+
+.fog {
+  display: none; }
 
 .relative {
   position: relative; }
@@ -70,16 +73,139 @@ thead {
   margin-top: 10px;
   background: #69D2E7; }
 
+#my-player {
+  position: relative;
+  width: 650px;
+  height: 185px;
+  background-color: black;
+  /*background: black;*/ }
+  #my-player .player-background {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-image: url("http://image.mp3.zdn.vn/cover3_artist/7/0/704c6de6d987ef8463acf81674c09651_1447753469.jpg");
+    background-size: 650px 185px; }
+  #my-player .player-mask {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.701961); }
+  #my-player .seek-bar {
+    position: absolute;
+    bottom: 40px;
+    height: 3px;
+    cursor: pointer;
+    width: 100%;
+    background: violet; }
+  #my-player .lyric-bar {
+    font-size: 24px;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 33px;
+    padding-top: 35px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; }
+    #my-player .lyric-bar .lyric {
+      display: inline-block;
+      text-align: left; }
+      #my-player .lyric-bar .lyric .lyric-1, #my-player .lyric-bar .lyric .lyric-2 {
+        display: block; }
+        #my-player .lyric-bar .lyric .lyric-1 .kara, #my-player .lyric-bar .lyric .lyric-2 .kara {
+          overflow: hidden;
+          display: block;
+          margin-top: -33px;
+          color: violet;
+          text-align: left;
+          transition-timing-function: linear;
+          transition-delay: 0.08s;
+          transition-duration: 0.15s;
+          transition-property: width; }
+  #my-player .control-bar {
+    padding: 0px 30px 0px 30px;
+    position: absolute;
+    bottom: 0px;
+    height: 40px;
+    width: 100%;
+    z-index: 88;
+    line-height: 40px; }
+    #my-player .control-bar .player-button {
+      color: white; }
+      #my-player .control-bar .player-button * {
+        cursor: pointer; }
+      #my-player .control-bar .player-button .volume {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        margin-left: 40px; }
+      #my-player .control-bar .player-button .fa-play {
+        padding-top: 6px;
+        padding-bottom: 6px; }
+      #my-player .control-bar .player-button .process-bar {
+        position: absolute;
+        bottom: 0px;
+        left: 240px; }
+
+.volume-bar {
+  width: 70px;
+  height: 2px;
+  background: violet;
+  position: absolute;
+  bottom: 18px;
+  left: 150px; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background-color: violet;
+  height: 2px; }
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  top: 0px;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+  border-radius: 40px;
+  background-color: white; }
+
+@media screen and (min-width: 768px) {
+  #buildin-player {
+    display: block; }
+  #my-player {
+    display: none; } }
+
 @media screen and (min-width: 992px) {
   .k-menu {
     padding: 0px; }
   .k-menu > li .k-sub-menu {
-    width: 400px; } }
+    width: 400px; }
+  #buildin-player {
+    display: none; }
+  #my-player {
+    display: block; } }
 
 @media screen and (min-width: 1200px) {
   .k-menu {
     padding: 0px; }
   .k-menu > li .k-sub-menu {
-    width: 500px; } }
+    width: 500px; }
+  #buildin-player {
+    display: none; }
+  #my-player {
+    display: block; } }
 
 /*# sourceMappingURL=app.css.map */
