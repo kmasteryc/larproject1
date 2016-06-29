@@ -21,6 +21,13 @@
 }
 
 // Song - show
+// Buildin-player
+#buildin-player{
+    audio{
+
+    }
+
+}
 // Audio-player
 #my-player {
     position: relative;
@@ -99,57 +106,191 @@
         width: 100%;
         z-index: 88;
         line-height: 40px;
+        a{
+            color: white;
+        }
         .player-button {
             color: white;
             * {
                 cursor: pointer;
             }
             .volume {
-                padding-top: 6px;
-                padding-bottom: 6px;
-                margin-left: 40px;
+                //padding-top: 6px;
+                //padding-bottom: 6px;
+                //margin-left: 40px;
+                position: absolute;
+                bottom: 7px;
+                left: 150px;
             }
-            .fa-play {
-                padding-top: 6px;
-                padding-bottom: 6px;
+            //.fa-play {
+            //    padding-top: 6px;
+            //    padding-bottom: 6px;
+            //}
+            .fa-play,.fa-pause,.fa-step-backward,.fa-step-forward {
+                //margin-right: 10px;
+                position: absolute;
+                bottom: 7px;
             }
-            .volumn-bar {}
+            .fa-play,.fa-pause{
+                left: 50px;
+            }
+            .fa-step-backward{
+                left: 15px;
+            }
+            .fa-step-forward{
+                left: 95px;
+            }
+
+            .fa-random, .fa-refresh, .fa-thumb-tack{
+                position: absolute;
+                bottom: 10px;
+                left: 500px;
+            }
+            .volume-bar {
+                width: 70px;
+                height: 2px;
+                background: violet;
+                position: absolute;
+                bottom: 18px;
+                left: 200px;
+            }
             .process-bar {
                 position: absolute;
                 bottom: 0px;
-                left: 240px;
+                left: 295px;
             }
+        }
+    }
+    input[type="range"] {
+        -webkit-appearance: none;
+        background-color: violet;
+        height: 2px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        position: relative;
+        top: 0px;
+        z-index: 1;
+        width: 11px;
+        height: 11px;
+        cursor: pointer;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        border-radius: 40px;
+        //background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(50%,#abd3ee), color-stop(51%,#89c3eb), color-stop(100%,#d5ebfb));
+        background-color: white;
+    }
+}
+
+// player-tool-area
+#player-tool-area{
+    position: absolute;
+    top: 32px;
+    right:100px;
+    height: 80px;
+    //width: 650px;
+    margin-bottom: 5px;
+    text-align: center;
+    a{
+        display: block;
+    }
+    .tool-box {
+        position: relative;
+        float: right;
+        display: block;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        border: 1px solid silver;
+        margin-bottom: 15px;
+        //vertical-align: middle;
+
+        i {
+            font-weight: 400;
+            font-size: 20px;
+            font-style: normal;
+            margin-top: 15px;
+            display: block;
+        }
+        b {
+            font-weight: 400;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            bottom: 10px;
+            display: block;
         }
     }
 }
 
-// Volumn bar
-.volume-bar {
-    width: 70px;
-    height: 2px;
-    background: violet;
-    position: absolute;
-    bottom: 18px;
-    left: 150px;
-}
+// Playlist - show
+#playlist-summary{
 
-input[type="range"] {
-    -webkit-appearance: none;
-    background-color: violet;
-    height: 2px;
+    margin: 5px 0 10px 0;
+    * {
+        padding-left: 0;
+    }
 }
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
+#player-playlist{
+    border-top: 1px solid silver;
+    margin-top: 10px;
+    max-width: 650px;
+    max-height: 300px;
+    overflow: auto;
+    i{
+        color: silver;
+        margin-left: 10px;
+        &:hover{
+            cursor: pointer;
+            color:blue;
+        }
+    }
+}
+#lyric-area{
+    max-width: 650px;
+    line-height: 30px;
+    max-height: 250px;
+    overflow: auto;
+    #lyric-info{
+        float: right;
+    }
+    #lyric-tool{
+        float:left
+    }
+}
+// Cate - show
+.playlist-box{
+    min-width: 170px;
     position: relative;
-    top: 0px;
-    z-index: 1;
-    width: 11px;
-    height: 11px;
-    cursor: pointer;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
-    //background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(50%,#abd3ee), color-stop(51%,#89c3eb), color-stop(100%,#d5ebfb));
-    background-color: white;
+    text-align: center;
+    &:hover{
+        opacity: 0.7;
+        .play-hover{
+            display: block;
+        }
+    }
+    .play-hover{
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 65px;
+    }
+    .playlist-title{
+        margin: 0;
+        padding: 5px 0 5px 0;
+        font-weight: 700;
+        i{
+            display: block;
+            font-weight: 500;
+            color: silver;
+        }
+    }
+}
+
+.hot-song{
+    li:hover{
+        background: mintcream;
+    }
 }

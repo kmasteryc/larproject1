@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
     protected  $fillable = ['song_title','song_view','song_mp3'];
-	protected $appends = ['song_artists_id','song_artists_title'];
+	protected $appends = ['song_artists_id','song_artists_title','song_artists_title_text'];
 
 	public function cate()
 	{
@@ -39,9 +39,21 @@ class Song extends Model
 	{
 		$song_artists = $this->artists;
 		$str_song_artists = '';
+//		$total = count($song_artists);
 		foreach ($song_artists as $song_artist)
 		{
-			$str_song_artists .= $song_artist->artist_title.' ';
+			$str_song_artists .= '<a href="'.url('artist/'.$song_artist->id).'">'.$song_artist->artist_title.'</a> ';
+		}
+		return $str_song_artists;
+	}
+	public function getSongArtistsTitleTextAttribute()
+	{
+		$song_artists = $this->artists;
+		$str_song_artists = '';
+//		$total = count($song_artists);
+		foreach ($song_artists as $song_artist)
+		{
+			$str_song_artists .= $song_artist->artist_title;
 		}
 		return $str_song_artists;
 	}

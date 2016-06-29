@@ -49,11 +49,19 @@
     <div class="container">
         <ul class="k-menu">
             <li>
-                <a href="#">Chủ đề</a>
+                <a href="#">CHỦ ĐỀ</a>
                 <ul class="k-sub-menu">
                     <li><a href=""></a></li>
                     {!!$menu->make($cates,'nav')!!}
                 </ul>
+            </li>
+            <li>
+                <a href="#">BXH</a>
+
+            </li>
+            <li>
+                <a href="#">RADIO</a>
+
             </li>
         </ul>
     </div>

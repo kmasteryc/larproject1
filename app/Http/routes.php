@@ -14,7 +14,13 @@ Route::get('/', function () {
 	return view('index');
 });
 
+Route::group(['prefix' => 'session'], function () {
+	Route::get('set/{k}/{v}','SessionController@set');
+	Route::get('get/{k}','SessionController@get');
+});
+
 Route::group(['prefix' => 'cate', 'middleware' => 'auth'], function () {
+	Route::get('{cate}','CateController@show');
 	Route::get('{cate}/edit','CateController@edit');
 	Route::get('/', 'CateController@index');
 	Route::get('/{cate}/delete','CateController@delete');
@@ -54,6 +60,7 @@ Route::group(['prefix' => 'playlist', 'middleware' => 'auth'], function () {
 	Route::get('/','PlaylistController@index');
 	Route::get('create','PlaylistController@create');
 	Route::get('{playlist}/delete','PlaylistController@delete');
+	Route::get('{playlist}/{index?}', 'PlaylistController@show');
 	Route::put('{playlist}', 'PlaylistController@update');
 	Route::post('store','PlaylistController@store');
 

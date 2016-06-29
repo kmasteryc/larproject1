@@ -13,9 +13,14 @@ class SongController extends Controller
 {
 	public function show(Song $song)
 	{
+		$mode = request()->session()->has('mode') ? request()->session()->get('mode') : 1;
+		$volume = request()->session()->has('volume') ? request()->session()->get('volume') : 0.9;
+
 		return view('songs.show',[
 			'song'=>$song,
-			'myjs'=>['player.js']
+			'myjs'=>['player.js','songs/show.js'],
+			'mode' => $mode,
+			'volume' => $volume
 		]);
 	}
 	public function index()

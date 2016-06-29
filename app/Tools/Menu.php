@@ -131,12 +131,12 @@ class Menu
 
 				$id = $value['id'];
 				$this->_result .= "<li class='column'>";
-				$this->_result .= "<div class='clearfix'><b class='blue-foot'>". $value['cate_title'] . "</b>";
+				$this->_result .= "<div class='clearfix'><b class='blue-foot'><a href='".url('/cate/'.$value['id'])."'>". $value['cate_title'] . "</a></b>";
 				foreach ($this->_data2 as $child)
 				{
 					if ($child['cate_parent'] == $id)
 					{
-						$this->_result .= "<p>".$child['cate_title'] . "</p>";
+						$this->_result .= "<p><a href='".url('/cate/'.$child['id'])."'>".$child['cate_title'] . "</a></p>";
 					}
 				}
 //				$this->call_menu_nav($id);

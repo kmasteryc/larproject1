@@ -66,4 +66,12 @@ class CateController extends Controller
 		$request->session()->flash('succeeds','Your done!');
 		return back();
 	}
+
+	public function show(Cate $cate){
+		return view('cates.show', [
+			'cate' => $cate,
+			'playlists' => $cate->playlists()->with('image')->get(),
+			'songs' => $cate->songs()->orderBy('song_view','DESC')->get()
+		]);
+	}
 }

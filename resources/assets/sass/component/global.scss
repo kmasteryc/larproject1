@@ -1,12 +1,26 @@
 body{
   font-family: Roboto, Helvetica, Arial, sans-serif;
+  line-height: 25px;
+  word-spacing: 1.6px;
 }
 thead{
   background: $color2;
 }
 .content{
-  padding: 5px;
+  //padding: 5px;
 }
 .fog{
   display: none;
+}
+a{
+  color: black;
+}
+a:hover{
+  text-decoration: none;
+}
+h4{
+  margin-top: 0;
+  color: blueviolet;
+  font-size: 20px;
+  text-transform: uppercase;
 }

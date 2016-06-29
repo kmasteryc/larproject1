@@ -1,4 +1,4 @@
-@media screen and(min-width: 1200px) {
+@media (min-width: 1200px) {
   .k-menu{
     padding: 0px;
   }
@@ -9,7 +9,7 @@
 	display:none;
 	}
 	#my-player{
-	display:block;
+	display:inline-block;
 	}
 
 }
