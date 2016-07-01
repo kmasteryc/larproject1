@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Sua nghe si {{$artist->artist_title}}</h3>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
     protected  $fillable = ['song_title','song_view','song_mp3'];
+//	protected $prepends = ['song_artists_id','song_artists_title','song_artists_title_text'];
 	protected $appends = ['song_artists_id','song_artists_title','song_artists_title_text'];
 
 	public function cate()

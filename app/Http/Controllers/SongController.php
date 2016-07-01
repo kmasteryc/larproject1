@@ -16,6 +16,8 @@ class SongController extends Controller
 		$mode = request()->session()->has('mode') ? request()->session()->get('mode') : 1;
 		$volume = request()->session()->has('volume') ? request()->session()->get('volume') : 0.9;
 
+		SessionController::increase_view_song($song);
+
 		return view('songs.show',[
 			'song'=>$song,
 			'myjs'=>['player.js','songs/show.js'],
@@ -26,18 +28,19 @@ class SongController extends Controller
 	public function index()
 	{
 		$songs = Song::with('artists','cate')->get();
-//		dd($songs);
 		return view('songs.index', [
 			'myjs' => ['jquery.dynatable.js'],
 			'mycss' => ['jquery.dynatable.css'],
-			'songs' => $songs
+			'songs' => $songs,
+			'cp' => true
 		]);
 	}
 
 	public function create()
 	{
 		return view('songs.create',[
-			'myjs'=> ['songs/create.js']
+			'myjs'=> ['songs/create.js'],
+			'cp' => true
 		]);
 	}
 
@@ -86,6 +89,7 @@ class SongController extends Controller
 		return view('songs.edit', [
 			'myjs'=> ['songs/create.js'],
 			'song' => $song,
+			'cp' => true
 		]);
 	}
 

@@ -11,6 +11,7 @@ class Khelper{
     {
         $res = preg_replace('/\[.*\]/','',$lyric);
         $res = nl2br($res);
+//        $res = str_replace('\n\n\n','',$res);
         return $res;
     }
 }

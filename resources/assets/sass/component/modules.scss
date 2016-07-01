@@ -42,8 +42,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0.6;
-        background-image: url('http://image.mp3.zdn.vn/cover3_artist/7/0/704c6de6d987ef8463acf81674c09651_1447753469.jpg');
+        opacity: 0.8;
+        background-image: url('http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg');
         background-size: 650px 185px;
     }
     .player-mask {
@@ -292,5 +292,30 @@
 .hot-song{
     li:hover{
         background: mintcream;
+    }
+}
+
+
+//Control Panel
+#controlpanel{
+    li{
+        position: relative;
+        &:hover{
+            background-color: blueviolet;
+            color: white;
+        }
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            &:hover{
+                color: white;
+            }
+        }
+        b{
+            position: absolute;
+            font-weight: 400;
+            left: 60px;
+        }
     }
 }

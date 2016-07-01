@@ -14,7 +14,10 @@ class CateController extends Controller
 {
 	public function index()
 	{
-		return view('cates.index', ['cates' => Cate::all()]);
+		return view('cates.index', [
+			'cates' => Cate::all(),
+			'cp' => true
+		]);
 	}
 
 	public function delete(Cate $cate)
@@ -36,7 +39,8 @@ class CateController extends Controller
 		return view('cates.edit', [
 			'myjs' => ['jquery.dynatable.js'],
 			'mycss' => ['jquery.dynatable.css'],
-			'cate' => $cate
+			'cate' => $cate,
+			'cp' => true
 		]);
 	}
 

@@ -60,7 +60,7 @@
 
             </li>
             <li>
-                <a href="#">RADIO</a>
+                <a href="{!! url('radio') !!}">RADIO</a>
 
             </li>
         </ul>

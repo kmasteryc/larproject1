@@ -1,7 +1,7 @@
 @inject('menu','Tools\Menu')
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Chinh sua sach nhac {{$playlist->playlist_title}}</h3>
@@ -63,7 +63,7 @@
                                     <a href="#" class="list-group-item list-group-item-info a_remove_song" data-id="{{$song->id}}">
                                         <span class='pull-left series'>{{$i}}. </span>
                                         {{$song->song_title}}
-                                        <span class='pull-right'>{{$song->song_artists_title}}</span>
+                                        <span class='pull-right'>{{$song->song_artists_title_text}}</span>
                                     </a>
                                     <?php $i++; ?>
                                     @endforeach

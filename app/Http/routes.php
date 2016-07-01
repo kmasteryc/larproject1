@@ -43,7 +43,14 @@ Route::group(['prefix' => 'artist', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'song'], function () {
 
 	Route::get('{song}/edit','SongController@edit');
-	Route::get('/','SongController@index');
+	Route::get('{song}/increase_view',[
+		'uses'=>'SessionController@increase_view_song',
+		'middleware' => 'ajax'
+	]);
+	Route::get('/',[
+		'uses'=>'SongController@index',
+		'middleware' => 'admin'
+	]);
 	Route::get('create','SongController@create');
 	Route::get('{song}/delete','SongController@delete');
 	Route::put('{song}', 'SongController@update');
@@ -73,7 +80,10 @@ Route::get('/test', function(){
 
 Route::get('import/create','ImportController@create');
 Route::post('import','ImportController@store');
+Route::get('radio/{cate?}','RadioController@index');
 
-Route::resource('API','API');
+Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
+Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
+//Route::resource('API/{type}','APIController');
 Route::auth();
 Route::get('/home', 'HomeController@index');

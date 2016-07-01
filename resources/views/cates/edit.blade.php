@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 Chinh sua chu de {{$cate->cate_title}}
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary">
         	  <div class="panel-heading">
         			<h3 class="panel-title">Danh sach nhac thuoc {{$cate->cate_title}}</h3>

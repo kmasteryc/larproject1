@@ -24,10 +24,17 @@
 @include('layouts.nav')
 @include('layouts.alert')
 
-@yield('content')
+<div class="container">
+    <div class="row">
+    @if (isset($cp))
+        @include('layouts.controlpanel')
+    @endif
+    @yield('content')
+    </div>
+</div>
 
 
-        <!-- JavaScripts -->
+<!-- JavaScripts -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>

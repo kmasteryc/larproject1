@@ -50,6 +50,7 @@ class ImportController extends Controller
 				$newsong->song_title = $song['title'];
 				$newsong->cate_id = $request->cate_id;
 				$newsong->song_mp3 = $song['source'];
+				$newsong->song_img = $song['backimage'];
 				$newsong->save();
 
 				//Create lyric if exist

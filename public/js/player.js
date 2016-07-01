@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     // Handle after loading fully audio
     player.bind('loadedmetadata', function () {
+        // Increase view
+        $.get(base_url+'song/'+config_player['cur_song_id']+'/increase_view');
         var s_duration = player.prop('duration');
         // Show duration
         $(".current-time").html('0');

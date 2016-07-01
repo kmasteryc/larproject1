@@ -146,14 +146,38 @@ class PlaylistController extends Controller
         return back();
     }
 
-    public function show(Playlist $playlist)
+    public function show(Playlist $playlist, $cur_index = 0)
     {
+        $songs = $playlist->songs;
+        $totalsongs = count($songs) - 1;
+        $next_index = ($cur_index + 1) > $totalsongs ? 0 : ($cur_index + 1);
+        $prev_index = ($cur_index - 1) < 0 ? 0 : ($cur_index - 1);
+        $mode = request()->session()->has('mode') ? request()->session()->get('mode') : 1;
+        $volume = request()->session()->has('volume') ? request()->session()->get('volume') : 0.9;
+
         SessionController::increase_view_playlist($playlist);
 
+        // Shuffle mode
+        if ($mode == 3)
+        {
+            // Greate collection function in Laravel! Cheer :D
+            $songs = $songs->shuffle();
+        }
         return view('playlists.show', [
-            'myjs' => ['player2.js','playlists/show.js'],
+            'myjs' => ['player.js','playlists/show.js'],
             'playlist' => $playlist,
-            'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
+            'songs' => $songs,
+            'index' => [
+                'prev_index' => $prev_index,
+                'next_index' => $next_index,
+                'cur_index' => $cur_index
+                ],
+            'url' => [
+                'next_url' => url('playlist/'.$playlist->id.'/'.$next_index),
+                'prev_url' => url('playlist/'.$playlist->id.'/'.$prev_index)
+            ],
+            'mode' => $mode,
+            'volume' => $volume
         ]);
     }
 }

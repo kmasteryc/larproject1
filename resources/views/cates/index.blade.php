@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Danh sach the loai nhac</h3>

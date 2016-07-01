@@ -48,7 +48,7 @@ body {
   word-spacing: 1.6px; }
 
 thead {
-  background: #A7DBD8; }
+  background: blueviolet; }
 
 .fog {
   display: none; }
@@ -64,6 +64,19 @@ h4 {
   color: blueviolet;
   font-size: 20px;
   text-transform: uppercase; }
+
+::-webkit-scrollbar {
+  width: 12px; }
+
+::-webkit-scrollbar-track {
+  background-color: #eaeaea;
+  border-left: 1px solid #ccc; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc; }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa; }
 
 .relative {
   position: relative; }
@@ -98,8 +111,8 @@ h4 {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.6;
-    background-image: url("http://image.mp3.zdn.vn/cover3_artist/7/0/704c6de6d987ef8463acf81674c09651_1447753469.jpg");
+    opacity: 0.8;
+    background-image: url("http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg");
     background-size: 650px 185px; }
   #my-player .player-mask {
     content: '';
@@ -288,6 +301,22 @@ h4 {
 
 .hot-song li:hover {
   background: mintcream; }
+
+#controlpanel li {
+  position: relative; }
+  #controlpanel li:hover {
+    background-color: blueviolet;
+    color: white; }
+  #controlpanel li a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+    #controlpanel li a:hover {
+      color: white; }
+  #controlpanel li b {
+    position: absolute;
+    font-weight: 400;
+    left: 60px; }
 
 @media (max-width: 480px) {
   #buildin-player {
