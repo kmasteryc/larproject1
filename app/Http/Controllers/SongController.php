@@ -13,16 +13,13 @@ class SongController extends Controller
 {
 	public function show(Song $song)
 	{
-		$mode = request()->session()->has('mode') ? request()->session()->get('mode') : 1;
-		$volume = request()->session()->has('volume') ? request()->session()->get('volume') : 0.9;
 
 		SessionController::increase_view_song($song);
 
 		return view('songs.show',[
 			'song'=>$song,
-			'myjs'=>['player.js','songs/show.js'],
-			'mode' => $mode,
-			'volume' => $volume
+			'myjs'=>['player2.js','songs/show.js'],
+			'api_url' => url("api/get-song/$song->id"),
 		]);
 	}
 	public function index()

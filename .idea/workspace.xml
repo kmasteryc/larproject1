@@ -2,45 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="043c7e4a-33cf-46ce-93b6-9b3b3908863d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaylistController_backup.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/jquery.cookie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/player2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/radio.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/layouts/controlpanel.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/radios/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/standalones/player.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/standalones/radio.blade.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.env.example" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ArtistController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArtistController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CateController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CateController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PlaylistController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlaylistController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RadioController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RadioController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SongController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SongController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Song.php" afterPath="$PROJECT_DIR$/app/Song.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tools/Khelper.php" afterPath="$PROJECT_DIR$/app/Tools/Khelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css.map" afterPath="$PROJECT_DIR$/public/css/app.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/player.js" afterPath="$PROJECT_DIR$/public/js/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/component/global.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/component/global.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/component/modules.scss" afterPath="$PROJECT_DIR$/resources/assets/sass/component/modules.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/artists/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/artists/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/artists/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/artists/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/artists/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/artists/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cates/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/cates/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cates/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/cates/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/nav.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/playlists/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/playlists/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/playlists/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/playlists/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/playlists/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/playlists/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/playlists/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/playlists/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/songs/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/songs/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/songs/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/songs/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/songs/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/songs/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/player2.js" afterPath="$PROJECT_DIR$/public/js/player2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/radios/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/radios/index.blade.php" />
     </list>
     <ignored path="larproject1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,45 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="APIController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/APIController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-              <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
-                <element signature="e#205#1033#0#PHP" expanded="false" />
-                <element signature="e#1893#2534#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlaylistController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlaylistController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="87" column="14" selection-start-line="87" selection-start-column="14" selection-end-line="87" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/playlists/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="29" column="37" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="37" />
+            <state relative-caret-position="179">
+              <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="34" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -109,47 +42,95 @@
       <file leaf-file-name="player.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/standalones/player.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="989">
+            <state relative-caret-position="492">
               <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player2.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="player2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/player2.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
-              <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
-                <element signature="e#4015#4397#0" expanded="false" />
-                <element signature="e#4432#5228#0" expanded="false" />
-                <element signature="e#5261#5477#0" expanded="false" />
-                <element signature="e#5530#6198#0" expanded="false" />
-                <element signature="e#7616#7784#0" expanded="false" />
-                <element signature="e#7810#7965#0" expanded="false" />
-                <element signature="e#9145#9860#0" expanded="false" />
-                <marker date="1467369888271" expanded="true" signature="3128:3149" ph="..." />
+                <element signature="e#4117#4499#0" expanded="false" />
+                <element signature="e#4534#5330#0" expanded="false" />
+                <element signature="e#5363#5579#0" expanded="false" />
+                <element signature="e#5632#6300#0" expanded="false" />
+                <element signature="e#7718#7886#0" expanded="false" />
+                <element signature="e#7912#8067#0" expanded="false" />
+                <element signature="e#9247#9962#0" expanded="false" />
+                <marker date="1467422676911" expanded="true" signature="3230:3251" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="global.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/global.scss">
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/songs/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="38" column="24" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="24" />
+            <state relative-caret-position="184">
+              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modules.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/modules.scss">
+      <file leaf-file-name="SongController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SongController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="45" column="123" selection-start-line="45" selection-start-column="123" selection-end-line="45" selection-end-column="123" />
+            <state relative-caret-position="322">
+              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RadioController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RadioController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="60" />
+              <folding>
+                <element signature="e#40#53#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/radios/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radio.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/radio.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+              <folding>
+                <element signature="e#3858#4240#0" expanded="false" />
+                <element signature="e#4275#5071#0" expanded="false" />
+                <element signature="e#5104#5320#0" expanded="false" />
+                <element signature="e#5373#6041#0" expanded="false" />
+                <marker date="1467364825646" expanded="true" signature="2971:2992" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/global.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -158,7 +139,7 @@
       <file leaf-file-name="show.blade_backup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/playlists/show.blade_backup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="2530">
               <caret line="110" column="100" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="100" />
               <folding />
             </state>
@@ -215,26 +196,26 @@
         <option value="$PROJECT_DIR$/app/Tools/Khelper.php" />
         <option value="$PROJECT_DIR$/public/js/player.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SongController.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/OnlyAjaxRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/nav.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/songs/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Song.php" />
         <option value="$PROJECT_DIR$/public/js/jquery.cookie.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RadioController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ImportController.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/component/modules.scss" />
         <option value="$PROJECT_DIR$/public/js/radio.js" />
-        <option value="$PROJECT_DIR$/resources/views/radios/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/standalones/radio.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PlaylistController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/APIController.php" />
         <option value="$PROJECT_DIR$/resources/views/standalones/player.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/playlists/show.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/player2.js" />
         <option value="$PROJECT_DIR$/resources/assets/sass/component/global.scss" />
+        <option value="$PROJECT_DIR$/resources/views/radios/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RadioController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SongController.php" />
+        <option value="$PROJECT_DIR$/public/js/player2.js" />
       </list>
     </option>
   </component>
@@ -296,7 +277,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ciproject2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="glob&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/component/global.scss&#10;show_&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade_backup.php&#10;route&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/routes.php&#10;radio&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/RadioController.php&#10;playlist/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;playlist&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/PlaylistController.php&#10;songc&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;pla&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/player.js&#10;modul&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/component/modules.scss&#10;import&#9;null&#9;null&#10;app.scss&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/app.scss&#10;songs/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/show.blade.php&#10;son&#9;null&#9;null&#10;artist&#9;null&#9;null&#10;api&#9;null&#9;null&#10;adio&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/radio.js&#10;songs/sh&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/show.blade.php&#10;nav&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/layouts/nav.blade.php&#10;ker&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Kernel.php&#10;only&#9;null&#9;null&#10;song&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;pl/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;player.j&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/player.js&#10;pl/shop&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;routes.&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/routes.php&#10;session&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SessionController.php&#10;songcon&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;kh&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Tools/Khelper.php&#10;cate/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/edit.blade.php&#10;cate/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/create.blade.php&#10;cate/ind&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/index.blade.php&#10;artist/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/index.blade.php&#10;artist/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/edit.blade.php&#10;artist/c&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/create.blade.php&#10;at/index&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/index.blade.php&#10;ar/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/index.php&#10;pl/edi&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/edit.blade.php&#10;pl/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/index.blade.php&#10;pl/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/edit.blade.php&#10;play/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/create.blade.php&#10;songs/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/create.blade.php&#10;songs/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/edit.blade.php&#10;songs/ind&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/index.blade.php&#10;artis&#9;null&#9;null&#10;catecon&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/CateController.php&#10;play&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/PlaylistController.php&#10;mode&#9;null&#9;null&#10;songs/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/index.blade.php&#10;admin&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Middleware/Admin.php&#10;songs/&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs" />
+    <property name="SearchEverywhereHistoryKey" value="song&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;songs/sho&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/show.blade.php&#10;radiocon&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/RadioController.php&#10;radio/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/radios/index.blade.php&#10;radio.js&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/radio.js&#10;glob&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/component/global.scss&#10;show_&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade_backup.php&#10;route&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/routes.php&#10;radio&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/RadioController.php&#10;playlist/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;playlist&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/PlaylistController.php&#10;songc&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;pla&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/player.js&#10;modul&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/component/modules.scss&#10;import&#9;null&#9;null&#10;app.scss&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/assets/sass/app.scss&#10;songs/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/show.blade.php&#10;son&#9;null&#9;null&#10;artist&#9;null&#9;null&#10;api&#9;null&#9;null&#10;adio&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/radio.js&#10;songs/sh&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/show.blade.php&#10;nav&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/layouts/nav.blade.php&#10;ker&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Kernel.php&#10;only&#9;null&#9;null&#10;pl/show&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;player.j&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/js/player.js&#10;pl/shop&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/show.blade.php&#10;routes.&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/routes.php&#10;session&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SessionController.php&#10;songcon&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/SongController.php&#10;kh&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Tools/Khelper.php&#10;cate/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/edit.blade.php&#10;cate/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/create.blade.php&#10;cate/ind&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/index.blade.php&#10;artist/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/index.blade.php&#10;artist/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/edit.blade.php&#10;artist/c&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/artists/create.blade.php&#10;at/index&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/cates/index.blade.php&#10;ar/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/public/index.php&#10;pl/edi&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/edit.blade.php&#10;pl/in&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/index.blade.php&#10;pl/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/edit.blade.php&#10;play/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/playlists/create.blade.php&#10;songs/create&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/create.blade.php&#10;songs/ed&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/edit.blade.php&#10;songs/ind&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/resources/views/songs/index.blade.php&#10;artis&#9;null&#9;null&#10;catecon&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/CateController.php&#10;play&#9;FILE&#9;file:///home/kmasteryc/Projects/larproject1/app/Http/Controllers/PlaylistController.php" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
@@ -378,11 +359,12 @@
       <workItem from="1467291245825" duration="161000" />
       <workItem from="1467296749720" duration="420000" />
       <workItem from="1467349055619" duration="21522000" />
+      <workItem from="1467421832348" duration="847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130255000" />
+    <option name="totallyTimeSpent" value="131102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />
@@ -395,19 +377,19 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -645,19 +627,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/songs/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2438">
-          <caret line="106" column="112" selection-start-line="106" selection-start-column="90" selection-end-line="106" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/jquery.cookie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2599">
           <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,13 +638,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/modules.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
+        <state relative-caret-position="1035">
           <caret line="45" column="123" selection-start-line="45" selection-start-column="123" selection-end-line="45" selection-end-column="123" />
           <folding />
         </state>
@@ -689,17 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
           <caret line="224" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="244" selection-end-column="1" />
-          <folding>
-            <marker date="1467276429330" expanded="true" signature="3122:3143" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SongController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -707,7 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,45 +675,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/radios/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/radio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-          <folding>
-            <element signature="e#3858#4240#0" expanded="false" />
-            <element signature="e#4275#5071#0" expanded="false" />
-            <element signature="e#5104#5320#0" expanded="false" />
-            <element signature="e#5373#6041#0" expanded="false" />
-            <marker date="1467364825646" expanded="true" signature="2971:2992" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RadioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="60" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="60" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
+        <state relative-caret-position="2001">
           <caret line="87" column="14" selection-start-line="87" selection-start-column="14" selection-end-line="87" selection-end-column="14" />
           <folding />
         </state>
@@ -761,7 +688,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlaylistController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
+        <state relative-caret-position="3312">
           <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding />
         </state>
@@ -781,24 +708,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/playlists/show.blade_backup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="2530">
           <caret line="110" column="100" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="100" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/standalones/player.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/global.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="552">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/radio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#3858#4240#0" expanded="false" />
+            <element signature="e#4275#5071#0" expanded="false" />
+            <element signature="e#5104#5320#0" expanded="false" />
+            <element signature="e#5373#6041#0" expanded="false" />
+            <marker date="1467364825646" expanded="true" signature="2971:2992" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/radios/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RadioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="60" />
+          <folding>
+            <element signature="e#40#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SongController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/playlists/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="37" />
+        <state relative-caret-position="179">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="34" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/songs/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/standalones/player.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -806,25 +789,17 @@
     <entry file="file://$PROJECT_DIR$/public/js/player2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding>
-            <element signature="e#4015#4397#0" expanded="false" />
-            <element signature="e#4432#5228#0" expanded="false" />
-            <element signature="e#5261#5477#0" expanded="false" />
-            <element signature="e#5530#6198#0" expanded="false" />
-            <element signature="e#7616#7784#0" expanded="false" />
-            <element signature="e#7810#7965#0" expanded="false" />
-            <element signature="e#9145#9860#0" expanded="false" />
-            <marker date="1467369888271" expanded="true" signature="3128:3149" ph="..." />
+            <element signature="e#4117#4499#0" expanded="false" />
+            <element signature="e#4534#5330#0" expanded="false" />
+            <element signature="e#5363#5579#0" expanded="false" />
+            <element signature="e#5632#6300#0" expanded="false" />
+            <element signature="e#7718#7886#0" expanded="false" />
+            <element signature="e#7912#8067#0" expanded="false" />
+            <element signature="e#9247#9962#0" expanded="false" />
+            <marker date="1467422676911" expanded="true" signature="3230:3251" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/component/global.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="38" column="24" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
