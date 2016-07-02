@@ -18,8 +18,12 @@ $(document).ready(function () {
 
     // Set song for first time
     setSong(current_song);
-    showList();
-    console.log(json_data);
+    if (mode == 2) {
+        showList();
+    }
+    console.log('Why it is not effect?');
+    // test THIS BRAND :D
+    // console.log(json_data);
     function setSong(song){
         $("#song_source").attr('src',song.song_mp3);
 
