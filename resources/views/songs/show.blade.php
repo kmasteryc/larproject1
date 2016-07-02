@@ -1,72 +1,25 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
+    <script>
+        var player_config = {
+            mode : 1,
+            api_url: '{!! $api_url !!}'
+        };
+    </script>
     <div class="container">
-        <script>
-            var pre_config_player = [];
-            // 0-not loop; 1-loop current song; default is loop playlist
-            pre_config_player['mode'] = '{!! $mode !!}';
-            pre_config_player['volume'] = '{!! $volume !!}';
-            @if (count($song->lyrics) !== 0)
-                    pre_lyric = `{!! $song->lyrics[0]['lyric_content'] !!}`;
-            @else
-                    pre_lyric = 0;
-            @endif
-        </script>
+
         <div class="row">
             <div class="col-md-9">
                 <div class="content">
                     <h4>
                         {!! $song->song_title !!} - {!! $song->song_artists_title !!}
                     </h4>
-                    <div id="buildin-player">
-                        <audio controls="controls" id="player" autoplay loop>
-                            <source src="{!! $song->song_mp3 !!}">
-                            </source>
-                        </audio>
-                    </div>
-                    <div id="my-player">
-                        <div class="player-background"></div>
-                        <div class="player-mask"></div>
-                        <div class="lyric-bar">
-                            <div class="lyric">
-                                <p class="lyric-1">
-                                    {!! $song->song_title !!}
-                                </p>
-                            </div>
-                            <br/>
-                            <div class="lyric">
-                                <p class="lyric-2">
-                                    {!! $song->song_artists_title_text !!}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="seek-bar">
-                            <input class="bar" id="seek" type="range" value="0"/>
-                        </div>
-                        <div class="control-bar">
-                            <div class="player-button">
-                                <i class="fa fa-2x fa-pause">
-                                </i>
-                                <i class="fa fa-2x fa-volume-up volume">
-                                </i>
-                            <span class="volume-bar">
-                                <input class="bar" id="volume" type="range" value="{!! $volume*100 !!}"/>
-                            </span>
-                            <span class="process-bar">
-                                <span class="current-time">
-                                </span>
-                                /
-                                <span class="duration">
-                                </span>
-                            </span>
-                            </div>
-                        </div>
 
-                    </div>
+                    @include('standalones.player')
+
                     {{--TOOL ROW--}}
                     <div id="player-tool-area">
-
                         <span class="tool-box">
                         <i>{{$song->song_view}}</i>
                             <b>Lượt nghe</b>

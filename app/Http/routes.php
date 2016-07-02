@@ -84,6 +84,7 @@ Route::get('radio/{cate?}','RadioController@index');
 
 Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
 Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
+Route::get('api/get-song/{song}', 'APIController@getSong');
 //Route::resource('API/{type}','APIController');
 Route::auth();
 Route::get('/home', 'HomeController@index');

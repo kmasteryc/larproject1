@@ -185,7 +185,7 @@ h4 {
         left: 15px; }
       #my-player .control-bar .player-button .fa-step-forward {
         left: 95px; }
-      #my-player .control-bar .player-button .fa-random, #my-player .control-bar .player-button .fa-refresh, #my-player .control-bar .player-button .fa-thumb-tack {
+      #my-player .control-bar .player-button .player-mode {
         position: absolute;
         bottom: 10px;
         left: 500px; }
