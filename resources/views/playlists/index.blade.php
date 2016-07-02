@@ -5,7 +5,7 @@
     <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Danh sach bai hat</h3>
+                <h3 class="panel-title">Playlist</h3>
             </div>
             <div class="panel-body">
 
@@ -28,8 +28,10 @@
                         @foreach($playlists as $playlist)
                             <tr>
                                 <td>{{$playlist->id}}</td>
-                                <td><a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> - <a
-                                            href="{{url("playlist/$playlist->id/delete")}}">Delete</a></td>
+                                <td>
+                                    <a href="{{url("playlist/$playlist->id/")}}">Play</a> -
+                                    <a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> -
+                                    <a href="{{url("playlist/$playlist->id/delete")}}">Remove</a></td>
                                 <td><img src="{{$playlist->image['image_path']}}" alt="" height="50px" width="50px"></td>
                                 <td>{{$playlist->playlist_title}}</td>
                                 <td><a href="{{url("cate/".$playlist->cate->id."/edit")}}">{{$playlist->cate->cate_title}}</a></td>

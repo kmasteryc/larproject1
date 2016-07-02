@@ -14,7 +14,12 @@ class PlaylistController extends Controller
 {
     public function index()
     {
-        $playlists = Playlist::orderBy('updated_at', 'desc')->get();
+        if (Gate::check('is-admin')) {
+            $playlists = Playlist::orderBy('updated_at', 'desc')->get();
+        } else {
+            $playlists = Playlist::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+        }
+
         return view('playlists.index', [
             'myjs' => ['jquery.dynatable.js'],
             'mycss' => ['jquery.dynatable.css'],
@@ -25,7 +30,6 @@ class PlaylistController extends Controller
 
     public function create()
     {
-
         return view('playlists.create', [
             'myjs' => ['playlists/create.js'],
             'cp' => true
@@ -75,6 +79,11 @@ class PlaylistController extends Controller
 
     public function edit(Playlist $playlist)
     {
+        if (!Gate::check('is-admin') && auth()->user()->id != $playlist->user_id) {
+            session()->flash('my_errors', 'Bạn không có quyền truy cập Danh sách nhạc của người khác!');
+            return back();
+        }
+
         return view('playlists.edit', [
             'myjs' => ['playlists/create.js'],
             'playlist' => $playlist,
@@ -84,6 +93,10 @@ class PlaylistController extends Controller
 
     public function update(Request $request, Playlist $playlist)
     {
+        if (!Gate::check('is-admin') && auth()->user()->id != $playlist->user_id) {
+            session()->flash('my_errors', 'Bạn không có quyền truy cập Danh sách nhạc của người khác!');
+            return back();
+        }
         $this->validate($request, [
             'playlist_title' => 'required|unique:playlists,playlist_title,' . $playlist->id,
             'cate_id' => 'required|integer',
@@ -93,10 +106,8 @@ class PlaylistController extends Controller
 
         $playlist->playlist_title = $request->playlist_title;
         $playlist->cate_id = $request->cate_id;
-        $playlist->user_id = $request->user()->id;
 
         $playlist->save();
-
 
         $playlist_img = $request->file('playlist_img');
         if ($playlist_img) {
@@ -137,7 +148,10 @@ class PlaylistController extends Controller
 
     public function delete(Playlist $playlist, Request $request)
     {
-        if (!Gate::check('is-admin')) abort(404);
+        if (!Gate::check('is-admin') && auth()->user()->id != $playlist->user_id) {
+            session()->flash('my_errors', 'Bạn không có quyền truy cập Danh sách nhạc của người khác!');
+            return back();
+        }
 
         $playlist->songs()->detach();
         $playlist->delete();
@@ -151,7 +165,7 @@ class PlaylistController extends Controller
         SessionController::increase_view_playlist($playlist);
 
         return view('playlists.show', [
-            'myjs' => ['player.js','playlists/show.js'],
+            'myjs' => ['player.js', 'playlists/show.js'],
             'playlist' => $playlist,
             'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
         ]);

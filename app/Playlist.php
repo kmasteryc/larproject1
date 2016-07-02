@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
 	protected $fillable = ['playlist_title','playlist_view','user_id','cate_id'];
-	protected $appends = ['playlist_songs_id','playlist_songs_title'];
+	protected $appends = ['playlist_songs_id','total_songs'];
+//	protected $appends = ['playlist_songs_id','playlist_songs_title'];
 
     public function cate()
 	{
@@ -38,5 +39,10 @@ class Playlist extends Model
 			$str_playlist_songs .= $playlist_song->id.',';
 		}
 		return $str_playlist_songs;
+	}
+
+	public function getTotalSongsAttribute()
+	{
+		return count($this->songs);
 	}
 }

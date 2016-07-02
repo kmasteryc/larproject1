@@ -7,7 +7,7 @@
             <div class="col-md-9" style="position: relative">
                 <div class="row" id="playlist-summary">
                     <div class="col-md-3">
-                        <img src="{!! $playlist->image->image_path !!}" alt="">
+                        <img src="{!! $playlist->image->image_path !!}" alt="" height="165px" width="165px">
                     </div>
                     <div class="col-md-9">
                         <h4>PLAYLIST: {!! $playlist->playlist_title !!}</h4>
@@ -36,13 +36,33 @@
 
                 {{--TOOL ROW--}}
 
-
             </div>
             <div class="col-md-3">
                 <div class="content">
                     <h4>
                         GỢI Ý
                     </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="playlist-popup" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title" id="myModalLabel"> Thêm vào danh sách</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="add-song-alert"></span>
+                    <ul class="list-group">
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>

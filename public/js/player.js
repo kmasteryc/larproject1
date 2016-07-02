@@ -206,7 +206,7 @@ $(document).ready(function () {
         }
         $("#player-playlist").html('');
         var html = '';
-        for (x = 0; x < json_data.length - 1; x++) {
+        for (x = 0; x < json_data.length; x++) {
             if (noactive != 1) {
                 var active = current_index == x ? 'list-group-item-info' : '';
             }
@@ -217,7 +217,7 @@ $(document).ready(function () {
             html += '</span>';
             html += '<span class="pull-right">';
             html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
-            html += ' <i class="fa fa-plus"></i>';
+            html += ' <i class="fa fa-plus" data-songid="'+json_data[x].song_id+'" data-songtitle="'+json_data[x].song_title+'" data-songartist="'+json_data[x].song_artist+'"></i>';
             html += ' <a href="' + base_url + 'song/' + json_data[x].song_id + '"><i class="fa fa-arrow-right"></i></a>';
             html += '</span>';
             html += '<div class="clearfix"></div>';

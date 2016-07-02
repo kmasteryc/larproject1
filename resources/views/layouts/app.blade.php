@@ -26,10 +26,14 @@
 
 <div class="container">
     <div class="row">
-    @if (isset($cp))
-        @include('layouts.controlpanel')
-    @endif
-    @yield('content')
+        @if (isset($cp))
+            @if (auth()->user()->level == 2)
+                @include('layouts.admin_panel')
+            @else
+                @include('layouts.user_panel')
+            @endif
+        @endif
+        @yield('content')
     </div>
 </div>
 

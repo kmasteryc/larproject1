@@ -63,13 +63,23 @@ Route::group(['prefix' => 'song'], function () {
 
 Route::group(['prefix' => 'playlist', 'middleware' => 'auth'], function () {
 
-	Route::get('{playlist}/edit','PlaylistController@edit');
 	Route::get('/','PlaylistController@index');
 	Route::get('create','PlaylistController@create');
-	Route::get('{playlist}/delete','PlaylistController@delete');
+    Route::get('{playlist}/edit','PlaylistController@edit');
+    Route::get('{playlist}/delete','PlaylistController@delete');
 	Route::get('{playlist}/{index?}', 'PlaylistController@show');
 	Route::put('{playlist}', 'PlaylistController@update');
 	Route::post('store','PlaylistController@store');
+
+});
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+
+	Route::get('/','UserController@index');
+	Route::get('/playlist/create','UserController@create_playlist');
+	Route::get('/playlist/{playlist}/edit','UserController@edit_playlist');
+	Route::get('/playlist/','UserController@index_playlist');
+	Route::post('/playlist/store','UserController@store_playlist');
 
 });
 
@@ -85,6 +95,9 @@ Route::get('radio/{cate?}','RadioController@index');
 Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
 Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
 Route::get('api/get-song/{song}', 'APIController@getSong');
+
+Route::get('api/get-user-playlists/', 'APIController@getUserPlaylist');
+Route::post('api/add-song-to-playlist/', 'APIController@addSongToPlaylist');
 //Route::resource('API/{type}','APIController');
 Route::auth();
 Route::get('/home', 'HomeController@index');

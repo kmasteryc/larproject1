@@ -97,6 +97,108 @@ h4 {
   margin-top: 10px;
   background: #69D2E7; }
 
+#player-tool-area {
+  position: absolute;
+  top: 32px;
+  right: 100px;
+  height: 80px;
+  margin-bottom: 5px;
+  text-align: center; }
+  #player-tool-area a {
+    display: block; }
+  #player-tool-area .tool-box {
+    position: relative;
+    float: right;
+    display: block;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border: 1px solid silver;
+    margin-bottom: 15px; }
+    #player-tool-area .tool-box i {
+      font-weight: 400;
+      font-size: 20px;
+      font-style: normal;
+      margin-top: 15px;
+      display: block; }
+    #player-tool-area .tool-box b {
+      font-weight: 400;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      bottom: 10px;
+      display: block; }
+
+#playlist-summary {
+  margin: 5px 0 10px 0; }
+  #playlist-summary * {
+    padding-left: 0; }
+
+.playlist-box {
+  min-width: 170px;
+  position: relative;
+  text-align: center; }
+  .playlist-box:hover {
+    opacity: 0.7; }
+    .playlist-box:hover .play-hover {
+      display: block; }
+  .playlist-box .play-hover {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 65px; }
+  .playlist-box .playlist-title {
+    margin: 0;
+    padding: 5px 0 5px 0;
+    font-weight: 700; }
+    .playlist-box .playlist-title i {
+      display: block;
+      font-weight: 500;
+      color: silver; }
+
+.hot-song li:hover {
+  background: mintcream; }
+
+#controlpanel li {
+  position: relative; }
+  #controlpanel li:hover {
+    background-color: blueviolet;
+    color: white; }
+  #controlpanel li a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+    #controlpanel li a:hover {
+      color: white; }
+  #controlpanel li b {
+    position: absolute;
+    font-weight: 400;
+    left: 60px; }
+
+#playlist-popup i {
+  margin-left: 5px; }
+
+#add-song-alert {
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px; }
+
+.add-this-song-to-me {
+  cursor: pointer; }
+  .add-this-song-to-me:hover {
+    color: white;
+    background-color: blueviolet; }
+    .add-this-song-to-me:hover a {
+      color: white; }
+
+.reload {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
 #my-player {
   position: relative;
   width: 650px;
@@ -215,45 +317,6 @@ h4 {
     border-radius: 40px;
     background-color: white; }
 
-#player-tool-area {
-  position: absolute;
-  top: 32px;
-  right: 100px;
-  height: 80px;
-  margin-bottom: 5px;
-  text-align: center; }
-  #player-tool-area a {
-    display: block; }
-  #player-tool-area .tool-box {
-    position: relative;
-    float: right;
-    display: block;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    border: 1px solid silver;
-    margin-bottom: 15px; }
-    #player-tool-area .tool-box i {
-      font-weight: 400;
-      font-size: 20px;
-      font-style: normal;
-      margin-top: 15px;
-      display: block; }
-    #player-tool-area .tool-box b {
-      font-weight: 400;
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin-left: auto;
-      margin-right: auto;
-      bottom: 10px;
-      display: block; }
-
-#playlist-summary {
-  margin: 5px 0 10px 0; }
-  #playlist-summary * {
-    padding-left: 0; }
-
 #player-playlist {
   display: none;
   border-top: 1px solid silver;
@@ -277,47 +340,6 @@ h4 {
     float: right; }
   #lyric-area #lyric-tool {
     float: left; }
-
-.playlist-box {
-  min-width: 170px;
-  position: relative;
-  text-align: center; }
-  .playlist-box:hover {
-    opacity: 0.7; }
-    .playlist-box:hover .play-hover {
-      display: block; }
-  .playlist-box .play-hover {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 65px; }
-  .playlist-box .playlist-title {
-    margin: 0;
-    padding: 5px 0 5px 0;
-    font-weight: 700; }
-    .playlist-box .playlist-title i {
-      display: block;
-      font-weight: 500;
-      color: silver; }
-
-.hot-song li:hover {
-  background: mintcream; }
-
-#controlpanel li {
-  position: relative; }
-  #controlpanel li:hover {
-    background-color: blueviolet;
-    color: white; }
-  #controlpanel li a {
-    display: block;
-    width: 100%;
-    height: 100%; }
-    #controlpanel li a:hover {
-      color: white; }
-  #controlpanel li b {
-    position: absolute;
-    font-weight: 400;
-    left: 60px; }
 
 @media (max-width: 480px) {
   #buildin-player {

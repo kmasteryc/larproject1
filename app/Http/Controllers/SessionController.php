@@ -25,6 +25,11 @@ class SessionController extends Controller
         $request->session()->put($k,$v);
         echo "Set $k to ".$request->session()->get($k);
     }
+    function addSongPlaylist($song_id,$song)
+    {
+        $temp_playlist = session()->get('temp_playlist');
+    }
+
     static function increase_view_song(Song $song){
 
         // Get time view records from session
@@ -61,4 +66,5 @@ class SessionController extends Controller
             $playlist->save();
         }
     }
+
 }

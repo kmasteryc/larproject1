@@ -7,7 +7,7 @@
                 <h3 class="panel-title">Them danh sach nhac moi</h3>
             </div>
             <div class="panel-body">
-                <form action="{{url('playlist/store')}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="{{url('/user/playlist/store')}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ten danh sach</label>

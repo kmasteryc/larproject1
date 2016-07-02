@@ -7,6 +7,13 @@
         </ul>
     </div>
 @endif
+@if (session()->get('my_errors')!='')
+    <div class="alert alert-danger">
+        <ul>
+            <li>{{session()->get('my_errors')}}</li>
+        </ul>
+    </div>
+@endif
 @if (isset($succeeds))
     <div class="alert alert-success">
         <ul>

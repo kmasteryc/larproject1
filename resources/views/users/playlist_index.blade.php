@@ -28,11 +28,11 @@
                         @foreach($playlists as $playlist)
                             <tr>
                                 <td>{{$playlist->id}}</td>
-                                <td><a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> - <a
-                                            href="{{url("playlist/$playlist->id/delete")}}">Delete</a></td>
+                                <td><a href="{{url("user/playlist/$playlist->id/edit")}}">Edit</a> - <a
+                                            href="{{url("user/playlist/$playlist->id/delete")}}">Delete</a></td>
                                 <td><img src="{{$playlist->image['image_path']}}" alt="" height="50px" width="50px"></td>
                                 <td>{{$playlist->playlist_title}}</td>
-                                <td><a href="{{url("cate/".$playlist->cate->id."/edit")}}">{{$playlist->cate->cate_title}}</a></td>
+                                <td>{{$playlist->cate->cate_title}}</td>
                                 <td>{{count($playlist->songs)}}</td>
                                 <td>{{$playlist->playlist_view}}</td>
                                 <td>{{$playlist->updated_at}}</td>
