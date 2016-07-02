@@ -18,7 +18,7 @@ class SongController extends Controller
 
 		return view('songs.show',[
 			'song'=>$song,
-			'myjs'=>['player2.js','songs/show.js'],
+			'myjs'=>['player.js','songs/show.js'],
 			'api_url' => url("api/get-song/$song->id"),
 		]);
 	}

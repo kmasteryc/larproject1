@@ -12,7 +12,7 @@ class RadioController extends Controller
     public function index($cate=31){
         
         return view('radios.index',[
-            'myjs' => ['player2.js'],
+            'myjs' => ['player.js'],
             'api_url' => url("api/get-songs-in-cate/$cate"),
         ]);
     }

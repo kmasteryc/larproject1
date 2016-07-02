@@ -6,5 +6,5 @@
             api_url: '{!! $api_url !!}'
         };
     </script>
-    @include('standalones.radio')
+    @include('standalones.player')
 @stop

@@ -35,6 +35,7 @@
                 <span class="current-time">00</span>/
                 <span class="duration"></span>
             </span>
+            <i class="player-mode"></i>
         </div>
     </div>
 </div>

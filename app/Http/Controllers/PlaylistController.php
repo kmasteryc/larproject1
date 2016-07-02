@@ -151,7 +151,7 @@ class PlaylistController extends Controller
         SessionController::increase_view_playlist($playlist);
 
         return view('playlists.show', [
-            'myjs' => ['player2.js','playlists/show.js'],
+            'myjs' => ['player.js','playlists/show.js'],
             'playlist' => $playlist,
             'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
         ]);
