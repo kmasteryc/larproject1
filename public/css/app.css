@@ -187,7 +187,7 @@ h4 {
         left: 95px; }
       #my-player .control-bar .player-button .player-mode {
         position: absolute;
-        bottom: 10px;
+        bottom: 14px;
         left: 500px; }
       #my-player .control-bar .player-button .volume-bar {
         width: 70px;
@@ -255,6 +255,7 @@ h4 {
     padding-left: 0; }
 
 #player-playlist {
+  display: none;
   border-top: 1px solid silver;
   margin-top: 10px;
   max-width: 650px;

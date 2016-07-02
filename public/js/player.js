@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     // Set song for first time
     setSong(current_song);
-    switch (mode){
+    switch (mode) {
         case 1: // Single song player
             $(".fa-step-backward").hide();
             $(".fa-step-forward").hide();
@@ -32,8 +32,8 @@ $(document).ready(function () {
             break;
     }
 
-    function setSong(song){
-        $("#song_source").attr('src',song.song_mp3);
+    function setSong(song) {
+        $("#song_source").attr('src', song.song_mp3);
 
         $(".lyric-1").html(song.song_title);
         $(".lyric-2").html(song.song_artist);
@@ -41,11 +41,11 @@ $(document).ready(function () {
         if (song.song_lyric != null) {
             lyric = processLyric(song.song_lyric);
             has_time_lyric = true;
-        }else{
+        } else {
             has_time_lyric = false;
         }
 
-        $(".player-background").css('background-image',"url('"+song.song_img+"')");
+        $(".player-background").css('background-image', "url('" + song.song_img + "')");
 
         player.trigger('stop');
         player.trigger('load');
@@ -93,7 +93,7 @@ $(document).ready(function () {
                         deactive = active == 1 ? 2 : 1;
                         // Show lyric when it is not empty
                         if (cur_lyr.lyr != '') {
-                            $('.lyric-' + active).html(cur_lyr.lyr+'<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
+                            $('.lyric-' + active).html(cur_lyr.lyr + '<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
                             // $('.lyric-' + active).append();
                         }
                         // Check nextlyric if it is not empty
@@ -187,65 +187,66 @@ $(document).ready(function () {
         return result;
     }
 
-    function getJson(){
+    function getJson() {
         var json_data;
         $.ajax({
-            url : player_config.api_url,
+            url: player_config.api_url,
             method: 'GET',
             async: false,
-            success: function(response){
+            success: function (response) {
                 json_data = response;
             }
         });
         return json_data;
     }
 
-    function showList(noactive)
-    {
+    function showList(noactive) {
+        if (mode != 2){
+            return;
+        }
         $("#player-playlist").html('');
         var html = '';
-        for (x=0;x<json_data.length-1;x++)
-        {
+        for (x = 0; x < json_data.length - 1; x++) {
             if (noactive != 1) {
                 var active = current_index == x ? 'list-group-item-info' : '';
             }
-            html += '<li class="list-group-item '+active+'">';
-                html += '<span class="pull-left">';
-                html += (x+1)+'. ';
-                html += '<a href="#" class="changesong" data-index="'+x+'">'+json_data[x].song_title+'</a> - '+json_data[x].song_artist;
-                html += '</span>';
-                html += '<span class="pull-right">';
-                    html += '<a href="'+json_data[x].song_mp3+'"><i class="fa fa-download"></i></a>';
-                    html += ' <i class="fa fa-plus"></i>';
-                    html += ' <a href="'+base_url+'song/'+json_data[x].song_id+'"><i class="fa fa-arrow-right"></i></a>';
-                html += '</span>';
-                html += '<div class="clearfix"></div>';
+            html += '<li class="list-group-item ' + active + '">';
+            html += '<span class="pull-left">';
+            html += (x + 1) + '. ';
+            html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ' + json_data[x].song_artist;
+            html += '</span>';
+            html += '<span class="pull-right">';
+            html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
+            html += ' <i class="fa fa-plus"></i>';
+            html += ' <a href="' + base_url + 'song/' + json_data[x].song_id + '"><i class="fa fa-arrow-right"></i></a>';
+            html += '</span>';
+            html += '<div class="clearfix"></div>';
             html += '</li>';
         }
         $("#player-playlist").html(html);
+        $("#player-playlist").show();
     }
 
-    function setPlayType(type)
-    {
+    function setPlayType(type) {
         player_type = type;
         var class_icon, play_type_text;
-        switch (type){
+        switch (type) {
             case 1: // Repeat one
                 class_icon = 'fa fa-thumb-tack';
                 play_type_text = ' Lặp bài này';
-                player.prop('loop',true);
+                player.prop('loop', true);
                 break;
             case 2: // Repeat all
                 class_icon = 'fa fa-refresh';
                 play_type_text = ' Lặp toàn bộ';
-                player.prop('loop',false);
+                player.prop('loop', false);
                 break;
             case 3: // Shuffle mode
                 class_icon = 'fa fa-random';
                 play_type_text = ' Ngẫu nhiên';
                 json_data = shuffleArr(json_data);
                 showList(1);
-                player.prop('loop',false);
+                player.prop('loop', false);
                 break;
         }
         $(".player-mode").removeClass("fa fa-thumb-tack");
@@ -255,19 +256,19 @@ $(document).ready(function () {
         $(".player-mode").html(play_type_text);
     }
 
-    function nextIndex(){
-        if (current_index == (totalIndex-1)) {
+    function nextIndex() {
+        if (current_index == (totalIndex - 1)) {
             current_index = 0;
-        }else{
+        } else {
             current_index++;
         }
         return current_index
     }
 
-    function prevIndex(){
+    function prevIndex() {
         if (current_index == 0) {
             current_index = 0;
-        }else{
+        } else {
             current_index--;
         }
         return current_index
@@ -291,6 +292,7 @@ $(document).ready(function () {
 
         return array;
     }
+
     //Process seeking
     $('#seek').change(function () {
         var seekTime = $(this).val() * s_duration / 100;
