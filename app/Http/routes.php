@@ -61,7 +61,7 @@ Route::group(['prefix' => 'song'], function () {
 
 });
 
-Route::group(['prefix' => 'playlist', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'playlist'], function () {
 
 	Route::get('/','PlaylistController@index');
 	Route::get('create','PlaylistController@create');

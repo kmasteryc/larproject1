@@ -1,7 +1,6 @@
 #my-player {
   position: relative;
-  width: 100%;
-  max-width: 700px;
+  width: 650px;
   height: 185px;
   background-color: black;
   .player-background {
@@ -14,7 +13,7 @@
     height: 100%;
     opacity: 0.8;
     background-image: url('http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg');
-    background-size: 700px 185px;
+    background-size: 650px 185px;
   }
   .player-mask {
     content: '';
@@ -33,14 +32,15 @@
     height: 3px;
     cursor: pointer;
     width: 100%;
-    background: white;
+    background: violet;
   }
   .lyric-bar {
-    padding-top: 15%;
-    font-size: 13px;
+    font-size: 24px;
     color: white;
     overflow: hidden;
     white-space: nowrap;
+    line-height: 33px;
+    padding-top: 35px;
     text-align: center;
     position: absolute;
     left: 0;
@@ -53,11 +53,11 @@
       .lyric-1, .lyric-2 {
         display: block;
         .kara {
+
           overflow: hidden;
           display: block;
-          margin-top: -25px;
-
-          color: #C8361D;
+          margin-top: -33px;
+          color: violet;
           text-align: left;
           transition-timing-function: linear;
           transition-delay: 0.08s;
@@ -106,12 +106,12 @@
       .player-mode{
         position: absolute;
         bottom: 14px;
-        right: 20px;
+        left: 500px;
       }
       .volume-bar {
         width: 70px;
         height: 2px;
-        background: white;
+        background: violet;
         position: absolute;
         bottom: 18px;
         left: 200px;
@@ -125,7 +125,7 @@
   }
   input[type="range"] {
     -webkit-appearance: none;
-    background-color: white;
+    background-color: violet;
     height: 2px;
   }
   input[type="range"]::-webkit-slider-thumb {
@@ -147,7 +147,7 @@
   display: none;
   border-top: 1px solid silver;
   margin-top: 10px;
-  max-width: 700px;
+  max-width: 650px;
   max-height: 300px;
   overflow: auto;
   i{
@@ -160,7 +160,7 @@
   }
 }
 #lyric-area{
-  max-width: 700px;
+  max-width: 650px;
   line-height: 30px;
   max-height: 250px;
   overflow: auto;
@@ -173,54 +173,50 @@
 }
 
 // Responsive
-@media (min-width: 1200px) {
-  #my-player{
-    .lyric-bar{
-      padding-top: 5%;
-      font-size: 20px;
-    }
-  }
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-  #my-player{
-    .lyric-bar{
-      padding-top: 5%;
-      font-size: 20px;
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  #my-player{
-    .player-mask{
-      background: #6A7ACF;
-    }
-    .lyric-bar{
-      padding-top: 6%;
-      font-size: 18px;
-    }
-  }
-
-}
 
 @media (max-width: 480px) {
   #my-player{
-    .player-background{
+    width: 100%;
+    height: 50px;
+    .player-background, .player-background, .seek-bar, .lyric-bar{
       display: none;
     }
     .player-mask{
       background: #6A7ACF;
     }
-    .lyric-bar{
-      padding-top: 15%;
-      font-size: 13px;
+    .control-bar{
+      .player-button{
+        .player-mode{
+          left: 75%;
+        }
+      }
     }
   }
-  .process-bar{
-    display: none;
+
+}
+@media (max-width: 767px) {
+  #my-player{
+    width: 100%;
+    height: 50px;
+    .player-background, .player-background, .seek-bar, .lyric-bar{
+      display: none;
+    }
+    .player-mask{
+      background: #6A7ACF;
+    }
+    .control-bar{
+      .player-button{
+        .player-mode{
+          left: 75%;
+        }
+      }
+    }
   }
-  .volume-bar, .volume{
-    display: none;
-  }
+
+}
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+@media (min-width: 1200px) {
+
 }

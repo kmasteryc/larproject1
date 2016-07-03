@@ -30,9 +30,23 @@ class APIController extends Controller
         return response()->json($res);
     }
 
-    public function getSongsInPlaylist(Playlist $playlist)
+    public function getSongsInPlaylist($playlist)
     {
-        $songs = $playlist->songs()->select('songs.id', 'song_title', 'song_mp3', 'song_img')->orderBy('song_title')->get();
+        if ($playlist == 0){
+            $playlist = session()->get('temp_playlist');
+            if (!$playlist)
+            {
+                return '';
+            }
+            $song_ids = explode(',',$playlist['playlist_songs_id']);
+            $songs = Song::whereIn('id',$song_ids)->get();
+        }
+        else
+        {
+            $playlist = Playlist::find($playlist);
+            $songs = $playlist->songs()->select('songs.id', 'song_title', 'song_mp3', 'song_img')->orderBy('song_title')->get();
+
+        }
         foreach ($songs as $song) {
             $lyric_obj = $song->lyrics()->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC')->first();
             $img = $song->song_img !== '' ? $song->song_img : 'http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg';
@@ -67,10 +81,24 @@ class APIController extends Controller
 
     public function getUserPlaylist()
     {
-        if (auth()->user()){
-            $playlists = Playlist::where('user_id', auth()->user()->id)->select('playlist_title','playlists.id')->get();
-            return response()->json($playlists);
+        $temp_playlist = session()->get('temp_playlist');
+        if (!$temp_playlist)
+        {
+            $temp_playlist = [
+                'id' => 0,
+                'playlist_title' => 'Danh sách tạm thời',
+                'total_songs' => 0,
+                'playlist_songs_id' => ''
+            ];
+            session()->put('temp_playlist', $temp_playlist);
         }
+        $playlists[0] = $temp_playlist;
+        if (auth()->user()) {
+            $user_playlists = Playlist::where('user_id', auth()->user()->id)->select('playlist_title', 'playlists.id')->get()->toArray();
+//            dd($user_playlists);
+            $playlists = array_merge($playlists, $user_playlists);
+        }
+        return response()->json($playlists);
     }
 
     public function addSongToPlaylist()
@@ -78,12 +106,32 @@ class APIController extends Controller
         $data = json_decode(request()->get('data'));
 
         $song = Song::find($data->song_id);
-        $playlist = Playlist::find($data->playlist_id);
 
-        if (!$playlist->songs()->find($song->id)) {
-            $playlist->songs()->attach($song);
+        // Check if this is not temporary playlist
+        if ($data->playlist_id != 0) {
+            $playlist = Playlist::find($data->playlist_id);
+
+            if (!$playlist->songs()->find($song->id)) {
+                $playlist->songs()->attach($song);
+            }
+        } else { // Else it is
+            $temp_playlist = session()->get('temp_playlist');
+            if (!$temp_playlist) {
+                $temp_playlist = [
+                    'id' => 0,
+                    'playlist_title' => 'Danh sách tạm thời',
+                    'total_songs' => 1,
+                    'playlist_songs_id' => $data->song_id . ','
+                ];
+                echo "Iam new!";
+            } else {
+                $temp_playlist['total_songs']++;
+                $temp_playlist['playlist_songs_id'] .= $data->song_id . ',';
+                echo "UPDATE!";
+            }
+            session()->put('temp_playlist', $temp_playlist);
         }
-
+        echo session()->get('temp_playlist')['playlist_songs_id'];
         echo 'Done!';
 
 //        echo()->test);

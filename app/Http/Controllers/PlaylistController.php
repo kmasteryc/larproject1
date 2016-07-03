@@ -160,14 +160,25 @@ class PlaylistController extends Controller
         return back();
     }
 
-    public function show(Playlist $playlist)
+    public function show($playlist)
     {
-        SessionController::increase_view_playlist($playlist);
+        // Is number => user playlist
+        if (is_numeric($playlist)) {
+            $playlist = Playlist::find($playlist);
+            SessionController::increase_view_playlist($playlist);
 
-        return view('playlists.show', [
-            'myjs' => ['player.js', 'playlists/show.js'],
-            'playlist' => $playlist,
-            'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
-        ]);
+            return view('playlists.show', [
+                'myjs' => ['player.js', 'playlists/show.js'],
+                'playlist' => $playlist,
+                'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
+            ]);
+        } else { // Else -> templaylist
+            return view('playlists.guest_show', [
+                'myjs' => ['player.js', 'playlists/show.js'],
+                'playlist' => $playlist,
+                'api_url' => url("api/get-songs-in-playlist/0"),
+            ]);
+        }
+
     }
 }

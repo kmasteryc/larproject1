@@ -13,12 +13,16 @@ $(document).ready(function () {
     var has_time_lyric = false;
     var volume = 0.9;
     var player_type = 2;
+    var empty_playlist = false;
     // 1- Song; 2- Playlist; 3-Radio
     // var mode = 1;
     var mode = player_config.mode;
 
     // Set song for first time
-    setSong(current_song);
+    if (empty_playlist === false)
+    {
+        setSong(current_song);
+    }
     switch (mode) {
         case 1: // Single song player
             $(".fa-step-backward").hide();
@@ -85,29 +89,31 @@ $(document).ready(function () {
                 if (has_time_lyric == true) {
                     // Call getLyric
                     cur_lyr = getLyric(s_currentTime, lyric);
-                    var width = (s_currentTime - cur_lyr.start) * 100 / cur_lyr.dur;
-                    // Modify width a bit
-                    // width = width > 93 ? width += 15 : width;
-                    // Compare old lyc and new lrc. If have update -> replace html
-                    if (JSON.stringify(old_lyr) != JSON.stringify(cur_lyr)) {
-                        deactive = active == 1 ? 2 : 1;
-                        // Show lyric when it is not empty
-                        if (cur_lyr.lyr != '') {
-                            $('.lyric-' + active).html(cur_lyr.lyr + '<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
-                            // $('.lyric-' + active).append();
+                    if(cur_lyr != undefined) {
+                        var width = (s_currentTime - cur_lyr.start) * 100 / cur_lyr.dur;
+                        // Modify width a bit
+                        // width = width > 93 ? width += 15 : width;
+                        // Compare old lyc and new lrc. If have update -> replace html
+                        if (JSON.stringify(old_lyr) != JSON.stringify(cur_lyr)) {
+                            deactive = active == 1 ? 2 : 1;
+                            // Show lyric when it is not empty
+                            if (cur_lyr.lyr != '') {
+                                $('.lyric-' + active).html(cur_lyr.lyr + '<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
+                                // $('.lyric-' + active).append();
+                            }
+                            // Check nextlyric if it is not empty
+                            if (cur_lyr.next_lyr != '') {
+                                $('.lyric-' + deactive).html(cur_lyr.next_lyr);
+                            }
+                            // Swap active and deactive
+                            var temp = active;
+                            active = deactive;
+                            deactive = temp;
+                            old_lyr = cur_lyr;
+                        } else {
+                            // Else change kara width
+                            $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                         }
-                        // Check nextlyric if it is not empty
-                        if (cur_lyr.next_lyr != '') {
-                            $('.lyric-' + deactive).html(cur_lyr.next_lyr);
-                        }
-                        // Swap active and deactive
-                        var temp = active;
-                        active = deactive;
-                        deactive = temp;
-                        old_lyr = cur_lyr;
-                    } else {
-                        // Else change kara width
-                        $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                     }
                 }
             });
@@ -195,6 +201,17 @@ $(document).ready(function () {
             async: false,
             success: function (response) {
                 json_data = response;
+
+                // Both User playlist and temp playlist are empty!
+                if (json_data == '')
+                {
+                    empty_playlist = true;
+                    $(".control-bar").hide();
+                    $(".seek-bar").hide();
+                    $("#buildin-player").html('Danh sách trống - Vui lòng thêm bài hát');
+                    $(".lyric-1").html('Danh sách trống');
+                    $(".lyric-2").html('Vui lòng thêm bài hát');
+                }
             }
         });
         return json_data;

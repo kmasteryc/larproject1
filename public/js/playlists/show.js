@@ -16,14 +16,14 @@ $(document).ready(function () {
     var save_me_to_memory = {};
     var save_me_too;
 
-    $(".fa-plus").click(function () {
+    $(document).on('click', '.fa-plus', function () {
         save_me_to_memory['song_id'] = $(this).data('songid');
         save_me_to_memory['song_title'] = $(this).data('songtitle');
         save_me_to_memory['song_artist'] = $(this).data('songartist');
 
         $("#playlist-popup").modal();
         loadPlaylist();
-    })
+    });
 
     $(document).on('click', '.add-this-song-to-me', function () {
 
@@ -47,15 +47,14 @@ $(document).ready(function () {
                     playlist_id: save_me_too[playlistindex].id
                 }),
                 success: function (response) {
-                    console.log(response);
+                    loadPlaylist();
+                    $('#add-song-alert').removeClass('text-danger');
+                    $('#add-song-alert').addClass('text-success');
+                    $('#add-song-alert').html("Thêm bài hát thành công!");
                 }
             });
 
-            $('#add-song-alert').removeClass('text-danger');
-            $('#add-song-alert').addClass('text-success');
-            $('#add-song-alert').html("Thêm bài hát thành công!");
 
-            loadPlaylist();
         }
 
     })
@@ -68,16 +67,24 @@ $(document).ready(function () {
             async: true,
             success: function (response) {
                 var html = '';
+
                 playlists = response;
+                console.log(playlists);
                 save_me_too = playlists;
                 for (var index in playlists) {
                     html += "<li class='list-group-item add-this-song-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
                     html += playlists[index].playlist_title;
                     html += " (" + playlists[index].total_songs + " bài)";
-                    html += "<span class='pull-right'>" +
-                        "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play'></i></a>" +
-                        "<a href='" + base_url + "playlist/" + playlists[index].id + "/edit'><i class='fa fa-gear'></i></a>" +
-                        "</span>";
+                    html += "<span class='pull-right'>";
+                    if (index !=0 ){
+                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play'></i></a>";
+                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "/edit'><i class='fa fa-gear'></i></a>"
+                    }
+                    else
+                    {
+                        html += "<a href='" + base_url + "playlist/temp_playlist'><i class='fa fa-play'></i></a>";
+                    }
+                    html += "</span>";
                     html += "</li>";
                 }
                 list_box.html(html);

@@ -22,7 +22,9 @@
 
 // Song - show
 // Buildin-player
-
+#buildin-player{
+    display:none;
+}
 // Audio-player
 
 
@@ -75,6 +77,11 @@
     margin: 5px 0 10px 0;
     * {
         padding-left: 0;
+    }
+
+    img{
+        margin-bottom: 5px;
+        margin-top: 5px;
     }
 }
 // Cate - show

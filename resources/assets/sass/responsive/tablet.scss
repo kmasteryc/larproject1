@@ -5,40 +5,48 @@
   .k-menu>li .k-sub-menu{
     width: 400px;
   }
-  #buildin-player{
-    display:none;
-  }
-  #my-player{
-    display:inline-block;
-  }
   #player-tool-area{
     position: static;
+    margin: 10px 0px 10px 0px;
     .tool-box{
       float: left;
-      margin-bottom: 0px;
       margin-right: 15px;
     }
     .clearfix{
       display: none;
+    }
+  }
+
+  #playlist-summary{
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
 @media (max-width: 767px) {
-  #buildin-player{
-    display:inline-block;
-  }
-  #my-player{
-    display:none;
-  }
+
   #player-tool-area{
     position: static;
+    margin: 10px 0px 10px 0px;
     .tool-box{
       float: left;
-      margin-bottom: 0px;
-      margin-right: 15px;
+      margin-right: 5px;
     }
     .clearfix{
       display: none;
+    }
+  }
+
+  #playlist-summary{
+    .playlist-detail{
+      display: none;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
