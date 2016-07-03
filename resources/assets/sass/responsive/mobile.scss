@@ -1,4 +1,4 @@
-@media (max-width: 480px) {
+@media (max-width: 767px) {
 	#player-tool-area{
 		position: static;
 		margin: 10px 0px 10px 0px;
@@ -15,9 +15,10 @@
 			display: none;
 		}
 		img {
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
+			display: none;
+			//display: block;
+			//margin-left: auto;
+			//margin-right: auto;
 		}
 	}
 }

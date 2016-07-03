@@ -7,12 +7,14 @@
     <div class="player-background"></div>
     <div class="player-mask"></div>
     <div class="lyric-bar">
-        <div class="lyric">
-            <p class="lyric-1"></p>
-        </div>
-        <br/>
-        <div class="lyric">
-            <p class="lyric-2"></p>
+        <div class="lyric-content">
+            <div class="lyric">
+                <p class="lyric-1"></p>
+            </div>
+            <br/>
+            <div class="lyric">
+                <p class="lyric-2"></p>
+            </div>
         </div>
     </div>
     <div class="seek-bar">
