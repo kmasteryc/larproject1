@@ -192,18 +192,22 @@ h4 {
   margin-top: 5px;
   margin-bottom: 10px; }
 
-.add-this-song-to-me {
+.add-this-song-to-me, .add-this-playlist-to-me {
   cursor: pointer; }
-  .add-this-song-to-me:hover {
+  .add-this-song-to-me:hover, .add-this-playlist-to-me:hover {
     color: white;
     background-color: blueviolet; }
-    .add-this-song-to-me:hover a {
+    .add-this-song-to-me:hover a, .add-this-playlist-to-me:hover a {
       color: white; }
 
 .reload {
   display: block;
   margin-left: auto;
   margin-right: auto; }
+
+#temp_playlist_tool {
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 #my-player {
   position: relative;

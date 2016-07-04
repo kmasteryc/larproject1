@@ -26,6 +26,8 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.add-this-song-to-me', function () {
+        
+        list_box.html('<img class="reload" src="' + base_url + 'img/reload.gif"/>');
 
         var playlistid = $(this).data('playlistid');
         var playlistindex = $(this).data('playlistindex');

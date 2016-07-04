@@ -174,8 +174,9 @@ class PlaylistController extends Controller
             ]);
         } else { // Else -> templaylist
             return view('playlists.guest_show', [
-                'myjs' => ['player.js', 'playlists/show.js'],
+                'myjs' => ['player.js', 'playlists/guest_show.js'],
                 'playlist' => $playlist,
+//                'playlists' => Playlist::select('id','playlist_title')->get(),
                 'api_url' => url("api/get-songs-in-playlist/0"),
             ]);
         }

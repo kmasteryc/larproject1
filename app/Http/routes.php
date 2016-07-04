@@ -96,8 +96,10 @@ Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
 Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
 Route::get('api/get-song/{song}', 'APIController@getSong');
 
-Route::get('api/get-user-playlists/', 'APIController@getUserPlaylist');
+Route::get('api/get-user-playlists/{include_guest?}', 'APIController@getUserPlaylist');
+Route::get('api/reset-temp-playlist', 'APIController@resetTempPlaylist');
 Route::post('api/add-song-to-playlist/', 'APIController@addSongToPlaylist');
+Route::post('api/import-playlist-to-playlist/', 'APIController@importPlaylistToPlaylist');
 //Route::resource('API/{type}','APIController');
 Route::auth();
 Route::get('/home', 'HomeController@index');

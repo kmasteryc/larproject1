@@ -154,7 +154,7 @@
     margin-top: 5px;
     margin-bottom: 10px;
 }
-.add-this-song-to-me{
+.add-this-song-to-me, .add-this-playlist-to-me{
     cursor: pointer;
     &:hover{
         color: white;
@@ -168,4 +168,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+// temp_playlist_tool
+#temp_playlist_tool{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
 }

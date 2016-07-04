@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/api/add-song-to-playlist/'
+        '/api/add-song-to-playlist/',
+        'api/import-playlist-to-playlist/'
     ];
 }
