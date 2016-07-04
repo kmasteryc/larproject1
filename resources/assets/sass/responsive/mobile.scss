@@ -1,24 +1,28 @@
 @media (max-width: 767px) {
-	#player-tool-area{
-		position: static;
-		margin: 10px 0px 10px 0px;
-		.tool-box{
-			float: left;
-			margin-right: 5px;
-		}
-		.clearfix{
-			display: none;
-		}
-	}
-	#playlist-summary{
-		.playlist-detail{
-			display: none;
-		}
-		img {
-			display: none;
-			//display: block;
-			//margin-left: auto;
-			//margin-right: auto;
-		}
-	}
+  .k-sub-menu {
+    font-size: 12px;
+    width: 280px;
+  }
+  #player-tool-area {
+    position: static;
+    margin: 10px 0px 10px 0px;
+    .tool-box {
+      float: left;
+      margin-right: 5px;
+    }
+    .clearfix {
+      display: none;
+    }
+  }
+  #playlist-summary {
+    .playlist-detail {
+      display: none;
+    }
+    img {
+      display: none;
+      //display: block;
+      //margin-left: auto;
+      //margin-right: auto;
+    }
+  }
 }

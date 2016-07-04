@@ -51,7 +51,6 @@
             <li>
                 <a href="#">CHỦ ĐỀ</a>
                 <ul class="k-sub-menu">
-                    <li><a href=""></a></li>
                     {!!$menu->make($cates,'nav')!!}
                 </ul>
             </li>
