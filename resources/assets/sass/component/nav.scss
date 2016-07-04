@@ -4,8 +4,6 @@
 .k-menu {
   padding: 0;
   list-style: none;
-  height: 40px;
-  & > li {
     text-align: center;
     height: 40px;
     line-height: 40px;
@@ -50,7 +48,6 @@
         padding-left: 5px;
       }
     }
-  }
 }
 .red-foot{
   border-bottom: 2px solid crimson;

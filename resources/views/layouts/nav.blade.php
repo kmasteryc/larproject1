@@ -21,7 +21,9 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-
+            <ul class="nav navbar-nav">
+                {!!$menu->make($cates,'nav2')!!}
+            </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -43,25 +45,3 @@
         </div>
     </div>
 </nav>
-
-
-<div class="row">
-    <div class="container">
-        <ul class="k-menu">
-            <li>
-                <a href="#">CHỦ ĐỀ</a>
-                <ul class="k-sub-menu">
-                    {!!$menu->make($cates,'nav')!!}
-                </ul>
-            </li>
-            <li>
-                <a href="#">BXH</a>
-
-            </li>
-            <li>
-                <a href="{!! url('radio') !!}">RADIO</a>
-
-            </li>
-        </ul>
-    </div>
-</div>

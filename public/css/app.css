@@ -4,44 +4,42 @@
 .k-menu {
   padding: 0;
   list-style: none;
-  height: 40px; }
-  .k-menu > li {
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-    width: 60px;
-    display: inline-block;
-    position: relative;
-    z-index: 99; }
-    .k-menu > li a {
-      text-decoration: none;
-      color: black; }
-    .k-menu > li:hover {
-      border: 1px solid silver;
-      border-bottom: 0px; }
-      .k-menu > li:hover .k-sub-menu {
-        display: block; }
-    .k-menu > li .k-sub-menu {
-      padding: 10px 0 0 0;
-      display: none;
-      top: 39px;
-      left: -1px;
-      width: 300px;
-      z-index: 77;
-      position: absolute;
-      border: 1px solid silver;
-      background: white;
-      list-style: none; }
-      .k-menu > li .k-sub-menu li.column {
-        padding-right: 5px;
-        text-align: left;
-        float: left;
-        width: 25%; }
-        .k-menu > li .k-sub-menu li.column a:hover {
-          cursor: pointer;
-          color: darkblue; }
-      .k-menu > li .k-sub-menu li.column:first-child {
-        padding-left: 5px; }
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  width: 60px;
+  display: inline-block;
+  position: relative;
+  z-index: 99; }
+  .k-menu a {
+    text-decoration: none;
+    color: black; }
+  .k-menu:hover {
+    border: 1px solid silver;
+    border-bottom: 0px; }
+    .k-menu:hover .k-sub-menu {
+      display: block; }
+  .k-menu .k-sub-menu {
+    padding: 10px 0 0 0;
+    display: none;
+    top: 39px;
+    left: -1px;
+    width: 300px;
+    z-index: 77;
+    position: absolute;
+    border: 1px solid silver;
+    background: white;
+    list-style: none; }
+    .k-menu .k-sub-menu li.column {
+      padding-right: 5px;
+      text-align: left;
+      float: left;
+      width: 25%; }
+      .k-menu .k-sub-menu li.column a:hover {
+        cursor: pointer;
+        color: darkblue; }
+    .k-menu .k-sub-menu li.column:first-child {
+      padding-left: 5px; }
 
 .red-foot {
   border-bottom: 2px solid crimson; }
