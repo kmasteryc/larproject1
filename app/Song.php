@@ -8,7 +8,8 @@ class Song extends Model
 {
     protected  $fillable = ['song_title','song_view','song_mp3'];
 //	protected $prepends = ['song_artists_id','song_artists_title','song_artists_title_text'];
-	protected $appends = ['song_artists_id','song_artists_title','song_artists_title_text'];
+//	protected $appends = ['song_artists_id','song_artists_title','song_artists_title_text'];
+//	protected $appends = ['song_artists_id'];
 
 	public function cate()
 	{
@@ -60,13 +61,17 @@ class Song extends Model
 	}
 	public function getSongArtistsIdAttribute()
 	{
-		$song_artists = $this->artists;
+		$song_artists = $this->artists()->select('artists.id')->get();
 		$str_song_artists = '';
 		foreach ($song_artists as $song_artist)
 		{
 			$str_song_artists .= $song_artist->id.',';
 		}
 		return $str_song_artists;
+	}
+
+	public function getSongImgAttribute($value){
+		return $value?:"http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg";
 	}
 
 }

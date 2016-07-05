@@ -95,12 +95,18 @@
             display: block;
         }
     }
+    .playlist-img{
+        position: relative;
+    }
+
     .play-hover{
         display: none;
         position: absolute;
-        top: 60px;
-        left: 65px;
+        left:50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
+
     .playlist-title{
         margin: 0;
         padding: 5px 0 5px 0;

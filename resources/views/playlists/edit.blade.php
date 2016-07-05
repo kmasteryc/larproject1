@@ -29,6 +29,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Thong tin</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" name="playlist_info" class="form-control" value="{{$playlist->playlist_info}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Anh cu</label>
 
                         <div class="col-sm-9">

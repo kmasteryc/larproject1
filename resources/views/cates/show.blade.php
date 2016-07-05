@@ -5,37 +5,39 @@
             <h4>Chủ đề: {!! $cate->cate_title !!}</h4>
             <h5>Album HOT</h5>
             <div class="row">
-                @foreach ($playlists as $pl)
-                    <a href="{!! url('playlist/'.$pl->id) !!}">
-                        <div class="col-md-3 col-lg-2 col-sm-4 col-xs-6">
-                            <div class="playlist-box">
-                                <span class="play-hover">
-                                    <i class="fa fa-3x fa-play-circle-o"></i>
-                                </span>
-                                {{--<img src="{!! //$pl->image->image_path !!}" alt="">--}}
-                                <img src="http://image.mp3.zdn.vn/thumb/165_165/covers/1/5/15171a8058de99f758a61554225d4f72_1446524127.jpg" alt="">
-                                <p class="playlist-title">
-                                    {!! $pl->playlist_title !!}
-                                    <i class="playlist-artist">
-                                        {!! $pl->user->name !!}
-                                    </i>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
+                <ul class="lightSlider">
+                    @foreach ($playlists as $pl)
+                        <?php
+                        $img = $pl->image->image_path;
+                        ?>
+                        <li>
+                            <a href="{!! url('playlist/'.$pl->id) !!}">
+                                <div class="playlist-box">
+                                    <div class="playlist-img">
+                                        <span class="play-hover">
+                                            <i class="fa fa-3x fa-play-circle-o"></i>
+                                        </span>
+                                        <img src="{!! $img !!}" height="165px" width="165px">
+                                    </div>
+                                    <p class="playlist-title">
+                                        {!! $pl->playlist_title !!}
+                                        <i class="playlist-artist">
+                                            {!! $pl->user->name !!}
+                                        </i>
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+
+                </ul>
+
             </div>
             <h5>Bài hát HOT</h5>
             <div class="row">
-                <ul class="list-group hot-song">
-                @foreach ($songs as $song)
-                    	<li class="list-group-item">
-                           <span class="pull-left"><a href="{!! url('song/'.$song->id) !!}">{!! $song->song_title !!}</a> - {!! $song->song_artists_title !!}</span>
-                           <span class="pull-right">Some action here!</span>
-                            <div class="clearfix"></div>
-                        </li>
-                    @endforeach
-                </ul>
+                <script> var cate = '{!! $cate->id !!}';</script>
+                <div style="text-align: center" id="hot-song-pageinate"></div>
+                <ul class="list-group" id="hot-song"></ul>
             </div>
         </div>
     </div>

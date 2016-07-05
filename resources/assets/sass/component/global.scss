@@ -25,6 +25,8 @@ h4{
   font-size: 20px;
   text-transform: uppercase;
 }
+
+// Scroll bar
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -37,4 +39,8 @@ h4{
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
+}
+
+// Pagination
+.pagination{
 }

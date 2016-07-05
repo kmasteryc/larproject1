@@ -98,6 +98,9 @@ Route::get('api/get-song/{song}', 'APIController@getSong');
 
 Route::get('api/get-user-playlists/{include_guest?}', 'APIController@getUserPlaylist');
 Route::get('api/reset-temp-playlist', 'APIController@resetTempPlaylist');
+Route::get('api/get-ajax-hot-song/{cate}/{page?}', 'APIController@getAjaxHotSong');
+Route::get('api/get-ajax-hot-playlist/{cate}/{page?}', 'APIController@getAjaxHotPlaylist');
+
 Route::post('api/add-song-to-playlist/', 'APIController@addSongToPlaylist');
 Route::post('api/import-playlist-to-playlist/', 'APIController@importPlaylistToPlaylist');
 //Route::resource('API/{type}','APIController');

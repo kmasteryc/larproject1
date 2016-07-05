@@ -27,12 +27,24 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        Danh sách nhạc của bạn <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach ($menu_playlists as $menu_playlist)
+                            <li>
+                                <a href="{!! url('playlist/'.$menu_playlist['id']) !!}">{!! $menu_playlist['playlist_title'] !!} ({!! $menu_playlist['total_songs'] !!})</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 @if (auth()->guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             {{ auth()->user()->name }} <span class="caret"></span>
                         </a>
 

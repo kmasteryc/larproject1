@@ -10,9 +10,9 @@ namespace App\Http\ViewComposer;
 
 use Illuminate\View\View;
 
-class CateComposer
+class PlaylistComposer
 {
 	public function compose(View $view){
-		$view->with('cates',\App\Cate::select('id','cate_title','cate_parent')->get());
+		$view->with('menu_playlists',\App\Playlist::getUserPlaylist(true));
 	}
 }

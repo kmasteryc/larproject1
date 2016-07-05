@@ -12,7 +12,7 @@ $(document).ready(function () {
     var s_duration = '';
     var has_time_lyric = false;
     var volume = 0.9;
-    var player_type = 2;
+    var player_type = 1;
     var empty_playlist = false;
     // 1- Song; 2- Playlist; 3-Radio
     // var mode = 1;
@@ -37,6 +37,7 @@ $(document).ready(function () {
     }
 
     function setSong(song) {
+
         $("#song_source").attr('src', song.song_mp3);
 
         $(".lyric-1").html(song.song_title);
@@ -61,6 +62,9 @@ $(document).ready(function () {
     // Handle after loading fully audio
     function proccessSong() {
         player.bind('loadedmetadata', function () {
+            // Increase view song
+            $.get(base_url+'song/'+current_song.song_id+'/increase_view');
+
             s_duration = player.prop('duration');
             // Show duration
             // Call toMinutes function for converting second to minutes
@@ -194,6 +198,7 @@ $(document).ready(function () {
     }
 
     function getJson() {
+
         var json_data;
         $.ajax({
             url: player_config.api_url,
@@ -248,15 +253,15 @@ $(document).ready(function () {
         player_type = type;
         var class_icon, play_type_text;
         switch (type) {
-            case 1: // Repeat one
-                class_icon = 'fa fa-thumb-tack';
-                play_type_text = ' Lặp bài này';
-                player.prop('loop', true);
-                break;
-            case 2: // Repeat all
+            case 1: // Repeat all
                 class_icon = 'fa fa-refresh';
                 play_type_text = ' Lặp toàn bộ';
                 player.prop('loop', false);
+                break;
+            case 2: // Repeat one
+                class_icon = 'fa fa-thumb-tack';
+                play_type_text = ' Lặp bài này';
+                player.prop('loop', true);
                 break;
             case 3: // Shuffle mode
                 class_icon = 'fa fa-random';
@@ -333,10 +338,10 @@ $(document).ready(function () {
 
     // Process playtype click
     $(document).on('click', ".fa-thumb-tack", function () {
-        setPlayType(2);
+        setPlayType(3);
     });
     $(document).on('click', ".fa-refresh", function () {
-        setPlayType(3);
+        setPlayType(2);
     });
     $(document).on('click', ".fa-random", function () {
         setPlayType(1);

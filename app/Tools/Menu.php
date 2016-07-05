@@ -151,43 +151,25 @@ class Menu
 
 	public function call_menu_nav2($cate_parent=0)
 	{
-		/*
-		 *
-		 <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-		 * */
-//		dd($this->_data);
+
 		if (isset($this->_data[$cate_parent])) {
 
 			foreach ($this->_data[$cate_parent] as $value) {
 
 				$id = $value['id'];
 				$this->_result .= '<li class="dropdown">';
-//				$this->_result .= "<div class='clearfix'><b class='blue-foot'><a href='".url('/cate/'.$value['id'])."'>". $value['cate_title'] . "</a></b>";
-				$this->_result .= '<a href="'.url('/cate/'.$value['id']).'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'</a>
-          <ul class="dropdown-menu">';
+				$this->_result .= '<a href="'.url('/cate/'.$value['id']).'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'<span class="caret"></span></a>';
+				$this->_result .= '<ul class="dropdown-menu">';
 				foreach ($this->_data2 as $child)
 				{
 					if ($child['cate_parent'] == $id)
 					{
-//						$this->_result .= "<p><a href='".url('/cate/'.$child['id'])."'>".$child['cate_title'] . "</a></p>";
 						$this->_result .= '<li><a href="'.url('/cate/'.$child['id']).'">'.$child['cate_title'].'</a></li>';
 					}
 				}
-//				$this->call_menu_nav($id);
+				$this->_result .= '<li role="separator" class="divider"></li>';
+				$this->_result .= '<li><a href="'.url('/cate/'.$value['id']).'">'.$value['cate_title'].'</a></li>';
 				$this->_result .= '</ul></li>';
-
-
 			}
 
 		}

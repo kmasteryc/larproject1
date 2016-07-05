@@ -17,11 +17,6 @@ class SessionController extends Controller
     }
     public function set(Request $request, $k, $v)
     {
-//        $json = json_decode($json);
-//        foreach ($json as $k=>$v)
-//        {
-//            $request->session()->put($k,$v);
-//        }
         $request->session()->put($k,$v);
         echo "Set $k to ".$request->session()->get($k);
     }

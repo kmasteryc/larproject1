@@ -7,13 +7,15 @@
                 <h3 class="panel-title">Them danh sach nhac moi</h3>
             </div>
             <div class="panel-body">
-                <form action="{{url('playlist/store')}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="{{url('playlist/store')}}" method="POST" class="form-horizontal" role="form"
+                      enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ten danh sach</label>
 
                         <div class="col-sm-10">
-                            <input type="text" name="playlist_title" class="form-control" value="{{old('playlist_title')}}">
+                            <input type="text" name="playlist_title" class="form-control"
+                                   value="{{old('playlist_title')}}">
                         </div>
                     </div>
 
@@ -24,6 +26,14 @@
                             <select name="cate_id" id="" class="form-control">
                                 {!!$menu->make($cates,'slc',old('playlist_cate'))!!}
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Thong tin</label>
+
+                        <div class="col-sm-10">
+                            <textarea name="playlist_info" class="form-control">{{old('playlist_info')}}</textarea>
                         </div>
                     </div>
 
@@ -43,6 +53,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Tim bai hat</label>

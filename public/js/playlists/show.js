@@ -26,8 +26,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.add-this-song-to-me', function () {
-        
-        list_box.html('<img class="reload" src="' + base_url + 'img/reload.gif"/>');
 
         var playlistid = $(this).data('playlistid');
         var playlistindex = $(this).data('playlistindex');
@@ -37,8 +35,10 @@ $(document).ready(function () {
             $('#add-song-alert').removeClass('text-success');
             $('#add-song-alert').addClass('text-danger');
             $('#add-song-alert').html("Bài hát đã tồn tại trong danh sách!");
+            // loadPlaylist();
         }
         else {
+            list_box.html(showAjaxIcon());
             save_me_too[playlistindex].playlist_songs_id += ',' + save_me_to_memory['song_id'];
 
             $.ajax({
@@ -49,6 +49,7 @@ $(document).ready(function () {
                     playlist_id: save_me_too[playlistindex].id
                 }),
                 success: function (response) {
+                    // console.log(response);
                     loadPlaylist();
                     $('#add-song-alert').removeClass('text-danger');
                     $('#add-song-alert').addClass('text-success');
@@ -61,7 +62,7 @@ $(document).ready(function () {
 
     })
     function loadPlaylist() {
-        list_box.html('<img class="reload" src="' + base_url + 'img/reload.gif"/>');
+        list_box.html(showAjaxIcon());
         $('#add-song-alert').html('');
         $.ajax({
             url: api_1,
@@ -69,9 +70,9 @@ $(document).ready(function () {
             async: true,
             success: function (response) {
                 var html = '';
-
+                // console.log(response);
                 playlists = response;
-                console.log(playlists);
+                // console.log(playlists);
                 save_me_too = playlists;
                 for (var index in playlists) {
                     html += "<li class='list-group-item add-this-song-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
@@ -87,6 +88,7 @@ $(document).ready(function () {
                         html += "<a href='" + base_url + "playlist/temp_playlist'><i class='fa fa-play'></i></a>";
                     }
                     html += "</span>";
+                    html += '<div class="clearfix"></div>';
                     html += "</li>";
                 }
                 list_box.html(html);

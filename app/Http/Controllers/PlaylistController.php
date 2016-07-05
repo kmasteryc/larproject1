@@ -42,11 +42,13 @@ class PlaylistController extends Controller
             'playlist_title' => 'required|unique:playlists,playlist_title',
             'cate_id' => 'required|integer',
             'playlist_songs' => 'required',
+            'playlist_info' => 'string',
             'playlist_img' => 'required|mimetypes:image/jpeg,image/png'
         ]);
 
         $playlist = new Playlist;
         $playlist->playlist_title = $request->playlist_title;
+        $playlist->playlist_info = $request->playlist_info;
         $playlist->cate_id = $request->cate_id;
         $playlist->user_id = $request->user()->id;
         $playlist->save();
@@ -101,9 +103,11 @@ class PlaylistController extends Controller
             'playlist_title' => 'required|unique:playlists,playlist_title,' . $playlist->id,
             'cate_id' => 'required|integer',
             'playlist_songs' => 'required',
+            'playlist_info' => 'string',
             'playlist_img' => 'mimetypes:image/jpeg,image/png'
         ]);
 
+        $playlist->playlist_info = $request->playlist_info;
         $playlist->playlist_title = $request->playlist_title;
         $playlist->cate_id = $request->cate_id;
 
@@ -162,21 +166,20 @@ class PlaylistController extends Controller
 
     public function show($playlist)
     {
-        // Is number => user playlist
-        if (is_numeric($playlist)) {
+        // Is number and > 0 => user playlist
+        if (is_numeric($playlist) and $playlist>0) {
             $playlist = Playlist::find($playlist);
             SessionController::increase_view_playlist($playlist);
-
             return view('playlists.show', [
                 'myjs' => ['player.js', 'playlists/show.js'],
                 'playlist' => $playlist,
                 'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
             ]);
-        } else { // Else -> templaylist
+
+        } else { // Else = 0 or temp-playlist -> templaylist
+
             return view('playlists.guest_show', [
                 'myjs' => ['player.js', 'playlists/guest_show.js'],
-                'playlist' => $playlist,
-//                'playlists' => Playlist::select('id','playlist_title')->get(),
                 'api_url' => url("api/get-songs-in-playlist/0"),
             ]);
         }

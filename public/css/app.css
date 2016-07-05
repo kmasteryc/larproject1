@@ -155,11 +155,14 @@ h4 {
     opacity: 0.7; }
     .playlist-box:hover .play-hover {
       display: block; }
+  .playlist-box .playlist-img {
+    position: relative; }
   .playlist-box .play-hover {
     display: none;
     position: absolute;
-    top: 60px;
-    left: 65px; }
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); }
   .playlist-box .playlist-title {
     margin: 0;
     padding: 5px 0 5px 0;
@@ -230,7 +233,7 @@ h4 {
     width: 100%;
     height: 100%;
     opacity: 0.8;
-    background-image: url("http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg");
+    background-color: silver;
     background-size: 700px 185px; }
   #my-player .player-mask {
     content: '';

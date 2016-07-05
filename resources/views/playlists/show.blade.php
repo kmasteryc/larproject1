@@ -17,12 +17,11 @@
                             <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
                             <h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>
                             <h5>Lượt nghe: {!! $playlist->playlist_view !!}</h5>
-                            <?php $playlist_info = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque blanditiis consequuntur, id illum itaque libero maiores, molestias mollitia nihil odio officiis perspiciatis, quam qui quis quod reprehenderit sapiente similique sunt'; ?>
 
-                            <span class="playlist-info-hidden" style="display: none">{!! $playlist_info !!}</span>
-                            <span class="playlist-info">{!! str_limit($playlist_info,200) !!}</span>
+                            <span class="playlist-info-hidden" style="display: none">{!! $playlist->playlist_info !!}</span>
+                            <span class="playlist-info">{!! str_limit($playlist->playlist_info,200) !!}</span>
 
-                            @if(strlen($playlist_info)>=200)
+                            @if(strlen($playlist->playlist_info)>=200)
                                 <a href="#" id="show-playlist-info">Xem thêm</a>
                             @endif
                         </div>
