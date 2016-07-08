@@ -47,10 +47,10 @@ class APIController extends Controller
         // Use Eager loading !
         $songs_with_lyric = $songs->with([
                 'lyrics' => function ($query) {
-                    $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC')->first();
+                    $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
                 },
                 'artists' => function ($query) {
-                    $query->select('artist_title')->get();
+                    $query->select('artist_title');
                 }
             ]
         )->get();

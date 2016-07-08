@@ -24,6 +24,13 @@
             <ul class="nav navbar-nav">
                 {!!$menu->make($cates,'nav2')!!}
             </ul>
+            <form class="navbar-form navbar-left" id="top-search-form" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="top-search-text" placeholder="Tìm kiếm....">
+                </div>
+                <button class="btn btn-default" id="top-search-btn"><i class="fa fa-search"></i></button>
+                <p id="top-search-result"></p>
+            </form>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -34,7 +41,7 @@
                     <ul class="dropdown-menu" role="menu">
                         @foreach ($menu_playlists as $menu_playlist)
                             <li>
-                                <a href="{!! url('playlist/'.$menu_playlist['id']) !!}">{!! $menu_playlist['playlist_title'] !!} ({!! $menu_playlist['total_songs'] !!})</a>
+                                <a href="{!! url('playlist/'.$menu_playlist['id']) !!}">{!! $menu_playlist['playlist_title'] !!}</a>
                             </li>
                         @endforeach
                     </ul>

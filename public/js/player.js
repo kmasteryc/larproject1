@@ -98,6 +98,7 @@ $(document).ready(function () {
                         // Modify width a bit
                         // width = width > 93 ? width += 15 : width;
                         // Compare old lyc and new lrc. If have update -> replace html
+                        $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                         if (JSON.stringify(old_lyr) != JSON.stringify(cur_lyr)) {
                             deactive = active == 1 ? 2 : 1;
                             // Show lyric when it is not empty
@@ -116,7 +117,7 @@ $(document).ready(function () {
                             old_lyr = cur_lyr;
                         } else {
                             // Else change kara width
-                            $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
+                            // $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                         }
                     }
                 }
@@ -189,6 +190,9 @@ $(document).ready(function () {
                     start: time_key,
                     next_lyr: lyric[timeArr[key + 1]]
                 };
+
+                // Remove after show it
+                timeArr = timeArr.slice(key);
                 return false;
             } else {
                 return true;

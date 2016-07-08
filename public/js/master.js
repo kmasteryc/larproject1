@@ -6,6 +6,15 @@ $(document).ready(function(){
         $(".datatable").dynatable();
     }
 
+    $("#top-search-text").change(function(){
+
+    });
+
+    $("#top-search-btn").click(function(){
+        var input = $("#top-search-text");
+       event.preventDefault();
+        console.log(input.val());
+    });
 });
 
 function showAjaxIcon(){

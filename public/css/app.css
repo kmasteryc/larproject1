@@ -217,6 +217,19 @@ h4 {
   margin-top: 10px;
   margin-bottom: 10px; }
 
+#top-search-form {
+  position: relative;
+  padding: 0;
+  margin-left: 15px;
+  margin-right: 15px; }
+
+#top-search-result {
+  z-index: 99;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  background: red; }
+
 #my-player {
   position: relative;
   width: 100%;
