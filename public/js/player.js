@@ -75,7 +75,8 @@ $(document).ready(function () {
             var cur_lyr;
             var active = 1;
             var deactive = 2;
-            player.bind('timeupdate', function () {
+            // player.bind('timeupdate', function () {
+            setInterval(function () {
                 var s_currentTime = player.prop('currentTime');
                 // Call toMinutes function for converting second to minutes
                 currentTime = toMinutes(s_currentTime);
@@ -121,7 +122,8 @@ $(document).ready(function () {
                         }
                     }
                 }
-            });
+            },190);
+            // });
         });
     }
 
