@@ -33,6 +33,7 @@ Route::group(['prefix' => 'artist', 'middleware' => 'auth'], function () {
 	Route::get('{artist}/edit','ArtistController@edit');
 	Route::get('/','ArtistController@index');
 	Route::get('create','ArtistController@create');
+	Route::get('{artist}','ArtistController@show');
 	Route::get('{artist}/delete','ArtistController@delete');
 	Route::put('{artist}', 'ArtistController@update');
 	Route::post('store','ArtistController@store');
@@ -100,9 +101,12 @@ Route::get('api/get-user-playlists/{include_guest?}', 'APIController@getUserPlay
 Route::get('api/reset-temp-playlist', 'APIController@resetTempPlaylist');
 Route::get('api/get-ajax-hot-song/{cate}/{page?}', 'APIController@getAjaxHotSong');
 Route::get('api/get-ajax-hot-playlist/{cate}/{page?}', 'APIController@getAjaxHotPlaylist');
+Route::get('api/get-songs-by-artist/{artist}', 'APIController@getSongsByArtist');
+Route::get('api/get-albums-by-artist/{artist}', 'APIController@getAlbumsByArtist');
 
 Route::post('api/add-song-to-playlist/', 'APIController@addSongToPlaylist');
 Route::post('api/import-playlist-to-playlist/', 'APIController@importPlaylistToPlaylist');
+Route::post('api/search', 'APIController@search');
 //Route::resource('API/{type}','APIController');
 Route::auth();
 Route::get('/home', 'HomeController@index');

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model
 {
     protected $fillable = ['playlist_title', 'playlist_view', 'user_id', 'cate_id'];
-	protected $appends = ['total_songs'];
+    protected $appends = ['total_songs'];
+
 //	protected $appends = ['playlist_songs_id','playlist_songs_title'];
 
     public function cate()
@@ -30,6 +31,11 @@ class Playlist extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function artist()
+    {
+        return $this->belongsTo(Artist::class);
+    }
+
     public function getPlaylistSongsIdAttribute()
     {
         $playlist_songs = $this->songs;
@@ -40,6 +46,7 @@ class Playlist extends Model
         }
         return $str_playlist_songs;
     }
+
 
     public function getTotalSongsAttribute()
     {
@@ -92,13 +99,11 @@ class Playlist extends Model
                 ->with('songs')
                 ->get();
 
-            foreach ($user_playlists as $user_playlist)
-            {
+            foreach ($user_playlists as $user_playlist) {
                 // Foreach to assign each song id to songs_id
                 $songs_id = '';
-                foreach ($user_playlist->songs as $song)
-                {
-                    $songs_id .= $song->id.',';
+                foreach ($user_playlist->songs as $song) {
+                    $songs_id .= $song->id . ',';
                 }
                 $hehe = [
                     'id' => $user_playlist->id,

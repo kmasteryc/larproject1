@@ -13,7 +13,7 @@
                     <div class="col-md-9 col-lg-9 col-sm-9">
                         <h4>{!! $playlist->playlist_title !!}</h4>
                         <div class="playlist-detail">
-                            <h5>Nghệ sĩ: {!! $playlist->user->name !!}</h5>
+                            <h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>
                             <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
                             <h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>
                             <h5>Lượt nghe: {!! $playlist->playlist_view !!}</h5>

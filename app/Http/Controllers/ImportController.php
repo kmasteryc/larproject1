@@ -33,6 +33,7 @@ class ImportController extends Controller
 			$playlist->playlist_title = $request->playlist_title;
 			$playlist->cate_id = $request->cate_id;
 			$playlist->user_id = auth()->user()->id;
+			$playlist->artist_id=1;
 			$playlist->save();
 
 			// Create images

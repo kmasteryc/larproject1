@@ -19,6 +19,10 @@ class Artist extends Model
 	{
 		return $this->belongsToMany(Song::class);
 	}
+
+    public function playlists(){
+        return $this->hasMany(Playlist::class);
+    }
 	public static function createAndAttach($artists_title, Song $song)
 	{
         foreach ($artists_title as $artist_title) {

@@ -24,11 +24,11 @@
             <ul class="nav navbar-nav">
                 {!!$menu->make($cates,'nav2')!!}
             </ul>
-            <form class="navbar-form navbar-left" id="top-search-form" role="search">
+            <form class="navbar-form navbar-left" id="top-search-form" role="search" onsubmit="return false;">
                 <div class="form-group">
                     <input type="text" class="form-control" id="top-search-text" placeholder="Tìm kiếm....">
                 </div>
-                <button class="btn btn-default" id="top-search-btn"><i class="fa fa-search"></i></button>
+                {{--<button class="btn btn-default" id="top-search-btn"><i class="fa fa-search"></i></button>--}}
                 <p id="top-search-result"></p>
             </form>
             <!-- Right Side Of Navbar -->

@@ -1,3 +1,5 @@
+/config/app.php
+/config/database.php
 /vendor
 /node_modules
 /public/storage

@@ -83,14 +83,13 @@ $(document).ready(function () {
                 html += '<li><a href="#" class="ajax-load" data-api="' + api_1 + '?page=' + i + '">' + i + '</a></li>';
             }
         }
-
         html += json_data.next_page_url ? '<li> <a href="#" class="ajax-load" data-api="' + json_data.next_page_url + '"> Sau </a> </li> ' : '';
         html += '</ul></nav>';
 
         return html;
     }
 
-    $(document).on('click', '.ajax-load', function () {
+    $(document).on('click', '.ajax-load', function (event) {
         event.preventDefault();
 
         loadData($(this).data('api'));

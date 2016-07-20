@@ -239,7 +239,7 @@ $(document).ready(function () {
             html += '<li class="list-group-item ' + active + '">';
             html += '<span class="pull-left">';
             html += (x + 1) + '. ';
-            html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ' + json_data[x].song_artist;
+            html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ' + '<a href="'+base_url+'artist/'+json_data[x].song_artist_id+'">'+json_data[x].song_artist+'</a>';
             html += '</span>';
             html += '<span class="pull-right">';
             html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
@@ -352,13 +352,13 @@ $(document).ready(function () {
     });
 
     // Process next click
-    $(document).on('click', ".fa-step-forward", function () {
+    $(document).on('click', ".fa-step-forward", function (event) {
         event.preventDefault();
         setSong(json_data[nextIndex()]);
         showList();
     });
     // Process prev click
-    $(document).on('click', ".fa-step-backward", function () {
+    $(document).on('click', ".fa-step-backward", function (event) {
         event.preventDefault();
         setSong(json_data[prevIndex()]);
         showList();
@@ -388,7 +388,7 @@ $(document).ready(function () {
     });
 
     // Change song
-    $(document).on('click', ".changesong", function () {
+    $(document).on('click', ".changesong", function (event) {
         event.preventDefault();
         current_index = $(this).data('index');
         setSong(json_data[current_index]);

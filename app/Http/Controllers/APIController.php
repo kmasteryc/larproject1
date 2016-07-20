@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Artist;
 use Illuminate\Http\Request;
 use App\Cate;
 use App\Playlist;
@@ -50,7 +51,7 @@ class APIController extends Controller
                     $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
                 },
                 'artists' => function ($query) {
-                    $query->select('artist_title');
+                    $query->select('artist_title','artists.id');
                 }
             ]
         )->get();
@@ -64,6 +65,7 @@ class APIController extends Controller
                 'song_title' => $song->song_title,
                 'song_mp3' => $song->song_mp3,
                 'song_artist' => $song->artists[0]->artist_title,
+                'song_artist_id' => $song->artists[0]->id,
                 'song_img' => $song->song_img,
                 'song_lyric' => $lyric
             ];
@@ -173,5 +175,38 @@ class APIController extends Controller
     public function getAjaxHotPlaylist(Cate $cate)
     {
         return $cate->playlists()->paginate(5);
+    }
+
+    public function search()
+    {
+        $search = request()->get('search');
+
+        $result_artists = Artist::where('artist_title', 'like', "%$search%")->select('id', 'artist_title')->take(5)->get()->toArray();
+        $result_playlists = Playlist::where('playlist_title', 'like', "%$search%")->select('id', 'playlist_title')->take(5)->get()->toArray();
+        $result_songs = Song::where('song_title', 'like', "%$search%")
+            ->with(['artists' => function ($query) {
+                $query->select('artists.id','artist_title');
+            }])
+            ->select('id', 'song_title')->take(5)->get()->toArray();
+
+        return response()->json([
+            'artists' => $result_artists,
+            'playlists' => $result_playlists,
+            'songs' => $result_songs
+        ]);
+
+    }
+
+    public function getSongsByArtist(Artist $artist)
+    {
+        return $artist->songs()->paginate(3);
+//        $songs = $artist->songs;
+//        return response()->json($songs);
+    }
+
+    public function getAlbumsByArtist(Artist $artist)
+    {
+        $playlists = $artist->playlists()->where('playlist_official',1)->get();
+        return response()->json($playlists);
     }
 }

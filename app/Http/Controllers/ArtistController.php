@@ -83,4 +83,11 @@ class ArtistController extends Controller
         $result = Artist::where('artist_title', 'like', '%' . $search . '%')->get();
         return $result;
     }
+
+    public function show(Artist $artist){
+        return view('artists.show', [
+            'myjs' => ['artists/show.js'],
+            'artist' => $artist,
+        ]);
+    }
 }
