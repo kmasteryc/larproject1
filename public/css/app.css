@@ -328,11 +328,7 @@ h4 {
           display: block;
           margin-top: -25px;
           color: #C8361D;
-          text-align: left;
-          transition-timing-function: linear;
-          transition-delay: 0.08s;
-          transition-duration: 0.15s;
-          transition-property: width; }
+          text-align: left; }
   #my-player .control-bar {
     padding: 0px 30px 0px 30px;
     position: absolute;
