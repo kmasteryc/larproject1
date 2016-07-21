@@ -1,56 +1,8 @@
-.navbar {
-  margin-bottom: 5px; }
-
-.k-menu {
-  padding: 0;
-  list-style: none;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
-  width: 60px;
-  display: inline-block;
-  position: relative;
-  z-index: 99; }
-  .k-menu a {
-    text-decoration: none;
-    color: black; }
-  .k-menu:hover {
-    border: 1px solid silver;
-    border-bottom: 0px; }
-    .k-menu:hover .k-sub-menu {
-      display: block; }
-  .k-menu .k-sub-menu {
-    padding: 10px 0 0 0;
-    display: none;
-    top: 39px;
-    left: -1px;
-    width: 300px;
-    z-index: 77;
-    position: absolute;
-    border: 1px solid silver;
-    background: white;
-    list-style: none; }
-    .k-menu .k-sub-menu li.column {
-      padding-right: 5px;
-      text-align: left;
-      float: left;
-      width: 25%; }
-      .k-menu .k-sub-menu li.column a:hover {
-        cursor: pointer;
-        color: darkblue; }
-    .k-menu .k-sub-menu li.column:first-child {
-      padding-left: 5px; }
-
-.red-foot {
-  border-bottom: 2px solid crimson; }
-
-.blue-foot {
-  border-bottom: 2px solid darkblue; }
-
 body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   line-height: 25px;
-  word-spacing: 1.6px; }
+  word-spacing: 1.6px;
+  color: #555555; }
 
 thead {
   background: blueviolet; }
@@ -66,7 +18,7 @@ a:hover {
 
 h4 {
   margin-top: 0;
-  color: blueviolet;
+  color: black;
   font-size: 20px;
   text-transform: uppercase; }
 
@@ -139,13 +91,38 @@ h4 {
       bottom: 10px;
       display: block; }
 
+#middle-info {
+  margin: 15px 0 15px 0;
+  font-size: 17px;
+  line-height: 17px;
+  font-weight: 600; }
+  #middle-info i {
+    font-size: 18px;
+    font-weight: 600; }
+
 #playlist-summary {
-  margin: 5px 0 10px 0; }
+  margin: 0; }
   #playlist-summary * {
     padding-left: 0; }
   #playlist-summary img {
+    max-width: 100%;
+    height: auto;
     margin-bottom: 5px;
     margin-top: 5px; }
+
+#other-playlist {
+  margin-top: 10px; }
+  #other-playlist .col-md-3, #other-playlist .col-lg-3, #other-playlist .col-sm-3, #other-playlist .col-xs-3 {
+    position: relative;
+    height: 70px; }
+  #other-playlist .col-md-9, #other-playlist .col-lg-9, #other-playlist .col-sm-9, #other-playlist .col-xs-9 {
+    height: 70px;
+    line-height: calc(70px/3); }
+  #other-playlist img {
+    height: 70px;
+    width: auto; }
+  #other-playlist .otherpl-title {
+    margin-bottom: 0px; }
 
 .playlist-box {
   min-width: 170px;
@@ -268,7 +245,6 @@ h4 {
 #my-player {
   position: relative;
   width: 100%;
-  max-width: 700px;
   height: 185px;
   background-color: black;
   /*background: black;*/ }
@@ -300,7 +276,14 @@ h4 {
     width: 100%;
     background: white; }
     #my-player .seek-bar #seek {
-      height: 5px; }
+      height: 5px;
+      position: relative; }
+      #my-player .seek-bar #seek #seek-cursor {
+        color: white;
+        height: 5px;
+        line-height: 5px;
+        z-index: 89;
+        position: absolute; }
   #my-player .lyric-bar {
     font-size: 13px;
     color: white;
@@ -391,19 +374,22 @@ h4 {
 #player-playlist {
   display: none;
   border-top: 1px solid silver;
-  margin-top: 10px;
-  max-width: 700px;
   max-height: 300px;
   overflow: auto; }
   #player-playlist i {
     color: silver;
-    margin-left: 10px; }
+    margin-left: 10px;
+    font-size: 19px;
+    line-height: 25px; }
     #player-playlist i:hover {
       cursor: pointer;
       color: blue; }
+  #player-playlist .list-group-item {
+    color: #555555; }
+    #player-playlist .list-group-item a {
+      color: #555555; }
 
 #lyric-area {
-  max-width: 700px;
   line-height: 30px;
   max-height: 250px;
   overflow: auto; }

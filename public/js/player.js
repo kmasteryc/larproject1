@@ -83,51 +83,55 @@ $(document).ready(function () {
             var deactive = 2;
             // player.bind('timeupdate', function () {
             myInterval = setInterval(function () {
-                var s_currentTime = player.prop('currentTime');
-                // Call toMinutes function for converting second to minutes
-                currentTime = toMinutes(s_currentTime);
-                // Show current time
-                $(".current-time").html(currentTime);
-                // Set seek-point
-                $('#seek').val(player.prop('currentTime') * 100 / player.prop('duration'));
-                // Finish playing -> next song
-                if (s_currentTime == s_duration) {
-                    current_index = nextIndex();
-                    setSong(json_data[current_index]);
-                    if (mode == 2) showList();
-                }
-                // Start update lyric to player
-                if (has_time_lyric == true) {
-                    // Call getLyric
-                    cur_lyr = getLyric(s_currentTime, lyric);
-                    if(cur_lyr != undefined) {
-                        var width = (s_currentTime - cur_lyr.start) * 100 / cur_lyr.dur;
-                        // Modify width a bit
-                        // width = width > 93 ? width += 15 : width;
-                        // Compare old lyc and new lrc. If have update -> replace html
-                        $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
-                        if (JSON.stringify(old_lyr) != JSON.stringify(cur_lyr)) {
-                            deactive = active == 1 ? 2 : 1;
-                            // Show lyric when it is not empty
-                            if (cur_lyr.lyr != '') {
-                                $('.lyric-' + active).html(cur_lyr.lyr + '<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
-                                // $('.lyric-' + active).append();
-                            }
-                            // Check nextlyric if it is not empty
-                            if (cur_lyr.next_lyr != '') {
-                                // setTimeout(function(){
+                if (player.prop('paused') === false) {
+                    var s_currentTime = player.prop('currentTime');
+                    // Call toMinutes function for converting second to minutes
+                    currentTime = toMinutes(s_currentTime);
+                    // Show current time
+                    $(".current-time").html(currentTime);
+                    // Set seek-point
+                    // $('#seek').val(player.prop('currentTime') * 100 / player.prop('duration'));
+                    var percent_done = player.prop('currentTime') * 100 / player.prop('duration');
+                    $('#seek #seek-cursor').css('left', percent_done - 1 + '%');
+                    // Finish playing -> next song
+                    if (s_currentTime >= s_duration*0.995) {
+                        current_index = nextIndex();
+                        setSong(json_data[current_index]);
+                        if (mode == 2) showList();
+                    }
+                    // Start update lyric to player
+                    if (has_time_lyric == true) {
+                        // Call getLyric
+                        cur_lyr = getLyric(s_currentTime, lyric);
+                        if (cur_lyr != undefined) {
+                            var width = (s_currentTime - cur_lyr.start) * 100 / cur_lyr.dur;
+                            // Modify width a bit
+                            // width = width > 93 ? width += 15 : width;
+                            // Compare old lyc and new lrc. If have update -> replace html
+                            $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
+                            if (JSON.stringify(old_lyr) != JSON.stringify(cur_lyr)) {
+                                deactive = active == 1 ? 2 : 1;
+                                // Show lyric when it is not empty
+                                if (cur_lyr.lyr != '') {
+                                    $('.lyric-' + active).html(cur_lyr.lyr + '<span class="kara" style="width: ' + width + '%">' + cur_lyr.lyr + '</span>');
+                                    // $('.lyric-' + active).append();
+                                }
+                                // Check nextlyric if it is not empty
+                                if (cur_lyr.next_lyr != '') {
+                                    // setTimeout(function(){
                                     $('.lyric-' + deactive).html(cur_lyr.next_lyr);
-                                // },1000);
+                                    // },1000);
 
+                                }
+                                // Swap active and deactive
+                                var temp = active;
+                                active = deactive;
+                                deactive = temp;
+                                old_lyr = cur_lyr;
+                            } else {
+                                // Else change kara width
+                                // $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                             }
-                            // Swap active and deactive
-                            var temp = active;
-                            active = deactive;
-                            deactive = temp;
-                            old_lyr = cur_lyr;
-                        } else {
-                            // Else change kara width
-                            // $('.lyric-' + deactive + ' > .kara').css('width', width + '%');
                         }
                     }
                 }
@@ -248,16 +252,16 @@ $(document).ready(function () {
                 var active = current_index == x ? 'list-group-item-info' : '';
             }
             html += '<li class="list-group-item ' + active + '">';
-            html += '<span class="pull-left">';
+            html += '<div class="clearfix"><span class="pull-left">';
             html += (x + 1) + '. ';
             html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ' + '<a href="'+base_url+'artist/'+json_data[x].song_artist_id+'">'+json_data[x].song_artist+'</a>';
             html += '</span>';
             html += '<span class="pull-right">';
             html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
-            html += ' <i class="fa fa-plus" data-songid="'+json_data[x].song_id+'" data-songtitle="'+json_data[x].song_title+'" data-songartist="'+json_data[x].song_artist+'"></i>';
-            html += ' <a href="' + base_url + 'song/' + json_data[x].song_id + '"><i class="fa fa-arrow-right"></i></a>';
+            html += ' <a href="#"><i class="fa fa-plus" data-songid="'+json_data[x].song_id+'" data-songtitle="'+json_data[x].song_title+'" data-songartist="'+json_data[x].song_artist+'"></i></a>';
+            html += ' <a href="' + base_url + 'song/' + json_data[x].song_id + '"><i class="fa fa-share"></i></a>';
             html += '</span>';
-            html += '<div class="clearfix"></div>';
+            html += '</div>';
             html += '</li>';
         }
         $("#player-playlist").html(html);
@@ -330,14 +334,19 @@ $(document).ready(function () {
         return array;
     }
 
-    //Process seeking
-    $('#seek').click(function () {
-        player.trigger('stop');
-        var seekTime = $(this).val() * s_duration / 100;
-        console.log($(this).val());
-        player.prop('currentTime', seekTime);
-        player.trigger('play');
+    // Process seeking
+    $('#seek').click(function (e) {
+
+        // Set cursor
+        var player_width = $("#my-player").innerWidth();
+        var click_X = e.pageX - $("#my-player").offset().left;
+        var click_percent = click_X * 100/ player_width;
+        $('#seek #seek-cursor').css('left',click_percent+'%');
+
+        // Set player time
+        player.prop('currentTime',click_percent*s_duration/100);
     });
+
     // Process play-pause
     $(document).on('click', ".fa-play", function () {
         player.trigger('play');

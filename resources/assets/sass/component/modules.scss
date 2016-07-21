@@ -71,19 +71,56 @@
     }
 }
 
+#middle-info{
+    margin: 15px 0 15px 0;
+    font-size: 17px;
+    line-height: 17px;
+    font-weight: 600;
+    i{
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
 // Playlist - show
 #playlist-summary{
 
-    margin: 5px 0 10px 0;
+    margin: 0;
     * {
         padding-left: 0;
     }
 
     img{
+        max-width: 100%;
+        height: auto;
         margin-bottom: 5px;
         margin-top: 5px;
     }
 }
+
+#other-playlist{
+  margin-top: 10px;
+  .col-md-3, .col-lg-3, .col-sm-3, .col-xs-3{
+    position: relative;
+    height: 70px;
+  }
+  .col-md-9, .col-lg-9, .col-sm-9, .col-xs-9{
+    height: 70px;
+    line-height: calc(70px/3);
+  }
+  img{
+
+    height: 70px;
+    width: auto;
+
+  }
+  .otherpl-title{
+    margin-bottom: 0px;
+  }
+
+
+}
+
 // Cate - show
 .playlist-box{
     min-width: 170px;

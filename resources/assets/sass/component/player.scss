@@ -1,7 +1,7 @@
 #my-player {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  //max-width: 700px;
   height: 185px;
   background-color: black;
   .player-background {
@@ -39,6 +39,14 @@
 
     #seek{
       height: 5px;
+      position: relative;
+      #seek-cursor{
+        color: white;
+        height: 5px;
+        line-height: 5px;
+        z-index: 89;
+        position: absolute;
+      }
     }
   }
   .lyric-bar {
@@ -164,21 +172,29 @@
 #player-playlist{
   display: none;
   border-top: 1px solid silver;
-  margin-top: 10px;
-  max-width: 700px;
+  //margin-top: 10px;
+  //max-width: 700px;
+
   max-height: 300px;
   overflow: auto;
   i{
     color: silver;
     margin-left: 10px;
+    font-size: 19px;
+    line-height: 25px;
     &:hover{
       cursor: pointer;
       color:blue;
     }
   }
+  .list-group-item{
+    color: #555555;
+    a{
+      color: #555555;
+    }
+  }
 }
 #lyric-area{
-  max-width: 700px;
   line-height: 30px;
   max-height: 250px;
   overflow: auto;

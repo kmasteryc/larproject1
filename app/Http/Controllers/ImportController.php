@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Guzzle\Http as GuzzleHttp;
 use App\Http\Requests;
 use Tools\Import;
+use Faker;
 
 class ImportController extends Controller
 {
@@ -27,10 +28,13 @@ class ImportController extends Controller
 		}
 		else
 		{
+			$faker = Faker\Factory::create();
+//			dd($data->getResults());
 			$songs = $data->getResults();
 			// Create playlists
 			$playlist = new Playlist;
 			$playlist->playlist_title = $request->playlist_title;
+			$playlist->playlist_info = $faker->sentence(200);
 			$playlist->cate_id = $request->cate_id;
 			$playlist->user_id = auth()->user()->id;
 			$playlist->artist_id=1;

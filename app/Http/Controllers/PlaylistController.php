@@ -168,11 +168,17 @@ class PlaylistController extends Controller
     {
         // Is number and > 0 => user playlist
         if (is_numeric($playlist) and $playlist>0) {
+
             $playlist = Playlist::find($playlist);
             SessionController::increase_view_playlist($playlist);
+
+            $other_playlists = Playlist::where('cate_id',$playlist->cate->id)->inRandomOrder()->take(10)->get();
+//            dd($other_playlists);
+
             return view('playlists.show', [
                 'myjs' => ['player.js', 'playlists/show.js'],
                 'playlist' => $playlist,
+                'other_playlists' => $other_playlists,
                 'api_url' => url("api/get-songs-in-playlist/$playlist->id"),
             ]);
 

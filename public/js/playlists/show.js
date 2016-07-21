@@ -9,7 +9,12 @@ $(document).ready(function () {
         e.preventDefault();
         $('.playlist-info-hidden').show();
         $('.playlist-info').hide();
-        $(this).hide();
+    });
+
+    $("#hide-playlist-info").click(function (e) {
+        e.preventDefault();
+        $('.playlist-info-hidden').hide();
+        $('.playlist-info').show();
     });
 
     var list_box = $("#playlist-popup").find(".modal-body .list-group");

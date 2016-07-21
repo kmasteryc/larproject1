@@ -18,7 +18,10 @@
         </div>
     </div>
     <div class="seek-bar">
-        <input class="bar" id="seek" type="range" value="0"/>
+        <div id="seek">
+            <span id="seek-cursor" class="fa fa-circle"></span>
+        </div>
+        {{--<input class="bar" id="seek" type="range" value="0"/>--}}
     </div>
     <div class="control-bar">
         <div class="player-button">
@@ -43,6 +46,3 @@
 </div>
 
 {{--PLAYLIST--}}
-<ul class="list-group" id="player-playlist">
-
-</ul>
