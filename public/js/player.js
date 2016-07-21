@@ -14,6 +14,7 @@ $(document).ready(function () {
     var volume = 0.9;
     var player_type = 1;
     var empty_playlist = false;
+    // var myInterval = '';
     // 1- Song; 2- Playlist; 3-Radio
     // var mode = 1;
     var mode = player_config.mode;
@@ -39,6 +40,7 @@ $(document).ready(function () {
     function setSong(song) {
 
         $("#song_source").attr('src', song.song_mp3);
+        $.get(base_url+'song/'+current_song.song_id+'/increase_view');
 
         $(".lyric-1").html(song.song_title);
         $(".lyric-2").html(song.song_artist);
@@ -56,14 +58,18 @@ $(document).ready(function () {
         player.trigger('load');
         player.prop('volume', volume);
 
+        if (typeof myInterval != 'undefined')
+        {
+            clearInterval(myInterval);
+        }
         proccessSong();
+
     }
 
     // Handle after loading fully audio
     function proccessSong() {
         player.bind('loadedmetadata', function () {
             // Increase view song
-            $.get(base_url+'song/'+current_song.song_id+'/increase_view');
 
             s_duration = player.prop('duration');
             // Show duration
@@ -76,7 +82,7 @@ $(document).ready(function () {
             var active = 1;
             var deactive = 2;
             // player.bind('timeupdate', function () {
-            setInterval(function () {
+            myInterval = setInterval(function () {
                 var s_currentTime = player.prop('currentTime');
                 // Call toMinutes function for converting second to minutes
                 currentTime = toMinutes(s_currentTime);
@@ -109,7 +115,10 @@ $(document).ready(function () {
                             }
                             // Check nextlyric if it is not empty
                             if (cur_lyr.next_lyr != '') {
-                                $('.lyric-' + deactive).html(cur_lyr.next_lyr);
+                                // setTimeout(function(){
+                                    $('.lyric-' + deactive).html(cur_lyr.next_lyr);
+                                // },1000);
+
                             }
                             // Swap active and deactive
                             var temp = active;
@@ -322,9 +331,12 @@ $(document).ready(function () {
     }
 
     //Process seeking
-    $('#seek').change(function () {
+    $('#seek').click(function () {
+        player.trigger('stop');
         var seekTime = $(this).val() * s_duration / 100;
+        console.log($(this).val());
         player.prop('currentTime', seekTime);
+        player.trigger('play');
     });
     // Process play-pause
     $(document).on('click', ".fa-play", function () {

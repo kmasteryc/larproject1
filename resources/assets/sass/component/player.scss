@@ -31,10 +31,15 @@
   .seek-bar {
     position: absolute;
     bottom: 40px;
-    height: 3px;
+    height: 5px;
+
     cursor: pointer;
     width: 100%;
     background: white;
+
+    #seek{
+      height: 5px;
+    }
   }
   .lyric-bar {
     //padding-top: 15%;

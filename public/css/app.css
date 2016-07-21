@@ -295,10 +295,12 @@ h4 {
   #my-player .seek-bar {
     position: absolute;
     bottom: 40px;
-    height: 3px;
+    height: 5px;
     cursor: pointer;
     width: 100%;
     background: white; }
+    #my-player .seek-bar #seek {
+      height: 5px; }
   #my-player .lyric-bar {
     font-size: 13px;
     color: white;
