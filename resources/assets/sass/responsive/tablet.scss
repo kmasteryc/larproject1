@@ -1,0 +1,31 @@
+@media (min-width: 768px) and (max-width: 991px) {
+  .k-menu>li .k-sub-menu{
+    width: 400px;
+  }
+  #player-tool-area{
+    position: static;
+    margin: 10px 0px 10px 0px;
+    .tool-box{
+      float: left;
+      margin-right: 15px;
+    }
+    .clearfix{
+      display: none;
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  #player-tool-area{
+    position: static;
+    margin: 10px 0px 10px 0px;
+    .tool-box{
+      float: left;
+      margin-right: 5px;
+    }
+    .clearfix{
+      display: none;
+    }
+  }
+
+}

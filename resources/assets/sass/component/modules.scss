@@ -1,0 +1,312 @@
+// Popup search modules
+@mixin popup1 {
+  z-index: 99;
+  //width: 100%;
+  position: absolute;
+  margin-top: 10px;
+  background: $color1;
+}
+
+.popup {
+  display: none;
+  color: white;
+}
+
+.popup.search_artist {
+  @include popup1();
+}
+
+.popup.search_song {
+  @include popup1();
+}
+
+// Song - show
+// Buildin-player
+#buildin-player {
+  display: none;
+}
+
+// Audio-player
+
+// player-tool-area
+#player-tool-area {
+  position: absolute;
+  top: 32px;
+  right: 100px;
+  height: 80px;
+  //width: 650px;
+  margin-bottom: 5px;
+  text-align: center;
+  a {
+    display: block;
+  }
+  .tool-box {
+    position: relative;
+    float: right;
+    display: block;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    border: 1px solid silver;
+    margin-bottom: 15px;
+    //vertical-align: middle;
+
+    i {
+      font-weight: 400;
+      font-size: 20px;
+      font-style: normal;
+      margin-top: 15px;
+      display: block;
+    }
+    b {
+      font-weight: 400;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      bottom: 10px;
+      display: block;
+    }
+  }
+}
+
+#middle-info {
+  margin: 15px 0 15px 0;
+  font-size: 17px;
+  line-height: 17px;
+  font-weight: 600;
+  i {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+// Playlist - show
+#playlist-summary {
+
+  margin: 0;
+  * {
+    padding-left: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+}
+
+#other-playlist {
+  margin-top: 10px;
+  a{
+    display: block;
+    padding: 5px;
+    &:hover{
+      background: blueviolet;
+      color: white;
+      p{
+        background: blueviolet;
+        color: white;
+      }
+    }
+  }
+
+  .media-body{
+    .my-media-heading{
+      margin: 0px 0px 5px 0px;
+      //font-size: 16px;
+      line-height: 20px;
+      font-weight: 600;
+    }
+    p{
+      color: #555555;
+    }
+  }
+  p{
+    margin: 0;
+  }
+}
+
+// Cate - show
+.playlist-box {
+  min-width: 170px;
+  position: relative;
+  text-align: center;
+  &:hover {
+    opacity: 0.7;
+    .play-hover {
+      display: block;
+    }
+  }
+  .playlist-img {
+    position: relative;
+  }
+
+  .play-hover {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .playlist-title {
+    margin: 0;
+    padding: 5px 0 5px 0;
+    font-weight: 700;
+    i {
+      display: block;
+      font-weight: 500;
+      color: silver;
+    }
+  }
+}
+
+.hot-song {
+  li:hover {
+    background: mintcream;
+  }
+}
+
+//Control Panel
+#controlpanel {
+  li {
+    position: relative;
+    &:hover {
+      background-color: blueviolet;
+      color: white;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      &:hover {
+        color: white;
+      }
+    }
+    b {
+      position: absolute;
+      font-weight: 400;
+      left: 60px;
+    }
+  }
+}
+
+// playlist-popup
+#playlist-popup i {
+  margin-left: 5px;
+}
+
+#add-song-alert {
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.add-this-song-to-me, .add-this-playlist-to-me {
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: blueviolet;
+    a {
+      color: white;
+    }
+  }
+}
+
+.reload {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// temp_playlist_tool
+#temp_playlist_tool {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+// Top search
+
+#top-search-form {
+  position: relative;
+  padding: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#top-search-text{
+  width: 250px;
+}
+
+#top-search-result {
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+  border: 1px solid silver;
+  background: white;
+  padding-top: 5px;
+  display: none;
+
+  i {
+    padding-left: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    margin-top: 3px;
+    //border-bottom: 3px solid red;
+    width: 100%;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  ol {
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    li {
+      box-sizing: content-box;
+      padding: 0 5px 5px 15px;
+      min-height: 30px;
+      line-height: 30px;
+      .search-artist{
+        color: #555555;
+        font-size: 80%;
+        font-style: italic;
+      }
+      &:hover {
+        color: whitesmoke;
+        background-color: blueviolet;
+        .search-artist{
+          color: whitesmoke;
+        }
+      }
+    }
+  }
+  ol:first-child {
+  }
+}
+
+// Artist page
+#artist-header {
+  position: relative;
+  padding: 5px;
+  height: 250px;
+  width: 100%;
+  background: silver;
+  .container {
+    #artist-avatar {
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+}
+
+#artist-main {
+  margin-top: 5px;
+}
+
+// Light Slider - Gallery
+\
