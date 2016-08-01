@@ -3,17 +3,17 @@
     <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Sua nghe si {{$artist->artist_title}}</h3>
+                <h3 class="panel-title">Sua nghe si {!!$artist->artist_title!!}</h3>
             </div>
             <div class="panel-body">
-                <form action="{{url('artist/'.$artist->id)}}" method="POST" class="form-horizontal" role="form">
-                    {{csrf_field()}}
-                    {{method_field('PUT')}}
+                <form action="{!!url('artist/'.$artist->id)!!}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    {!!csrf_field()!!}
+                    {!!method_field('PUT')!!}
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ten nghe si</label>
 
                         <div class="col-sm-10">
-                            <input type="text" name="artist_name" class="form-control" value="{{$artist->artist_name}}">
+                            <input type="text" name="artist_name" class="form-control" value="{!!$artist->artist_name!!}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -21,7 +21,7 @@
 
                         <div class="col-sm-10">
                             <input type="text" name="artist_title" class="form-control"
-                                   value="{{$artist->artist_title}}">
+                                   value="{!!$artist->artist_title!!}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -29,16 +29,39 @@
 
                         <div class="col-sm-10">
                             <input type="date" name="artist_birthday" class="form-control"
-                                   value="{{$artist->artist_birthday}}">
+                                   value="{!!$artist->artist_birthday!!}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Anh dai dien
+                            <img src="{!! $artist->artist_img_small !!}" height="100px" width="auto" alt="">
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="file" name="artist_img_small" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Anh cover
+                            <img src="{!! $artist->artist_img_cover !!}" height="100px" width="auto" alt="">
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="file" name="artist_img_cover" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Thong tin</label>
 
                         <div class="col-sm-10">
-                            <textarea name="artist_info" class="form-control">{{$artist->artist_info}}</textarea>
+                            <textarea name="artist_info" class="form-control">{!!$artist->artist_info!!}</textarea>
                         </div>
                     </div>
+
+
+                    
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Gioi tinh</label>
 
@@ -48,8 +71,8 @@
                             $select2 = $artist->artist_gender == "Nu" ? "selected" : "";
                             ?>
                             <select class="form-control" name="artist_gender">
-                                <option value="1" {{$select1}}>Nam</option>
-                                <option value="0" {{$select2}}>Nu</option>
+                                <option value="1" {!!$select1!!}>Nam</option>
+                                <option value="0" {!!$select2!!}>Nu</option>
                             </select>
                         </div>
                     </div>
@@ -77,7 +100,7 @@
         </div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Cac bai hat cua {{$artist->artist_title}}
+                Cac bai hat cua {!!$artist->artist_title!!}
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -94,12 +117,12 @@
                         @foreach ($artist->songs as $song)
                             <tr>
                                 <td>
-                                    <a href="{{url("song/$song->id/edit")}}">Edit</a>
-                                    - <a href="{{url("song/$song->id/delete")}}">Delete</a>
+                                    <a href="{!!url("song/$song->id/edit")!!}">Edit</a>
+                                    - <a href="{!!url("song/$song->id/delete")!!}">Delete</a>
                                 </td>
-                                <td>{{$song->song_title}}</td>
-                                <td>{{$song->created_at}}</td>
-                                <td>{{$song->song_view}}</td>
+                                <td>{!!$song->song_title!!}</td>
+                                <td>{!!$song->created_at!!}</td>
+                                <td>{!!$song->song_view!!}</td>
                             </tr>
                             @endforeach
                         </tbody>

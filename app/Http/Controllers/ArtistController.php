@@ -14,6 +14,8 @@ class ArtistController extends Controller
     public function index()
     {
         return view('artists.index', [
+            'myjs' => ['jquery.dynatable.js'],
+            'mycss' => ['jquery.dynatable.css'],
             'artists' => Artist::all(),
             'cp' => true
         ]);
@@ -31,7 +33,7 @@ class ArtistController extends Controller
 
     public function create()
     {
-        return view('artists.create',[
+        return view('artists.create', [
             'cp' => true
         ]);
     }
@@ -54,10 +56,42 @@ class ArtistController extends Controller
             'artist_info' => 'string|required|min:10',
             'artist_birthday' => 'required',
             'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required'
+            'artist_nation' => 'integer|required',
+            'artist_img_small' => 'image',
+            'artist_img_cover' => 'image'
         ]);
 
-        $artist->update($request->input());
+        $artist->artist_title = $request->input('artist_title');
+        $artist->artist_title_slug = str_slug($artist->artist_title);
+        $artist->artist_title_eng = str_replace('-',' ',$artist->artist_title_slug);
+        $artist->artist_name = $request->input('artist_name');
+        $artist->artist_info = $request->input('artist_info');
+        $artist->artist_birthday = $request->input('artist_birthday');
+        $artist->artist_gender = $request->input('artist_gender');
+        $artist->artist_nation = $request->input('artist_nation');
+
+
+        if ($request->hasFile('artist_img_small')) {
+            //Remove old img
+            @unlink(base_path('public/uploads/imgs/artists/'.basename($artist->artist_img_small)));
+
+            $artist_img_small = $request->file('artist_img_small');
+            $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small->getClientOriginalName());
+            $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small->getClientOriginalName());
+            $artist->artist_img_small = $artist_img_small_link;
+        }
+
+        if ($request->hasFile('artist_img_cover')) {
+            //Remove old img
+            @unlink(base_path('public/uploads/imgs/artists/'.basename($artist->artist_img_cover)));
+
+            $artist_img_cover = $request->file('artist_img_cover');
+            $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover->getClientOriginalName());
+            $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover->getClientOriginalName());
+            $artist->artist_img_cover = $artist_img_cover_link;
+        }
+
+        $artist->save();
         $request->session()->flash('succeeds', 'Your done!');
         return back();
     }
@@ -70,10 +104,38 @@ class ArtistController extends Controller
             'artist_info' => 'string|required|min:10',
             'artist_birthday' => 'required',
             'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required'
+            'artist_nation' => 'integer|required',
+            'artist_img_small' => 'required|mimetypes:image/jpeg,image/png',
+            'artist_img_cover' => 'required|mimetypes:image/jpeg,image/png'
         ]);
 
-        Artist::create($request->input());
+//        if (!$request->file('artist_img_small')->isValid() || $request->file('artist_img_cover')->isValid()){
+//            return back()->withErrors('Upload Images Error!');
+//        }
+
+        $artist_img_small = $request->file('artist_img_small');
+        $artist_img_cover = $request->file('artist_img_cover');
+        $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small->getClientOriginalName());
+        $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover->getClientOriginalName());
+
+        // After uploading was done. Do insert info to DB
+        $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small->getClientOriginalName());
+        $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover->getClientOriginalName());
+
+        $artist = new Artist;
+
+        $artist->artist_title = $request->input('artist_title');
+        $artist->artist_title_slug = str_slug($artist->artist_title);
+        $artist->artist_title_eng = str_replace('-',' ',$artist->artist_title_slug);
+        $artist->artist_name = $request->input('artist_name');
+        $artist->artist_info = $request->input('artist_info');
+        $artist->artist_birthday = $request->input('artist_birthday');
+        $artist->artist_gender = $request->input('artist_gender');
+        $artist->artist_nation = $request->input('artist_nation');
+        $artist->artist_img_small = $artist_img_small_link;
+        $artist->artist_img_cover = $artist_img_cover_link;
+
+        $artist->save();
         $request->session()->flash('succeeds', 'Your done!');
         return redirect('artist');
     }
@@ -84,8 +146,11 @@ class ArtistController extends Controller
         return $result;
     }
 
-    public function show(Artist $artist){
+    public function show(Artist $artist)
+    {
+        $playlists = $artist->playlists;
         return view('artists.show', [
+            'playlists' => $playlists,
             'myjs' => ['artists/show.js'],
             'artist' => $artist,
         ]);

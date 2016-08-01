@@ -2,9 +2,15 @@
  * Created by kmasteryc on 5/26/16.
  */
 $(document).ready(function () {
+
     if ($(".datatable").length) {
         $(".datatable").dynatable();
     }
+
+    // LAZY LOADING IMG
+    $("img[data-src^='http']").each(function(){
+        $(this).attr('src',$(this).data('src'));
+    });
 
     var api = base_url + 'api/search';
     var input = $("#top-search-text");
@@ -75,4 +81,17 @@ $(document).ready(function () {
 
 function showAjaxIcon() {
     return '<img class="reload" src="' + base_url + 'img/reload.gif"/>';
+}
+
+function renderArtists(artists){
+    var html = '';
+    for(let x in artists)
+    {
+        html += '<a href="' + base_url + 'nghe-si/' + artists[x].artist_title_slug + '.html">' + artists[x].artist_title + '</a>';
+        if (x != (artists.length - 1))
+        {
+            html += ', ';
+        }
+    }
+    return html;
 }

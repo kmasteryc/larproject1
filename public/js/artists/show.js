@@ -3,6 +3,8 @@
  */
 $(document).ready(function () {
 
+    // Set image header
+
     // Call lightSlider to show Playlist
     $('#artist-tabs a').click(function (e) {
         e.preventDefault();
@@ -10,21 +12,15 @@ $(document).ready(function () {
     });
 
     var api_1 = base_url + 'api/get-songs-by-artist/' + artist;
-    var api_2 = base_url + 'api/get-albums-by-artist/' + artist;
 
     var json_data = '';
 
-    var song_box = $("#list-song");
+    var song_box = $("#hot-song");
     var song_paginate = $("#song-paginate");
 
-    var album_box = $("#list-album");
-    var album_paginate = $("#album-pageinate");
-
     loadSongData(api_1);
-    // loadAlbumData(api_2);
 
     showSongLinks();
-    // showAlbumLinks();
 
     function loadSongData(url) {
         song_box.html(showAjaxIcon());
@@ -36,11 +32,28 @@ $(document).ready(function () {
 
             songs = response.data;
             for (var x in songs) {
-                html += '<li class="list-group-item"> ' +
-                    '<span class="pull-left"><a href="">' + songs[x].song_title + '</a> - ' + songs[x].song_artists_title_text +
-                    '</span> <span class="pull-right">Some action here!</span> ' +
-                    '<div class="clearfix"></div> ' +
-                    '</li>';
+                html += `
+                <li class="list-group-item">
+                    <div class="clearfix">
+                        <span class="pull-left">
+                            <a href="${base_url+'bai-hat/'+songs[x].song_title_slug+'.html'}">${songs[x].song_title}</a> - 
+                            ${renderArtists(songs[x].artists)}
+                        </span>
+                        <span class="pull-right">
+                            <a href="#">
+                                <i class="fa fa-plus" 
+                                    data-songid="${songs[x].id}" 
+                                    data-songtitle="${songs[x].song_title}" 
+                                    data-songartist="${songs[x].song_artist_id}">
+                                </i>
+                            </a>
+                            <a href="${songs[x].song_mp3}">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </span>
+                    </div>
+                </li>
+                `;
             }
 
             song_box.html(html);
@@ -49,6 +62,10 @@ $(document).ready(function () {
     }
 
     function showSongLinks() {
+        if (json_data.prev_page_url == null && json_data.prev_page_url == null)
+        {
+            return;
+        }
         var html = '<nav><ul class="pagination">';
 
         html += json_data.prev_page_url ? '<li> <a href="#" data-type="song" class="ajax-load" data-api="' + json_data.prev_page_url + '"> Trước </a> </li> ' : '';
@@ -66,37 +83,13 @@ $(document).ready(function () {
         return html;
     }
 
-    function loadAlbumData(url) {
-        song_box.html(showAjaxIcon());
-
-        $.get(url).success(function (response) {
-            console.log(response);
-            json_data = response;
-            var html = '';
-
-            songs = response.data;
-            for (var x in songs) {
-                html += '<li class="list-group-item"> ' +
-                    '<span class="pull-left"><a href="">' + songs[x].song_title + '</a> - ' + songs[x].song_artists_title_text +
-                    '</span> <span class="pull-right">Some action here!</span> ' +
-                    '<div class="clearfix"></div> ' +
-                    '</li>';
-            }
-
-            song_box.html(html);
-            song_paginate.html(showLinks());
-        });
-    }
-
-
-
     $(document).on('click', '.ajax-load', function (event) {
         event.preventDefault();
 
-        if ($(this).data('type') == 'song'){
+        if ($(this).data('type') == 'song') {
             loadSongData($(this).data('api'));
         }
-        if ($(this).data('type') == 'album'){
+        if ($(this).data('type') == 'album') {
             loadAlbumData($(this).data('api'));
         }
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Faker;
+use Carbon\Carbon;
 
 class Artist extends Model
 {
@@ -14,6 +15,24 @@ class Artist extends Model
 	{
 		return $value == 1 ? "Nam" : "Nu";
 	}
+
+    public function getArtistImgSmallAttribute($value)
+    {
+        if (!$value) $value = 'http://placehold.it/64x64';
+        return $value;
+    }
+
+    public function getArtistImgCoverAttribute($value)
+    {
+        if (!$value) $value = 'http://placehold.it/700x300';
+        return $value;
+    }
+
+    public function getArtistBirthdayAttribute($value)
+    {
+        $dt = Carbon::createFromFormat('Y-m-d',$value);
+        return $dt->format('d/m/Y');
+    }
 
 	public function songs()
 	{

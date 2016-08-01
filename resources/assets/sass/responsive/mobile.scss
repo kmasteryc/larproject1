@@ -1,4 +1,7 @@
 @media (max-width: 767px) {
+  #top-search-text{
+    width: 100%;
+  }
   .k-sub-menu {
     font-size: 12px;
     width: 280px;
@@ -12,17 +15,6 @@
     }
     .clearfix {
       display: none;
-    }
-  }
-  #playlist-summary {
-    .playlist-detail {
-      display: none;
-    }
-    img {
-      display: none;
-      //display: block;
-      //margin-left: auto;
-      //margin-right: auto;
     }
   }
 }

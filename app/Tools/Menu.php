@@ -131,12 +131,12 @@ class Menu
 
 				$id = $value['id'];
 				$this->_result .= "<li class='column'>";
-				$this->_result .= "<div class='clearfix'><b class='blue-foot'><a href='".url('/cate/'.$value['id'])."'>". $value['cate_title'] . "</a></b>";
+				$this->_result .= "<div class='clearfix'><b class='blue-foot'><a href='".url('/chu-de/'.$value['id'])."'>". $value['cate_title'] . "</a></b>";
 				foreach ($this->_data2 as $child)
 				{
 					if ($child['cate_parent'] == $id)
 					{
-						$this->_result .= "<p><a href='".url('/cate/'.$child['id'])."'>".$child['cate_title'] . "</a></p>";
+						$this->_result .= "<p><a href='".url('/chu-de/'.$child['id'])."'>".$child['cate_title'] . "</a></p>";
 					}
 				}
 //				$this->call_menu_nav($id);
@@ -158,17 +158,17 @@ class Menu
 
 				$id = $value['id'];
 				$this->_result .= '<li class="dropdown">';
-				$this->_result .= '<a href="'.url('/cate/'.$value['id']).'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'<span class="caret"></span></a>';
+				$this->_result .= '<a href="'.url('/chu-de/'.$value['cate_title_slug'].'.html').'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'</a>';
 				$this->_result .= '<ul class="dropdown-menu">';
 				foreach ($this->_data2 as $child)
 				{
 					if ($child['cate_parent'] == $id)
 					{
-						$this->_result .= '<li><a href="'.url('/cate/'.$child['id']).'">'.$child['cate_title'].'</a></li>';
+						$this->_result .= '<li><a href="'.url('/chu-de/'.$child['cate_title_slug'].'.html').'">'.$child['cate_title'].'</a></li>';
 					}
 				}
 				$this->_result .= '<li role="separator" class="divider"></li>';
-				$this->_result .= '<li><a href="'.url('/cate/'.$value['id']).'">'.$value['cate_title'].'</a></li>';
+				$this->_result .= '<li><a href="'.url('/chu-de/'.$value['cate_title_slug'].'.html').'">'.$value['cate_title'].'</a></li>';
 				$this->_result .= '</ul></li>';
 			}
 

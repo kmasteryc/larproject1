@@ -37,7 +37,7 @@
                                 </td>
                                 <td>{{$song->cate->cate_title}}</td>
                                 <td>{{$song->song_view}}</td>
-                                <td><a href="{{$song->song_mp3  }}" target="_blank">Play</a></td>
+                                <td><a href="{{url("bai-hat/$song->song_title_slug.html")}}" target="_blank">Play</a></td>
                             </tr>
                         @endforeach
                         </tbody>

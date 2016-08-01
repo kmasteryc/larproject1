@@ -6,7 +6,7 @@
                 <h3 class="panel-title">Them nghe si moi</h3>
             </div>
             <div class="panel-body">
-                <form action="{{url('artist/store')}}" method="POST" class="form-horizontal" role="form">
+                <form action="{{url('artist/store')}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ten nghe si</label>
@@ -26,6 +26,18 @@
                         <div class="col-sm-10">
                             <input type="date" name="artist_birthday" class="form-control"
                                    value="{{old('artist_birthday')}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Anh dai dien</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="artist_img_small" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Anh cover</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="artist_img_cover" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">

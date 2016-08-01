@@ -48,7 +48,7 @@
                 <div class="row" id="playlist-summary">
 
                     <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">
-                        <img src="{!! $playlist->image->image_path !!}" alt="">
+                        <img src="{!! $playlist->playlist_img !!}" alt="">
                     </div>
 
                     <div class="col-md-8 col-lg-8 col-sm-9 col-xs-9">
@@ -57,6 +57,7 @@
                             <h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>
                             <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
                             <h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>
+                            <h5>Upload: {!! $playlist->user->name !!}</h5>
                         </div>
                     </div>
 
@@ -83,11 +84,11 @@
                         <div id="other-playlist">
                             <h4><i class="fa fa-bookmark"></i> Playlist tương tự</h4>
                             @foreach($other_playlists as $other_playlist)
-                                <a href="{!! url("playlist/$other_playlist->id") !!}">
+                                <a href="{!! url("playlist/$other_playlist->playlist_title_slug.html") !!}">
                                     <div class="media">
                                         <div class="media-left media-middle">
                                             <img class="media-object"
-                                                 src="{!! $other_playlist->image->image_path !!}" height="80px"
+                                                 src="{!! $other_playlist->playlist_img !!}" height="80px"
                                                  width="auto">
                                         </div>
                                         <div class="media-body">
@@ -98,7 +99,6 @@
                                     </div>
                                 </a>
                             @endforeach
-                            {{--</ul>--}}
                         </div>
                     </div>
                 </div>

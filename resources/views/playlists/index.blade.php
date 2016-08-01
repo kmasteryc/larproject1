@@ -15,13 +15,13 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Hanh dong</th>
-                            <th>Anh</th>
-                            <th>Ten danh sach bai hat</th>
-                            <th>The loai</th>
-                            <th>So bai hat</th>
-                            <th>Luot nghe</th>
-                            <th>Cap nhat cuoi</th>
+                            <th>Hành động</th>
+                            <th>Ảnh</th>
+                            <th>Tên danh sách</th>
+                            <th>Thể loại</th>
+                            <th>Số bài hát</th>
+                            <th>Lượt nghe</th>
+                            <th>Cập nhật cuối</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,10 +29,10 @@
                             <tr>
                                 <td>{{$playlist->id}}</td>
                                 <td>
-                                    <a href="{{url("playlist/$playlist->id/")}}">Play</a> -
-                                    <a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> -
-                                    <a href="{{url("playlist/$playlist->id/delete")}}">Remove</a></td>
-                                <td><img src="{{$playlist->image['image_path']}}" alt="" height="50px" width="50px"></td>
+                                    <a href="{{url("playlist/$playlist->playlist_title_slug.html")}}">Chơi</a> -
+                                    <a href="{{url("playlist/$playlist->id/edit")}}">Sửa</a> -
+                                    <a href="{{url("playlist/$playlist->id/delete")}}">Xóa</a></td>
+                                <td><img src="{{$playlist->playlist_img}}" alt="" height="50px" width="50px"></td>
                                 <td>{{$playlist->playlist_title}}</td>
                                 <td><a href="{{url("cate/".$playlist->cate->id."/edit")}}">{{$playlist->cate->cate_title}}</a></td>
                                 <td>{{count($playlist->songs)}}</td>
@@ -47,7 +47,7 @@
                 <div class="center-block">
                     <a href="{{url('playlist/create')}}">
                         <button class="btn btn-success">
-                            Them danh sach nhac moi
+                            Tạo danh sách nhạc mới
                         </button>
                     </a>
                 </div>

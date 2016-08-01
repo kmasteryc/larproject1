@@ -26,9 +26,9 @@ class Playlist extends Model
         return $this->belongsToMany(Song::class);
     }
 
-    public function image()
+    public function views()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(View::class, 'viewable');
     }
 
     public function artist()
@@ -85,6 +85,7 @@ class Playlist extends Model
             ];
             session()->put('temp_playlist', $temp_playlist);
         }
+        $temp_playlist['playlist_title_slug'] = 'danh-sach-tam';
 
         if ($include_guest === true) {
             // Assign temp to all playlist
@@ -95,7 +96,8 @@ class Playlist extends Model
         if (auth()->user()) {
 
             // Awesome Eager loading!
-            $user_playlists = Playlist::where('user_id', auth()->user()->id)->select('playlist_title', 'playlists.id')
+            $user_playlists = Playlist::where('user_id', auth()->user()->id)
+                ->select('playlist_title', 'playlists.id','playlist_title_slug')
                 ->with('songs')
                 ->get();
 
@@ -108,6 +110,7 @@ class Playlist extends Model
                 $hehe = [
                     'id' => $user_playlist->id,
                     'playlist_title' => $user_playlist->playlist_title,
+                    'playlist_title_slug' => $user_playlist->playlist_title_slug,
                     'total_songs' => $user_playlist->total_songs,
                     'playlist_songs_id' => $songs_id
                 ];

@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{!! $title or 'Laravel MP3' !!}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/line-icons.css')}}">
+    {{--<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">--}}
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if (isset($mycss))
@@ -42,7 +43,7 @@
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>
-    base_url = "{{asset('/')}}/";
+    base_url = "{{asset('/')}}";
 </script>
 <script src="{{asset('js/master.js')}}"></script>
 @if (isset($myjs))

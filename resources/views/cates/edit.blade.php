@@ -30,6 +30,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Bang xep hang cho chu de nay?</label>
+                        <div class="col-sm-10">
+                            <select name="cate_chart" class="form-control">
+                                <option value="0" {!! $sl= $cate->cate_chart == 0 ? 'selected' : '' !!}>Khong</option>
+                                <option value="1" {!! $sl= $cate->cate_chart == 1 ? 'selected' : '' !!}>Co</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button class="btn btn-info" type="submit">Cap nhat</button>
                             <a class="btn btn-danger" href="{{url('cate')}}">Huy</a>

@@ -1,4 +1,8 @@
 @media (min-width: 768px) and (max-width: 991px) {
+  #top-search-text{
+    display: block;
+    width: 100%;
+  }
   .k-menu>li .k-sub-menu{
     width: 400px;
   }
@@ -15,7 +19,10 @@
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-
+  #top-search-text{
+    display: block;
+    width: 100%;
+  }
   #player-tool-area{
     position: static;
     margin: 10px 0px 10px 0px;

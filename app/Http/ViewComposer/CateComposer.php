@@ -13,6 +13,6 @@ use Illuminate\View\View;
 class CateComposer
 {
 	public function compose(View $view){
-		$view->with('cates',\App\Cate::select('id','cate_title','cate_parent')->get());
+		$view->with('cates',\App\Cate::select('id','cate_title','cate_parent','cate_chart','cate_title_slug')->get());
 	}
 }

@@ -232,7 +232,6 @@ $(document).ready(function () {
             success: function (response) {
                 json_data = response;
 
-                console.log(json_data);
                 // Both User playlist and temp playlist are empty!
                 if (json_data == '') {
                     empty_playlist = true;
@@ -260,14 +259,18 @@ $(document).ready(function () {
             html += '<li class="list-group-item ' + active + '">';
             html += '<div class="clearfix"><span class="pull-left">';
             html += (x + 1) + '. ';
-            html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ' + '<a href="' + base_url + 'artist/' + json_data[x].song_artist_id + '">' + json_data[x].song_artist + '</a>';
+            html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ';
+
+            html += renderArtists(json_data[x].artists);
+            console.log(json_data[x].artists);
+
             html += '</span>';
             html += '<span class="pull-right">';
             html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
 
             if (temp_playlist === false) {
                 html += ' <a href="#"><i class="fa fa-plus" data-songid="' + json_data[x].song_id + '" data-songtitle="' + json_data[x].song_title + '" data-songartist="' + json_data[x].song_artist + '"></i></a>';
-                html += ' <a href="' + base_url + 'song/' + json_data[x].song_id + '"><i class="fa fa-share"></i></a>';
+                html += ' <a href="' + base_url + 'bai-hat/' + json_data[x].song_title_slug + '.html"><i class="fa fa-share"></i></a>';
             }
             html += '</span>';
             html += '</div>';

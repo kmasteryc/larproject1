@@ -1,6 +1,7 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-//@import "component/normalize";
+// @import "component/normalize";
 @import "component/var";
+@import "stylesheets/bootstrap";
+
 @import "component/nav";
 @import "component/global";
 @import "component/typography";
@@ -12,3 +13,7 @@
 @import "responsive/mobile";
 @import "responsive/tablet";
 @import "responsive/desktop";
+
+
+
+

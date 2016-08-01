@@ -4,86 +4,138 @@
 $(document).ready(function () {
 
     // Call lightSlider to show Playlist
-    $(".lightSlider").lightSlider({
-        item:5,
-        responsive : [
-            {
-                breakpoint:1200,
-                settings: {
-                    item:6,
-                    slideMove:1,
-                    slideMargin:6,
-                }
-            },
-            {
-                breakpoint:992,
-                settings: {
-                    item:5,
-                    slideMove:1,
-                    slideMargin:6,
-                }
-            },
-            {
-                breakpoint:768,
-                settings: {
-                    item:3,
-                    slideMove:1,
-                    slideMargin:6,
-                }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:1,
-                    slideMove:1
-                }
-            }
-        ]
-    });
 
     var api_1 = base_url + 'api/get-ajax-hot-song/' + cate;
-    var json_data = '';
+    var api_2 = base_url + 'api/get-ajax-hot-playlist/' + cate;
+
+    var json_data_song = '';
+    var json_data_playlist = '';
     var hot_song_box = $("#hot-song");
     var hot_song_paginate = $("#hot-song-pageinate");
 
-    loadData(api_1);
+    var hot_album_box = $("#hot-album");
+    var hot_album_paginate = $("#hot-album-pageinate");
 
-    showLinks();
 
-    function loadData(url) {
+    loadDataPlaylist(api_2);
+    showLinkPlaylist('playlist');
+
+    loadDataSong(api_1);
+    showLinkSong('song');
+
+    function loadDataSong(url) {
         hot_song_box.html(showAjaxIcon());
 
         $.get(url).success(function (response) {
-            json_data = response;
+            json_data_song = response;
             var html = '';
 
             songs = response.data;
+            console.log(songs);
+
             for (var x in songs) {
-                html += '<li class="list-group-item"> ' +
-                    '<span class="pull-left"><a href="">' + songs[x].song_title + '</a> - ' + songs[x].song_artists_title_text +
-                    '</span> <span class="pull-right">Some action here!</span> ' +
-                    '<div class="clearfix"></div> ' +
-                    '</li>';
+                html += `
+                <li class="list-group-item">
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <a href="${base_url+'bai-hat/'+songs[x].song_title_slug+'.html'}"> 
+                            ${songs[x].song_title} 
+                        </a> - ${renderArtists(songs[x].artists)}
+                        </a>
+                     </span>
+                    <span class="pull-right">
+                        <a href="#">
+                        <i class="fa fa-plus" 
+                            data-songid="${songs[x].id}" 
+                            data-songtitle="${songs[x].song_title}" 
+                            data-songartist="${songs[x].song_artist_id}"></i>
+                        </a>
+                        <a href="${songs[x].song_mp3}"><i class="fa fa-download"></i></a>
+                    </span> 
+                </div>
+                </li>
+                `;
             }
 
             hot_song_box.html(html);
-            hot_song_paginate.html(showLinks());
+            hot_song_paginate.html(showLinkSong('song'));
         });
     }
 
-    function showLinks() {
+    function loadDataPlaylist(url) {
+        hot_album_box.html(showAjaxIcon());
+
+        $.get(url).success(function (response) {
+            json_data_playlist = response;
+            var html = '';
+
+            var playlists = response.data;
+            console.log(url);
+            for (var x in playlists) {
+
+                html += `
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="thumbnail">
+                            <img src="${playlists[x].playlist_img}" alt="${playlists[x].playlist_title}">
+                            <div class="caption">
+                                <h5>
+                                    <a href="${base_url + 'playlist/' + playlists[x].playlist_title_slug + '.html'}">
+                                        ${playlists[x].playlist_title}
+                                    </a>
+                                </h5>
+                                <a href="${base_url + 'nghe-si/' + playlists[x].artist.artist_title_slug + '.html'}">
+                                    ${playlists[x].artist.artist_title}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // console.log(html);
+            }
+
+            hot_album_box.html(html);
+            hot_album_paginate.html(showLinkPlaylist('playlist'));
+        });
+    }
+
+    function showLinkSong() {
+        if (json_data_song.next_page_url == null && json_data_song.prev_page_url == null) {
+            return;
+        }
         var html = '<nav><ul class="pagination">';
 
-        html += json_data.prev_page_url ? '<li> <a href="#" class="ajax-load" data-api="' + json_data.prev_page_url + '"> Trước </a> </li> ' : '';
+        html += json_data_song.prev_page_url ? '<li> <a href="#" class="ajax-load" data-type="song" data-api="' + json_data_song.prev_page_url + '"> Trước </a> </li> ' : '';
 
-        for (var i = 1; i <= json_data.last_page; i++) {
-            if (i == json_data.current_page) {
+        for (var i = 1; i <= json_data_song.last_page; i++) {
+            if (i == json_data_song.current_page) {
                 html += '<li class="active"><a href="#">' + i + '</a></li>';
             } else {
-                html += '<li><a href="#" class="ajax-load" data-api="' + api_1 + '?page=' + i + '">' + i + '</a></li>';
+                html += '<li><a href="#" class="ajax-load" data-type="song" data-api="' + api_1 + '?page=' + i + '">' + i + '</a></li>';
             }
         }
-        html += json_data.next_page_url ? '<li> <a href="#" class="ajax-load" data-api="' + json_data.next_page_url + '"> Sau </a> </li> ' : '';
+        html += json_data_song.next_page_url ? '<li> <a href="#" class="ajax-load" data-type="song" data-api="' + json_data_song.next_page_url + '"> Sau </a> </li> ' : '';
+        html += '</ul></nav>';
+
+        return html;
+    }
+
+    function showLinkPlaylist() {
+        if (json_data_playlist.next_page_url == null && json_data_playlist.prev_page_url == null) {
+            return;
+        }
+        console.log(json_data_playlist);
+        var html = '<nav><ul class="pagination">';
+
+        html += json_data_playlist.prev_page_url ? '<li> <a href="#" class="ajax-load" data-type="playlist" data-api="' + json_data_playlist.prev_page_url + '"> Trước </a> </li> ' : '';
+
+        for (var i = 1; i <= json_data_playlist.last_page; i++) {
+            if (i == json_data_playlist.current_page) {
+                html += '<li class="active"><a href="#">' + i + '</a></li>';
+            } else {
+                html += '<li><a href="#" class="ajax-load" data-type="playlist" data-api="' + api_2 + '?page=' + i + '">' + i + '</a></li>';
+            }
+        }
+        html += json_data_playlist.next_page_url ? '<li> <a href="#" class="ajax-load" data-type="playlist" data-api="' + json_data_playlist.next_page_url + '"> Sau </a> </li> ' : '';
         html += '</ul></nav>';
 
         return html;
@@ -92,7 +144,11 @@ $(document).ready(function () {
     $(document).on('click', '.ajax-load', function (event) {
         event.preventDefault();
 
-        loadData($(this).data('api'));
+        if ($(this).data('type') == 'song') {
+            loadDataSong($(this).data('api'));
+        } else {
+            loadDataPlaylist($(this).data('api'));
+        }
 
     });
 });

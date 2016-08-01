@@ -4,7 +4,17 @@
   //width: 100%;
   position: absolute;
   margin-top: 10px;
-  background: $color1;
+  background: $brand-success;
+}
+
+@mixin set_cl($bg,$color) {
+  background-color: $bg;
+  color: $color;
+}
+
+@mixin hover1() {
+  border-left: 2px solid $brand-mycolor;
+  //border-color: ;
 }
 
 .popup {
@@ -100,31 +110,41 @@
 
 #other-playlist {
   margin-top: 10px;
-  a{
+  a {
     display: block;
     padding: 5px;
-    &:hover{
-      background: blueviolet;
+    &:hover {
+      background: $brand-mycolor;
       color: white;
-      p{
-        background: blueviolet;
+      .my-media-heading{
+        color: white;
+      }
+      div {
+        color: white;
+      }
+      p {
+        background: $brand-mycolor;
         color: white;
       }
     }
   }
 
-  .media-body{
-    .my-media-heading{
+  .media-body {
+    h5 {
+      color: $gray-darker;
+    }
+    .my-media-heading {
       margin: 0px 0px 5px 0px;
       //font-size: 16px;
-      line-height: 20px;
-      font-weight: 600;
+      //line-height: 20px;
+      //font-weight: 600;
+      color: $gray-darker;
     }
-    p{
+    p {
       color: #555555;
     }
   }
-  p{
+  p {
     margin: 0;
   }
 }
@@ -172,25 +192,9 @@
 
 //Control Panel
 #controlpanel {
-  li {
-    position: relative;
-    &:hover {
-      background-color: blueviolet;
-      color: white;
-    }
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      &:hover {
-        color: white;
-      }
-    }
-    b {
-      position: absolute;
-      font-weight: 400;
-      left: 60px;
-    }
+  li .pull-left{
+    margin-right: 10px;
+    line-height: 30px;
   }
 }
 
@@ -210,7 +214,7 @@
   cursor: pointer;
   &:hover {
     color: white;
-    background-color: blueviolet;
+    background-color: $brand-mycolor;
     a {
       color: white;
     }
@@ -237,10 +241,6 @@
   padding: 0;
   margin-left: 15px;
   margin-right: 15px;
-}
-
-#top-search-text{
-  width: 250px;
 }
 
 #top-search-result {
@@ -271,15 +271,15 @@
       padding: 0 5px 5px 15px;
       min-height: 30px;
       line-height: 30px;
-      .search-artist{
+      .search-artist {
         color: #555555;
         font-size: 80%;
         font-style: italic;
       }
       &:hover {
         color: whitesmoke;
-        background-color: blueviolet;
-        .search-artist{
+        background-color: $brand-mycolor;
+        .search-artist {
           color: whitesmoke;
         }
       }
@@ -293,20 +293,131 @@
 #artist-header {
   position: relative;
   padding: 5px;
-  height: 250px;
+  height: 300px;
+  //height: 100%;
   width: 100%;
   background: silver;
-  .container {
-    #artist-avatar {
-      position: absolute;
-      bottom: 0px;
+  .float-container {
+    position: absolute;
+    padding: 10px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.09) 14%, rgba(0, 0, 0, 0.43) 47%, rgba(0, 0, 0, 0.5) 59%, rgba(0, 0, 0, 0.5) 100%);
+
+    .media-left {
+      img {
+        border: 2px solid white;
+      }
+    }
+
+    .media-body {
+
+      color: white;
+      font-weight: 700;
     }
   }
 }
 
 #artist-main {
-  margin-top: 5px;
+  margin-top: 10px;
+  .tab-content {
+    margin-top: 5px;
+  }
 }
 
-// Light Slider - Gallery
-\
+/// CHART MODULE
+
+#chart-song-box {
+  .list-group-item {
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:hover {
+      @include hover1();
+    }
+
+    .chart-item-right {
+      font-size: 20px;
+      i {
+        font-weight: 100;
+      }
+    }
+
+  }
+}
+
+// PARTIAL CHART
+.partial-chart {
+  h3 {
+    margin: 0 0 10px 0;
+  }
+  .media {
+    .media-left {
+      width: 30px;
+    }
+    .media-body {
+      a {
+        color: $gray;
+      }
+      h5 a {
+        color: $gray-darker;
+      }
+    }
+  }
+}
+
+// PARITAL HOT SONG
+.partial-hot-song {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  h3 {
+    margin: 0 0 10px 0;
+  }
+  .caption {
+    a {
+      color: $gray;
+    }
+    h5 {
+      overflow: hidden;
+      white-space: nowrap;
+      a {
+        color: $gray-darker;
+      }
+
+    }
+  }
+}
+
+#hot-song {
+  .pull-left {
+    margin-right: 5px;
+  }
+  .pull-right {
+    a {
+      margin-right: 10px;
+    }
+  }
+}
+
+// THUMBNAIL ROW
+.thumbnail-row {
+  .thumbnail {
+    .caption {
+      h5 {
+        a {
+          color: $gray-darker;
+        }
+      }
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
+.thumbnail-artist {
+
+}

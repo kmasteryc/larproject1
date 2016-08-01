@@ -30,7 +30,7 @@
   /*background: black;*/
   .seek-bar {
     position: absolute;
-    bottom: 40px;
+    bottom: 45px;
     height: 5px;
 
     cursor: pointer;
@@ -142,7 +142,7 @@
         height: 2px;
         background: white;
         position: absolute;
-        bottom: 18px;
+        bottom: 20px;
         left: 200px;
       }
       .process-bar {
@@ -175,13 +175,10 @@
 #player-playlist{
   display: none;
   border-top: 1px solid silver;
-  //margin-top: 10px;
-  //max-width: 700px;
-
   max-height: 300px;
   overflow: auto;
   i{
-    color: silver;
+    color: $gray;
     margin-left: 10px;
     font-size: 19px;
     line-height: 25px;
@@ -190,12 +187,22 @@
       color:blue;
     }
   }
-  .list-group-item{
-    color: #555555;
-    a{
-      color: #555555;
+  //.list-group-item{
+  //  color: $gray;
+  //  a{
+  //    color: $gray-darker;
+  //  }
+  //}
+
+  .list-group-item-info{
+    background-color: $brand-mycolor;
+    a, i{
+      color: white;
     }
+    color: white;
   }
+
+
 }
 #lyric-area{
   line-height: 30px;
@@ -217,7 +224,8 @@
       display: none;
     }
     .player-mask{
-      background: #6A7ACF;
+      //background: #6A7ACF;
+      background: $brand-mycolor;
     }
   }
   .process-bar{

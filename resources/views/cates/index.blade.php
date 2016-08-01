@@ -45,6 +45,16 @@
                             <input type="text" name="cate_title" class="form-control" value="{{old('cate_title')}}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Bang xep hang cho chu de nay?</label>
+                        <div class="col-sm-10">
+                            <select name="cate_chart" class="form-control">
+                                <option value="0">Khong</option>
+                                <option value="1">Co</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button class="btn btn-info" type="submit">

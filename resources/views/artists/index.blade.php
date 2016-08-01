@@ -1,4 +1,5 @@
 @inject('menu', 'Tools\Menu')
+@inject('khelper', 'Tools\Khelper')
 
 @extends('layouts.app')
 @section('content')
@@ -10,8 +11,8 @@
             <div class="panel-body">
 
                 {{--Bang: nghe si--}}
-                <div lass="table-responsive">
-                    <table class="table table-bordered">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -20,6 +21,7 @@
                             <th>Ten that</th>
                             <th>Ngay sinh</th>
                             <th>Gioi tinh</th>
+                            <th>Virtual</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,6 +34,7 @@
                                 <td>{{$artist->artist_name}}</td>
                                 <td>{{$artist->artist_birthday}}</td>
                                 <td>{{$artist->artist_gender}}</td>
+                                <td>{!! $khelper::removeVietNamese($artist->artist_title).' '.$khelper::removeVietNamese($artist->artist_name) !!}</td>
                             </tr>
                         @endforeach
                         </tbody>

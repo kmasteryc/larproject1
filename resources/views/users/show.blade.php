@@ -7,7 +7,7 @@
             <div class="col-md-9" style="position: relative">
                 <div class="row" id="playlist-summary">
                     <div class="col-md-3">
-                        <img src="{!! $playlist->image->image_path !!}" alt="">
+                        <img src="{!! $playlist->playlist_img !!}" alt="">
                     </div>
                     <div class="col-md-9">
                         <h4>PLAYLIST: {!! $playlist->playlist_title !!}</h4>

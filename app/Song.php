@@ -27,6 +27,10 @@ class Song extends Model
 	{
 		return $this->hasMany(Lyric::class);
 	}
+	public function views()
+	{
+		return $this->morphMany(View::class,'viewable');
+	}
 	public function str_artists()
 	{
 		$song_artists = $this->artists;

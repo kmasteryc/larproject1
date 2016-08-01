@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
-use \App\Song;
+use App\Playlist;
+use App\Artist;
+use App\Song;
+use App\Cate;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -29,18 +32,54 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
-//        $router->bind('song_title', function($song_title)
-//        {
-//            return Song::where('song_title', $song_title)->firstOrFail();
-//        });
+        $router->bind('playlist', function($playlist)
+        {
+            if (strpos($playlist,'.html') > 0) {
+                $playlist = strstr($playlist, '.html', true);
+            }
+            if ($playlist === 'danh-sach-tam'){
+                return $playlist;
+            }
+            if (is_numeric($playlist)){
+                return Playlist::find($playlist);
 
-//		$router->bind('cate', function ($cate){
-//			if (is_numeric($cate))
-//			{
-//				return \App\Cate::find($cate)->firstOrFail();
-//			}
-//			return \App\Cate::where('cate_title',$cate)->firstOrFail();
-//		});
+            }else{
+                return Playlist::where('playlist_title_slug',$playlist)->firstOrFail();
+            }
+        });
+
+		$router->bind('cate', function ($cate){
+            if (strpos($cate,'.html') > 0) {
+                $cate = strstr($cate, '.html', true);
+            }
+			if (is_numeric($cate))
+			{
+				return Cate::find($cate);
+			}
+			return Cate::where('cate_title_slug',$cate)->firstOrFail();
+		});
+
+        $router->bind('artist', function ($artist){
+            if (strpos($artist,'.html') > 0) {
+                $artist = strstr($artist, '.html', true);
+            }
+            if (is_numeric($artist))
+            {
+                return Artist::find($artist);
+            }
+            return Artist::where('artist_title_slug',$artist)->firstOrFail();
+        });
+
+        $router->bind('song', function ($song){
+            if (strpos($song,'.html') > 0) {
+                $song = strstr($song, '.html', true);
+            }
+            if (is_numeric($song))
+            {
+                return Song::find($song);
+            }
+            return Song::where('song_title_slug',$song)->firstOrFail();
+        });
     }
 
     /**

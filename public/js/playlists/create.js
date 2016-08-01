@@ -5,9 +5,14 @@ $(document).ready(function () {
     $("#input_songs").keyup(function () {
         search = $(this).val();
 
+        if (search.length=0){
+            return;
+        }
+
         var request = $.ajax({
-            'url': base_url + 'song/ajax_search/' + search,
-            'method': 'GET'
+            'url': base_url + 'api/search',
+            'data' : 'type=song&search='+search,
+            'method': 'POST'
         });
 
         request.done(function (response) {
@@ -16,7 +21,7 @@ $(document).ready(function () {
                 var i = 1;
                 for (var k in response) {
                     var row = response[k];
-                    var content = i + '. ' + row.song_title + ' | ' + row.song_artists_title;
+                    var content = i + '. ' + row.song_title + ' | ' + row.artists[0].artist_title;
                     $(".popup").append("" +
                         "<a href='#' class='list-group-item list-group-item-primary a_choose_song' " +
                         "data-id='" + row.id + "' "

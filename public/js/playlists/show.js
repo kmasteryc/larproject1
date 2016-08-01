@@ -21,7 +21,9 @@ $(document).ready(function () {
     var save_me_to_memory = {};
     var save_me_too;
 
-    $(document).on('click', '.fa-plus', function () {
+    $(document).on('click', '.fa-plus', function (e) {
+        e.preventDefault();
+
         save_me_to_memory['song_id'] = $(this).data('songid');
         save_me_to_memory['song_title'] = $(this).data('songtitle');
         save_me_to_memory['song_artist'] = $(this).data('songartist');
@@ -40,7 +42,6 @@ $(document).ready(function () {
             $('#add-song-alert').removeClass('text-success');
             $('#add-song-alert').addClass('text-danger');
             $('#add-song-alert').html("Bài hát đã tồn tại trong danh sách!");
-            // loadPlaylist();
         }
         else {
             list_box.html(showAjaxIcon());
@@ -91,7 +92,7 @@ $(document).ready(function () {
                     }
                     else
                     {
-                        html += "<a href='" + base_url + "playlist/temp_playlist'><i class='fa fa-play'></i></a>";
+                        html += "<a href='" + base_url + "playlist/danh-sach-tam'><i class='fa fa-play'></i></a>";
                     }
                     html += "</span>";
                     html += '<div class="clearfix"></div>';

@@ -32,7 +32,7 @@
                         <label class="col-sm-3 control-label">Anh cu</label>
 
                         <div class="col-sm-9">
-                            <img src="{{$playlist->image->image_path}}" alt="" height="50px" width="50px">
+                            <img src="{{$playlist->playlist_img}}" alt="" height="50px" width="50px">
                         </div>
                     </div>
 

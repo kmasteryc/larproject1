@@ -15,16 +15,20 @@ thead{
   display: none;
 }
 a{
-  color: black;
+  color: $gray;
 }
 a:hover{
   text-decoration: none;
 }
-h4{
-  margin-top: 0;
-  color: black;
-  font-size: 20px;
-  text-transform: uppercase;
+//h4{
+//  margin-top: 0;
+//  color: black;
+//  font-size: 20px;
+//  text-transform: uppercase;
+//}
+
+.block{
+  display: block;
 }
 
 // Scroll bar
@@ -40,8 +44,4 @@ h4{
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
-}
-
-// Pagination
-.pagination{
 }

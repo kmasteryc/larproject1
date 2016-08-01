@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
+use App\Song;
+use App\Artist;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,7 +52,12 @@ class CateController extends Controller
 		$this->validate($request,[
 			'cate_title' => 'required|unique:cates,cate_title,'.$cate->id
 		]);
-		$cate->update($request->input());
+        $cate->save([
+            'cate_title' => $request->cate_title,
+            'cate_title_slug' => str_slug($request->cate_title),
+            'cate_parent' => $request->cate_parent,
+            'cate_chart' => $request->cate_chart
+        ]);
 		$request->session()->flash('succeeds','Your done!');
 		return back();
 	}
@@ -59,37 +66,28 @@ class CateController extends Controller
 	{
 		$this->validate($request, [
 			'cate_title' => 'unique:cates,cate_title|required',
+            'cate_chart' => 'integer|required',
 			'cate_parent' => 'integer|required'
 		]);
 
 		Cate::create([
 			'cate_title' => $request->cate_title,
-			'cate_parent' => $request->cate_parent
+			'cate_title_slug' => str_slug($request->cate_title),
+			'cate_parent' => $request->cate_parent,
+			'cate_chart' => $request->cate_chart
 		]);
-
 
 		$request->session()->flash('succeeds','Your done!');
 		return back();
 	}
 
 	public function show(Cate $cate){
-
-        $need_id[] = $cate->id;
-
-        $child = $cate->where('cate_parent',$cate->id)->select('id')->get();
-
-        foreach ($child as $ch)
-        {
-            $need_id[] = $ch->id;
-        }
-
-        $playlists = Playlist::whereIn('cate_id',$need_id)->orderby('created_at','DESC')->with('image','user')->take(10)->get();
         
 		return view('cates.show', [
+            'title' => 'Chủ đề '.$cate->cate_title,
 			'mycss' => ['lightslider.css'],
-			'myjs' => ['lightslider.js','cates/show.js'],
+			'myjs' => ['lightslider.js','cates/show.js','playlists/show.js'],
 			'cate' => $cate,
-			'playlists' => $playlists,
 		]);
 	}
 }

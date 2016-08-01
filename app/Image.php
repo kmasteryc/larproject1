@@ -10,4 +10,13 @@ class Image extends Model
 	{
 		return $this->morphTo();
 	}
+
+    public function getImagePathAttribute($value)
+    {
+        if (!$value)
+        {
+            $value = 'http://placehold.it/165x165';
+        }
+        return $value;
+    }
 }
