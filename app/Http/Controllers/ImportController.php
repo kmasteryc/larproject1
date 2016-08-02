@@ -16,8 +16,11 @@ use Faker;
 
 class ImportController extends Controller
 {
+    public $single_artist;
+    public $artists = [];
     public function importPlaylist()
     {
+//        return view('imports.import_playlist',['artists'=>Artist::orderBy('artist_title','ASC')->get()]);
         return view('imports.import_playlist');
     }
 
@@ -30,50 +33,71 @@ class ImportController extends Controller
             $faker = Faker\Factory::create();
 //			dd($data->getResults());
             $songs = $data->getResults();
-            // Create playlists
+
             $playlist = new Playlist;
             $playlist->playlist_title = $request->playlist_title;
+            $playlist->playlist_title_eng = str_replace('-',' ',str_slug($request->playlist_title));
             $playlist->playlist_img = $songs[0]['playlist_img'];
             $playlist->playlist_info = $faker->sentence(200);
             $playlist->cate_id = $request->cate_id;
             $playlist->user_id = auth()->user()->id;
-            $playlist->artist_id = 1;
-            $playlist->save();
-
-//            // Create images
-//            $image = new Image;
-//            $image->image_path = $songs[0]['playlist_img'];
-//            $image->imageable_id = $playlist->id;
-//            $image->imageable_type = Playlist::class;
-//            $image->save();
-
-            // Create individual song
 
             foreach ($songs as $song) {
-                $newsong = new Song;
-                $newsong->song_title = $song['title'];
-                $newsong->cate_id = $request->cate_id;
-                $newsong->song_mp3 = $song['source'];
-                $newsong->song_img = $song['backimage'];
-                $newsong->save();
 
-                //Create lyric if exist
-                if ($song['lyric'] != '') {
-                    $lyric = new Lyric;
-                    $lyric->lyric_content = file_get_contents($song['lyric']);
-                    $lyric->user_id = auth()->user()->id;
-                    $lyric->song_id = $newsong->id;
-                    $lyric->save();
+                $newsong = Song::where('song_title',$song['title'])->first();
+                if ($newsong == null)
+                {
+                    $newsong = new Song;
+                    $newsong->song_title = $song['title'];
+                    $newsong->song_title_eng = str_replace('-',' ',str_slug($song['title']));
+                    $newsong->cate_id = $request->cate_id;
+                    $newsong->song_mp3 = $song['source'];
+                    $newsong->save();
+
+                    if ($song['lyric'] != '') {
+                        $lyric = new Lyric;
+                        $lyric->lyric_content = file_get_contents($song['lyric']);
+                        $lyric->user_id = auth()->user()->id;
+                        $lyric->song_id = $newsong->id;
+                        $lyric->save();
+                    }
+                    $artists_title = explode('  ft. ', trim($song['performer']));
+
+                    foreach ($artists_title as $artist_title)
+                    {
+                        $artist = Artist::where('artist_title',$artist_title)->first();
+                        if ($artist == null)
+                        {
+                            $artist = Artist::createNewArtist($artist_title);
+                        }
+                        $this->artists[] = $artist;
+
+                        $artist_title_slug = $artist->artist_title_slug;
+                        $rand_str = substr(md5(rand(1,1111)),0,5);
+                        $newsong->song_title_slug = str_slug($song['title']).'-'.$artist_title_slug.'-'.$rand_str;
+
+                        $newsong->save();
+                        $newsong->artists()->attach($artist);
+                    }
+
                 }
-
-                // Process artists
-                // Create new artist if not exist, attach songs to artist
-                $performers = explode('  ft. ', trim($song['performer']));
-                Artist::createAndAttach($performers, $newsong);
-
+                $song_ids[] = $newsong->id;
                 // Attach songs to playlist
-                $playlist->songs()->attach($newsong);
+
             }
+            // Single detect
+            if (count($this->artists) == 1){
+                $artist =  $this->artists[0];
+            }else{
+                $artist = Artist::find(1);
+            };
+            $artist_title_slug = $artist->artist_title_slug;
+            $rand_str = substr(md5(rand(1,1111)),0,5);
+            $playlist->artist_id = $artist->id;
+            $playlist->playlist_title_slug = str_slug($request->playlist_title).'-'.$artist_title_slug.'-'.$rand_str;
+
+            $playlist->save();
+            $playlist->songs()->sync($song_ids);
         }
 
     }
@@ -81,13 +105,6 @@ class ImportController extends Controller
     public function syncArtistImage()
     {
         $artists = Artist::where('id', '<>', 1)->get();
-//
-//        foreach ($artists as $artist)
-//        {
-//            $artist->artist_img_small = str_replace('public/','',$artist->artist_img_small);
-//            $artist->artist_img_cover = str_replace('public/','',$artist->artist_img_cover);
-//            $artist->save();
-//        }exit;
 
         foreach ($artists as $artist) {
 //            if ($artist->artist_img_small != '' || $artist->artist_img_cover != '') {

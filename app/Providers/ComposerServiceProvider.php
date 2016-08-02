@@ -20,7 +20,7 @@ class ComposerServiceProvider extends ServiceProvider
 				'songs.edit','songs.create',
 				'playlists.edit','playlists.create',
 				'cates.edit','cates.create',
-				'layouts.app','imports.create',
+				'layouts.app','imports.import_playlist',
 				'users.playlist_create','users.playlist_edit','users.playlist_index',
 
 			],
