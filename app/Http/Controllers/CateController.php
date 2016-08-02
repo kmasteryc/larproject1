@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Playlist;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,7 +15,10 @@ class CateController extends Controller
 {
 	public function index()
 	{
-		return view('cates.index', ['cates' => Cate::all()]);
+		return view('cates.index', [
+			'cates' => Cate::all(),
+			'cp' => true
+		]);
 	}
 
 	public function delete(Cate $cate)
@@ -36,7 +40,8 @@ class CateController extends Controller
 		return view('cates.edit', [
 			'myjs' => ['jquery.dynatable.js'],
 			'mycss' => ['jquery.dynatable.css'],
-			'cate' => $cate
+			'cate' => $cate,
+			'cp' => true
 		]);
 	}
 
@@ -65,5 +70,26 @@ class CateController extends Controller
 
 		$request->session()->flash('succeeds','Your done!');
 		return back();
+	}
+
+	public function show(Cate $cate){
+
+        $need_id[] = $cate->id;
+
+        $child = $cate->where('cate_parent',$cate->id)->select('id')->get();
+
+        foreach ($child as $ch)
+        {
+            $need_id[] = $ch->id;
+        }
+
+        $playlists = Playlist::whereIn('cate_id',$need_id)->orderby('created_at','DESC')->with('image','user')->take(10)->get();
+        
+		return view('cates.show', [
+			'mycss' => ['lightslider.css'],
+			'myjs' => ['lightslider.js','cates/show.js'],
+			'cate' => $cate,
+			'playlists' => $playlists,
+		]);
 	}
 }

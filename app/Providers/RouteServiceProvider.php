@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use \App\Song;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -27,6 +28,11 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot($router);
+
+//        $router->bind('song_title', function($song_title)
+//        {
+//            return Song::where('song_title', $song_title)->firstOrFail();
+//        });
 
 //		$router->bind('cate', function ($cate){
 //			if (is_numeric($cate))

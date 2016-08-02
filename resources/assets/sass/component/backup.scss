@@ -1,0 +1,44 @@
+.navbar{
+  margin-bottom: 5px;
+}
+.k-menu{
+  padding: 0px;
+  list-style: none;
+  height: 40px;
+}
+.k-menu>li{
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  width: 50px;
+  margin-right: 5px;
+  display: inline-block;
+  position: relative;
+}
+.k-menu>li:hover{
+  border-bottom: 2px solid crimson;
+}
+.k-menu>li a{
+  text-decoration: none;
+  color: black;
+}
+.k-sub-menu>li a:hover{
+  color: darkblue;
+}
+.k-sub-menu{
+  display: none;
+}
+.k-sub-menu li{
+  float: left;
+  width: 33%;
+}
+.k-menu li:hover .k-sub-menu{
+  border: 1px solid #f9f9f9;
+  padding: 0;
+  width: 400px;
+  display: block;
+  z-index: 99;
+  background: white;
+  list-style: none;
+  position: absolute;
+}

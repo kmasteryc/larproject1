@@ -1,10 +1,12 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "component/normalize";
 @import "component/var";
-@impprt "component/normalize";
+@import "component/nav";
 @import "component/global";
 @import "component/typography";
 @import "component/layout";
 @import "component/modules";
+@import "component/player";
 
 // Responsive
 @import "responsive/mobile";

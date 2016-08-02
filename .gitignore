@@ -1,7 +1,10 @@
+/config/app.php
+/config/database.php
 /vendor
 /node_modules
 /public/storage
 /public/uploads
+larproject1.tar.gz
 Homestead.yaml
 Homestead.json
 .env

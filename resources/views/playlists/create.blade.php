@@ -1,19 +1,21 @@
 @inject('menu','Tools\Menu')
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Them danh sach nhac moi</h3>
             </div>
             <div class="panel-body">
-                <form action="{{url('playlist/store')}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form action="{{url('playlist/store')}}" method="POST" class="form-horizontal" role="form"
+                      enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ten danh sach</label>
 
                         <div class="col-sm-10">
-                            <input type="text" name="playlist_title" class="form-control" value="{{old('playlist_title')}}">
+                            <input type="text" name="playlist_title" class="form-control"
+                                   value="{{old('playlist_title')}}">
                         </div>
                     </div>
 
@@ -27,6 +29,22 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Thong tin</label>
+
+                        <div class="col-sm-10">
+                            <textarea name="playlist_info" class="form-control">{{old('playlist_info')}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Anh </label>
+
+                        <div class="col-sm-10">
+                            <input type="file" name="playlist_img" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="form-group fog" id="div_box_song">
                         <label class="col-sm-2 control-label">Bai hat</label>
                         <input type="hidden" name="playlist_songs" id="playlist_songs">
@@ -35,6 +53,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Tim bai hat</label>

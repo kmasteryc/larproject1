@@ -11,20 +11,33 @@ use Illuminate\Support\Facades\Gate;
 
 class SongController extends Controller
 {
+	public function show(Song $song)
+	{
+
+		SessionController::increase_view_song($song);
+
+		return view('songs.show',[
+			'song'=>$song,
+			'myjs'=>['player.js','songs/show.js'],
+			'api_url' => url("api/get-song/$song->id"),
+		]);
+	}
 	public function index()
 	{
-		$songs = Song::all();
+		$songs = Song::with('artists','cate')->get();
 		return view('songs.index', [
 			'myjs' => ['jquery.dynatable.js'],
 			'mycss' => ['jquery.dynatable.css'],
-			'songs' => $songs
+			'songs' => $songs,
+			'cp' => true
 		]);
 	}
 
 	public function create()
 	{
 		return view('songs.create',[
-			'myjs'=> ['songs/create.js']
+			'myjs'=> ['songs/create.js'],
+			'cp' => true
 		]);
 	}
 
@@ -73,6 +86,7 @@ class SongController extends Controller
 		return view('songs.edit', [
 			'myjs'=> ['songs/create.js'],
 			'song' => $song,
+			'cp' => true
 		]);
 	}
 
@@ -125,8 +139,6 @@ class SongController extends Controller
 
 		return back()->with('succeeds', 'Cap nhat bai hat thanh cong!');
 	}
-
-
 
 	public function delete(Song $song, Request $request)
 	{
