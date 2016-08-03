@@ -20,6 +20,11 @@ class ImportController extends Controller
     public $single_artist;
     public $artists = [];
 
+    public function __construct()
+    {
+        set_time_limit(0);
+    }
+
     public function importPlaylist()
     {
 //        return view('imports.import_playlist',['artists'=>Artist::orderBy('artist_title','ASC')->get()]);
