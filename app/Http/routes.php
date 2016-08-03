@@ -120,7 +120,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::get('/test', 'ChartController@index');
 
 Route::get('import/import_playlist', 'ImportController@importPlaylist');
+Route::get('import/import_cate', 'ImportController@importCate');
 Route::post('import/import_playlist', 'ImportController@storePlaylist');
+Route::post('import/import_cate', 'ImportController@storeCate');
 Route::get('import/sync_artistimg', 'ImportController@syncArtistImage');
 
 Route::get('radio/{cate?}', 'RadioController@index');

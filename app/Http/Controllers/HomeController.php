@@ -26,14 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $songs = Song::with('cate')->get();
+
         $new_songs = Song::orderBy('created_at','DESC')->take(3)->with('artists')->get();
         $chart_songs = Chart::get_song_records(Chart::TIME_WEEK,Cate::where('cate_title_slug','viet-nam')->first(),30,10);
         $chart_playlists = Chart::get_playlist_records(Chart::TIME_WEEK,Cate::where('cate_title_slug','viet-nam')->first(),30,8);
 
-//        $hot_artists = Artist::take(10)->get();
-
         $data['chart_songs'] = $chart_songs;
-//        $data['hot_artists'] = $hot_artists;
         $data['chart_playlists'] = $chart_playlists;
         $data['new_songs'] = $new_songs;
         $data['myjs'] = ['pslider.js','home/index.js'];

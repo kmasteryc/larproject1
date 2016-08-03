@@ -24,6 +24,7 @@ class Chart extends Model
 
     public static function get_song_records($time_mode, $cate, $index, $num)
     {
+
         switch ($time_mode) {
             case self::TIME_WEEK:
 
@@ -114,12 +115,12 @@ class Chart extends Model
     private static function _processSongViews($views, $cate, $num)
     {
         $song_data = [];
+        $child_cates = Cate::getMeAndMyChilds($cate);
 
         foreach ($views as $view) {
-
             $song = $view->viewable;
 
-            if ($song->cate->cate_title_slug == $cate->cate_title_slug) {
+            if (in_array($song->cate->cate_title_slug, $child_cates)) {
 
                 if (!array_key_exists($song->id, $song_data)) {
                     $song_data[$song->id]['song_view_count'] = $view->view_count;
@@ -173,12 +174,13 @@ class Chart extends Model
     private static function _processPlaylistViews($views, $cate, $num)
     {
         $playlist_data = [];
+        $child_cates = Cate::getMeAndMyChilds($cate);
 
         foreach ($views as $view) {
 
             $playlist = $view->viewable;
 
-            if ($playlist->cate->cate_title_slug == $cate->cate_title_slug) {
+            if (in_array($playlist->cate->cate_title_slug, $child_cates)) {
 
                 if (!array_key_exists($playlist->id, $playlist_data)) {
                     $playlist_data[$playlist->id]['playlist_view_count'] = $view->view_count;

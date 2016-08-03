@@ -28,6 +28,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        $arr = [
+            
+        ];
     }
 }

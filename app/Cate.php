@@ -23,6 +23,12 @@ class Cate extends Model
         return $this->hasMany(Song::class);
     }
 
+    public static function getMeAndMyChilds(Cate $parent)
+    {
+        $childs = Cate::where('cate_parent',$parent->id)->orWhere('id',$parent->id)->pluck('cate_title_slug','id')->toArray();
+        return $childs;
+    }
+
 //    public static function fromSlug($slug)
 //    {
 //        return self::where('cate_title_slug',$slug)->first();

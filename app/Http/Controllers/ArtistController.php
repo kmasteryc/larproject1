@@ -76,18 +76,22 @@ class ArtistController extends Controller
             @unlink(base_path('public/uploads/imgs/artists/'.basename($artist->artist_img_small)));
 
             $artist_img_small = $request->file('artist_img_small');
-            $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small->getClientOriginalName());
-            $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small->getClientOriginalName());
+            $artist_img_small_name = rand(1,99999999).$artist_img_small->getClientOriginalName();
+            $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small_name);
+            $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small_name);
             $artist->artist_img_small = $artist_img_small_link;
         }
+
+        // After uploading was done. Do insert info to DB
 
         if ($request->hasFile('artist_img_cover')) {
             //Remove old img
             @unlink(base_path('public/uploads/imgs/artists/'.basename($artist->artist_img_cover)));
 
             $artist_img_cover = $request->file('artist_img_cover');
-            $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover->getClientOriginalName());
-            $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover->getClientOriginalName());
+            $artist_img_cover_name = rand(1,99999999).$artist_img_cover->getClientOriginalName();
+            $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover_name);
+            $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover_name);
             $artist->artist_img_cover = $artist_img_cover_link;
         }
 
@@ -115,12 +119,14 @@ class ArtistController extends Controller
 
         $artist_img_small = $request->file('artist_img_small');
         $artist_img_cover = $request->file('artist_img_cover');
-        $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small->getClientOriginalName());
-        $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover->getClientOriginalName());
+        $artist_img_small_name = rand(1,99999999).$artist_img_small->getClientOriginalName();
+        $artist_img_cover_name = rand(1,99999999).$artist_img_cover->getClientOriginalName();
+        $artist_img_small->move(base_path('public/uploads/imgs/artists/'), $artist_img_small_name);
+        $artist_img_cover->move(base_path('public/uploads/imgs/artists/'), $artist_img_cover_name);
 
         // After uploading was done. Do insert info to DB
-        $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small->getClientOriginalName());
-        $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover->getClientOriginalName());
+        $artist_img_small_link = asset('uploads/imgs/artists/' . $artist_img_small_name);
+        $artist_img_cover_link = asset('uploads/imgs/artists/' . $artist_img_cover_name);
 
         $artist = new Artist;
 

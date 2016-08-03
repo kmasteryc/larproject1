@@ -29,7 +29,7 @@
 
                         <div class="col-sm-10">
                             <input type="date" name="artist_birthday" class="form-control"
-                                   value="{!!$artist->artist_birthday!!}">
+                                   value="{!!$artist->artist_birthday_html!!}">
                         </div>
                     </div>
 

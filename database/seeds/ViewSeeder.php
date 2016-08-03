@@ -17,7 +17,7 @@ class ViewSeeder extends Seeder
     {
         $playlists = Playlist::all();
 
-        for ($i=1;$i<=222;$i++)
+        for ($i=1;$i<=5;$i++)
         {
             foreach ($playlists as $playlist)
             {
@@ -39,7 +39,7 @@ class ViewSeeder extends Seeder
         }
 //        $songs = Song::all();
 //
-//        for ($i=1;$i<=100;$i++)
+//        for ($i=1;$i<=2;$i++)
 //        {
 //            foreach ($songs as $song)
 //            {
@@ -51,7 +51,7 @@ class ViewSeeder extends Seeder
 //
 //                    $new_view->viewable_type = 'App\Song';
 //                    $new_view->viewable_id = $song->id;
-//                    $new_view->view_count = rand(1,555);
+//                    $new_view->view_count = rand(1,241);
 //                    $new_view->user_id = 1;
 //                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->endOfYear()->toDateTimeString());
 //

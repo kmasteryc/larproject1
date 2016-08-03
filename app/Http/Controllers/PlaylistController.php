@@ -52,10 +52,11 @@ class PlaylistController extends Controller
 
         // Move upload image to appriciate location
         $playlist_img = $request->file('playlist_img');
-        $playlist_img->move(base_path('public/uploads/imgs/playlists'), $playlist_img->getClientOriginalName());
+        $playlist_img_name = rand(1,99999).$playlist_img->getClientOriginalName();
+        $playlist_img->move(base_path('public/uploads/imgs/playlists'), $playlist_img_name);
 
         // After uploading was done. Do insert info to DB
-        $link = asset('uploads/imgs/playlists/' . $playlist_img->getClientOriginalName());
+        $link = asset('uploads/imgs/playlists/' . $playlist_img_name);
 
         $artist_id = $request->artist_id === 0 ? 1 : $request->artist_id;
 
@@ -141,10 +142,11 @@ class PlaylistController extends Controller
             @unlink(base_path('public/uploads/imgs/' . $temp[1]));
 
             // Move upload image to appriciate location
-            $playlist_img->move(base_path('public/uploads/imgs'), $playlist_img->getClientOriginalName());
+            $playlist_img_name = rand(1,99999).$playlist_img->getClientOriginalName();
+            $playlist_img->move(base_path('public/uploads/imgs/playlists'), $playlist_img_name);
 
             // After uploading was done. Do insert info to DB
-            $link = asset('uploads/imgs/' . $playlist_img->getClientOriginalName());
+            $link = asset('uploads/imgs/playlists/' . $playlist_img_name);
 
             $playlist->playlist_img = $link;
         }

@@ -59,8 +59,13 @@ class APIController extends Controller
             ]
         )->get();
 
+//        dd($songs_with_lyric);
         foreach ($songs_with_lyric as $song) {
 
+//            if (!isset($song->artists[0])){
+//                var_dump($song->artists);
+//                dd($song);
+//            }
             $lyric = isset($song->lyrics[0]) ? $song->lyrics[0]->lyric_content : '';
 
             $res[] = [
