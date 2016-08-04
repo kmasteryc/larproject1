@@ -291,11 +291,12 @@ $(document).ready(function () {
 
                 if (lyrics_data != '') {
                     if (typeof lyrics_data != undefined) {
+                    // <div id="lyric-info">
+                    //         Lời bài hát: ${lyrics_data.lyric_song_title}<br />
+                    //     Bởi: ${lyrics_data.lyric_user_name}
+                    // </div>
                         var html = `
-                        <div id="lyric-info">
-                            Lời bài hát: ${lyrics_data.lyric_song_title}<br />
-                            Bởi: ${lyrics_data.lyric_user_name}
-                        </div>
+                       
                         <span class="lyric-default">${lyrics_data.lyric_content}</span>'
                     `;
 

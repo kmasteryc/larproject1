@@ -42,7 +42,7 @@ class FixBrokenSong extends Command
 
         $i = 0;
         foreach ($songs as $song){
-            if (count($song->artists) == 0){
+            if (count($song->artists) == 0 || $song->song_mp3 == ""){
                 $i++;
                 $song->playlists()->detach();
                 $song->delete();
