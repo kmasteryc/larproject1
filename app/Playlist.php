@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cache;
 
 class Playlist extends Model
 {
@@ -67,7 +68,7 @@ class Playlist extends Model
         return $count;
     }
 
-    static function getUserPlaylist($include_guest)
+    static function getUserPlaylist2($include_guest)
     {
         $playlists = [];
         $user_playlists = [];
@@ -80,7 +81,7 @@ class Playlist extends Model
             $temp_playlist = [
                 'id' => 0,
                 'playlist_title' => 'Danh sách tạm thời',
-                'total_songs' => 0,
+//                'total_songs' => 0,
                 'playlist_songs_id' => ''
             ];
             session()->put('temp_playlist', $temp_playlist);
@@ -111,12 +112,70 @@ class Playlist extends Model
                     'id' => $user_playlist->id,
                     'playlist_title' => $user_playlist->playlist_title,
                     'playlist_title_slug' => $user_playlist->playlist_title_slug,
-                    'total_songs' => $user_playlist->total_songs,
+//                    'total_songs' => $user_playlist->total_songs,
                     'playlist_songs_id' => $songs_id
                 ];
                 $playlists[] = $hehe;
             }
         }
+        return $playlists;
+    }
+
+    static function getUserPlaylist($include_guest)
+    {
+        $playlists = Cache::get('user_playlists['.request()->getClientIp().']', function() use ($include_guest){
+            $playlists = [];
+            $user_playlists = [];
+
+            // Get temp playlist in session
+            $temp_playlist = session()->get('temp_playlist');
+
+            // If not exists create it
+            if (!$temp_playlist) {
+                $temp_playlist = [
+                    'id' => 0,
+                    'playlist_title' => 'Danh sách tạm thời',
+//                'total_songs' => 0,
+                    'playlist_songs_id' => ''
+                ];
+                session()->put('temp_playlist', $temp_playlist);
+            }
+            $temp_playlist['playlist_title_slug'] = 'danh-sach-tam';
+
+            if ($include_guest === true) {
+                // Assign temp to all playlist
+                $playlists[] = $temp_playlist;
+            }
+
+            // If have user playlist. Assign it
+            if (auth()->user()) {
+
+                // Awesome Eager loading!
+                $user_playlists = Playlist::where('user_id', auth()->user()->id)
+                    ->select('playlist_title', 'playlists.id','playlist_title_slug')
+                    ->with('songs')
+                    ->get();
+
+                foreach ($user_playlists as $user_playlist) {
+                    // Foreach to assign each song id to songs_id
+                    $songs_id = '';
+                    foreach ($user_playlist->songs as $song) {
+                        $songs_id .= $song->id . ',';
+                    }
+                    $hehe = [
+                        'id' => $user_playlist->id,
+                        'playlist_title' => $user_playlist->playlist_title,
+                        'playlist_title_slug' => $user_playlist->playlist_title_slug,
+//                    'total_songs' => $user_playlist->total_songs,
+                        'playlist_songs_id' => $songs_id
+                    ];
+                    $playlists[] = $hehe;
+                }
+            }
+            return $playlists;
+        });
+
+        Cache::put('user_playlists['.request()->getClientIp().']', $playlists, 1000000);
         return $playlists;
     }
 }

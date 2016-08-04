@@ -31,51 +31,51 @@ class Song extends Model
 	{
 		return $this->morphMany(View::class,'viewable');
 	}
-	public function str_artists()
-	{
-		$song_artists = $this->artists;
-		$str_song_artists = '';
-		foreach ($song_artists as $song_artist)
-		{
-			$str_song_artists .= $song_artist->id.',';
-		}
-		return $str_song_artists;
-	}
-	public function getSongArtistsTitleAttribute()
-	{
-		$song_artists = $this->artists;
-		$str_song_artists = '';
-//		$total = count($song_artists);
-		foreach ($song_artists as $song_artist)
-		{
-			$str_song_artists .= '<a href="'.url('artist/'.$song_artist->id).'">'.$song_artist->artist_title.'</a> ';
-		}
-		return $str_song_artists;
-	}
-	public function getSongArtistsTitleTextAttribute()
-	{
-		$song_artists = $this->artists;
-		$str_song_artists = '';
-//		$total = count($song_artists);
-		foreach ($song_artists as $song_artist)
-		{
-			$str_song_artists .= $song_artist->artist_title;
-		}
-		return $str_song_artists;
-	}
-	public function getSongArtistsIdAttribute()
-	{
-		$song_artists = $this->artists()->select('artists.id')->get();
-		$str_song_artists = '';
-		foreach ($song_artists as $song_artist)
-		{
-			$str_song_artists .= $song_artist->id.',';
-		}
-		return $str_song_artists;
-	}
+//	public function str_artists()
+//	{
+//		$song_artists = $this->artists;
+//		$str_song_artists = '';
+//		foreach ($song_artists as $song_artist)
+//		{
+//			$str_song_artists .= $song_artist->id.',';
+//		}
+//		return $str_song_artists;
+//	}
+//	public function getSongArtistsTitleAttribute()
+//	{
+//		$song_artists = $this->artists;
+//		$str_song_artists = '';
+////		$total = count($song_artists);
+//		foreach ($song_artists as $song_artist)
+//		{
+//			$str_song_artists .= '<a href="'.url('artist/'.$song_artist->id).'">'.$song_artist->artist_title.'</a> ';
+//		}
+//		return $str_song_artists;
+//	}
+//	public function getSongArtistsTitleTextAttribute()
+//	{
+//		$song_artists = $this->artists;
+//		$str_song_artists = '';
+////		$total = count($song_artists);
+//		foreach ($song_artists as $song_artist)
+//		{
+//			$str_song_artists .= $song_artist->artist_title;
+//		}
+//		return $str_song_artists;
+//	}
+//	public function getSongArtistsIdAttribute()
+//	{
+//		$song_artists = $this->artists()->select('artists.id')->get();
+//		$str_song_artists = '';
+//		foreach ($song_artists as $song_artist)
+//		{
+//			$str_song_artists .= $song_artist->id.',';
+//		}
+//		return $str_song_artists;
+//	}
 
-	public function getSongImgAttribute($value){
-		return $value?:"http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg";
-	}
+//	public function getSongImgAttribute($value){
+//		return $value?:"http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg";
+//	}
 
 }

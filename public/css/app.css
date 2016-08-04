@@ -5824,7 +5824,12 @@ a:hover, a:visited, a:active {
   margin: 15px 0 15px 0;
   font-size: 17px;
   line-height: 17px;
-  font-weight: 600; }
+  font-weight: 600;
+  max-width: 100%; }
+  #middle-info h4 {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%; }
   #middle-info i {
     font-size: 18px;
     font-weight: 600; }
@@ -5833,11 +5838,6 @@ a:hover, a:visited, a:active {
   margin: 0; }
   #playlist-summary * {
     padding-left: 0; }
-  #playlist-summary img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 5px;
-    margin-top: 5px; }
 
 #other-playlist {
   margin-top: 10px; }

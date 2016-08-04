@@ -17,7 +17,7 @@
                         @include('standalones.player')
                     </div>
                 </div>
-
+                @include("global_partials.like_btn")
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="list-group" id="player-playlist"></ul>
@@ -32,21 +32,24 @@
                     </div>
                 </div>
 
+                @include("global_partials.facebook_comment")
+
             </div>
             <div class="col-md-4">
                 <div class="row" id="playlist-summary">
 
-                    <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">
-                        <img src="http://dummyimage.com/165/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}"
-                             alt="">
-                    </div>
-
-                    <div class="col-md-8 col-lg-8 col-sm-9 col-xs-9">
-                        <h4>BẢNG XẾP
-                            HẠNG {!! $cate->cate_title !!} {!! $timeinfo['time_unit'] !!} {!! $timeinfo['index'] !!}
-                            ({!! $timeinfo['start_date'] !!} - {!! $timeinfo['end_date'] !!}) </h4>
-                        <div class="playlist-detail">
-                            Bảng xếp hạng được tạo tự động dựa trên số lượng lượt nghe trong từng khoảng thời gian.
+                    <div class="media">
+                        <a class="media-left" href="#">
+                            <img src="http://dummyimage.com/100/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}" height="100px" width="100px">
+                        </a>
+                        <div class="media-body">
+                            <h4>BẢNG XẾP
+                                HẠNG {!! $cate->cate_title !!} {!! $timeinfo['time_unit'] !!} {!! $timeinfo['index'] !!}
+                                ({!! $timeinfo['start_date'] !!} - {!! $timeinfo['end_date'] !!})
+                            </h4>
+                            <div class="playlist-detail">
+                                Bảng xếp hạng được tạo tự động dựa trên số lượng lượt nghe trong từng khoảng thời gian.
+                            </div>
                         </div>
                     </div>
 

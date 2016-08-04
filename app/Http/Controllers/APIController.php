@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Artist;
-use Illuminate\Http\Request;
+use Cache;
 use App\Cate;
 use App\Playlist;
 use App\Song;
@@ -15,23 +15,6 @@ use Tools\Khelper;
 
 class APIController extends Controller
 {
-//    public function getSongsInCate(Cate $cate)
-//    {
-//        $songs = $cate->songs()->select('id', 'song_title', 'song_mp3', 'song_img')->get();
-//        foreach ($songs as $song) {
-//            $lyric_obj = $song->lyrics()->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC')->first();
-//            $img = $song->song_img !== '' ? $song->song_img : 'http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg';
-//            $res[] = [
-//                'song_id' => $song->id,
-//                'song_title' => $song->song_title,
-//                'song_mp3' => $song->song_mp3,
-//                'song_artist' => $song->song_artists_title_text,
-//                'song_img' => $img,
-//                'song_lyric' => $lyric_obj['lyric_content']
-//            ];
-//        }
-//        return response()->json($res);
-//    }
 
     public function getSongsInPlaylist($playlist)
     {
@@ -46,6 +29,12 @@ class APIController extends Controller
         } else {
 //            $playlist = Playlist::find($playlist);
             $songs = $playlist->songs();
+//            $songs_in_playlist_cache_name = 'songs_in_playlist_'.$playlist->id;
+//            $songs = Cache::tags(['playlist'])->get($songs_in_playlist_cache_name,function() use($playlist, $songs_in_playlist_cache_name){
+//                $songs = $playlist->songs;
+//                Cache::tags(['playlist'])->put($songs_in_playlist_cache_name, $songs, 5000000);
+//                return $songs;
+//            });
         }
 
         // Use Eager loading !
@@ -62,10 +51,6 @@ class APIController extends Controller
 //        dd($songs_with_lyric);
         foreach ($songs_with_lyric as $song) {
 
-//            if (!isset($song->artists[0])){
-//                var_dump($song->artists);
-//                dd($song);
-//            }
             $lyric = isset($song->lyrics[0]) ? $song->lyrics[0]->lyric_content : '';
 
             $res[] = [

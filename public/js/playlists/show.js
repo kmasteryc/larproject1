@@ -84,15 +84,14 @@ $(document).ready(function () {
                 for (var index in playlists) {
                     html += "<li class='list-group-item add-this-song-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
                     html += playlists[index].playlist_title;
-                    html += " (" + playlists[index].total_songs + " bài)";
+                    // html += " (" + playlists[index].total_songs + " bài)";
                     html += "<span class='pull-right'>";
                     if (index !=0 ){
-                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play'></i></a>";
-                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "/edit'><i class='fa fa-gear'></i></a>"
+                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play-circle'></i></a>";
                     }
                     else
                     {
-                        html += "<a href='" + base_url + "playlist/danh-sach-tam'><i class='fa fa-play'></i></a>";
+                        html += "<a href='" + base_url + "playlist/danh-sach-tam'><i class='fa fa-play-circle'></i></a>";
                     }
                     html += "</span>";
                     html += '<div class="clearfix"></div>';

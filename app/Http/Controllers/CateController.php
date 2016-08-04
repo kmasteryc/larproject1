@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Cate;
 
 use Gate;
+use Cache;
 
 class CateController extends Controller
 {
@@ -82,7 +83,8 @@ class CateController extends Controller
 	}
 
 	public function show(Cate $cate){
-        
+
+//        dd(Cache::get('user_playlists['.request()->getClientIp().']'));
 		return view('cates.show', [
             'title' => 'Chủ đề '.$cate->cate_title,
 			'mycss' => ['lightslider.css'],
@@ -90,4 +92,5 @@ class CateController extends Controller
 			'cate' => $cate,
 		]);
 	}
+
 }

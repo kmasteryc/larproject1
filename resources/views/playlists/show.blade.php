@@ -1,17 +1,6 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
     <div class="container">
         <div class="row">
             <div class="col-md-8" style="position: relative">
@@ -65,20 +54,33 @@
             </div>
             <div class="col-md-4">
                 <div class="row" id="playlist-summary">
-
-                    <div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">
-                        <img src="{!! $playlist->playlist_img !!}" alt="">
-                    </div>
-
-                    <div class="col-md-8 col-lg-8 col-sm-9 col-xs-9">
-                        <h4>{!! $playlist->playlist_title !!}</h4>
-                        <div class="playlist-detail">
+                    <div class="media">
+                        <a class="media-left" href="#">
+                            <img src="{!! $playlist->playlist_img !!}" height="100px" width="100px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{!! $playlist->playlist_title !!}</h4>
                             <h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>
                             <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
-                            <h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>
-                            <h5>Upload: {!! $playlist->user->name !!}</h5>
+                            {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
+                            {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
                         </div>
                     </div>
+
+
+                    {{--<div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">--}}
+                        {{--<img src="{!! $playlist->playlist_img !!}" alt="">--}}
+                    {{--</div>--}}
+
+                    {{--<div class="col-md-8 col-lg-8 col-sm-9 col-xs-9">--}}
+                        {{--<h4>{!! $playlist->playlist_title !!}</h4>--}}
+                        {{--<div class="playlist-detail">--}}
+                            {{--<h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>--}}
+                            {{--<h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>--}}
+                            {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
+                            {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                 </div>
                 <div class="row">
