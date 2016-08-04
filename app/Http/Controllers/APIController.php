@@ -102,7 +102,7 @@ class APIController extends Controller
                     $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
                 },
                 'artists' => function ($query) {
-                    $query->select('artist_title', 'artists.id', 'artist_title_slug');
+                    $query->select('artist_title', 'artists.id', 'artist_title_slug', 'artist_img_cover');
                 }
             ]
         )->get();
@@ -116,11 +116,8 @@ class APIController extends Controller
                 'song_title' => $song->song_title,
                 'song_title_slug' => $song->song_title_slug,
                 'song_mp3' => $song->song_mp3,
-//                'song_artist' => $song->artists[0]->artist_title,
-//                'song_artist_id' => $song->artists[0]->id,
-////                'song_artist_id' => $song->artists[0]->id,
                 'artists' => $song->artists,
-                'song_img' => $song->song_img,
+                'song_img' => $song->artists[0]->artist_img_cover,
                 'song_lyric' => $lyric
             ];
         }
