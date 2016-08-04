@@ -14,12 +14,22 @@ class SongController extends Controller
 {
     public function show(Song $song)
     {
-
+        $other_songs = Song::where(
+            [
+                ['cate_id', $song->cate->id],
+                ['id', '<>', $song->id]
+            ])
+            ->orWhere([
+                ['id', '<>', $song->id],
+                ['cate_id',$song->cate->cate_parent ]
+            ])
+            ->inRandomOrder()->take(5)->with('artists')->get();
+        
         return view('songs.show', [
             'title' => $song->song_title,
             'myjs' => ['player.js', 'songs/show.js'],
             'song' => $song,
-//			'other_playlists' => $other_playlists,
+			'other_songs' => $other_songs,
             'api_url_1' => url("api/get-song/$song->id"),
             'api_url_2' => url("api/get-nontime-lyrics/"),
         ]);

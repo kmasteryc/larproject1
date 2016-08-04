@@ -9,7 +9,6 @@ namespace App\Http\Controllers;
 use Cache;
 class TestController extends Controller{
     public function index(){
-        Cache::put('test','CACHED OK?????', 100);
-        echo Cache::get('test');
+        return response()->json(Cache::store('apc')->tags(['song'])->get('song_640'));
     }
 }

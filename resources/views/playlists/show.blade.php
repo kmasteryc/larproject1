@@ -67,21 +67,6 @@
                         </div>
                     </div>
 
-
-                    {{--<div class="col-md-4 col-lg-4 col-sm-3 col-xs-3">--}}
-                        {{--<img src="{!! $playlist->playlist_img !!}" alt="">--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-md-8 col-lg-8 col-sm-9 col-xs-9">--}}
-                        {{--<h4>{!! $playlist->playlist_title !!}</h4>--}}
-                        {{--<div class="playlist-detail">--}}
-                            {{--<h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>--}}
-                            {{--<h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>--}}
-                            {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
-                            {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
                 </div>
                 <div class="row">
                     <div class="col-md-12">

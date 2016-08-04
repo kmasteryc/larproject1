@@ -1,7 +1,6 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
-
     <div class="container">
         <div class="row">
             <div class="col-md-8" style="position: relative">
@@ -11,7 +10,7 @@
                             var player_config = {
                                 api_url_1: '{!! $api_url_1 !!}',
                                 api_url_2: '{!! $api_url_2 !!}',
-                                mode: 2
+                                mode: 1
                             };
                         </script>
                         @include('standalones.player')
@@ -42,7 +41,31 @@
 
             </div>
             <div class="col-md-4">
-                {{--@todo: Next song module--}}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="other-playlist">
+                            <h4><i class="fa fa-bookmark"></i> Bài hát cùng chủ đề</h4>
+                            @foreach($other_songs as $other_song)
+                                <a href="{!! url("bai-hat/$other_song->song_title_slug.html") !!}">
+                                    <div class="media">
+                                        <div class="media-left media-middle">
+                                            <img class="media-object"
+                                                 src="{!! $other_song->artists[0]->artist_img_small !!}" height="80px"
+                                                 width="auto">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="my-media-heading">{!! $other_song->song_title !!}</h5>
+                                            <p>{!! $other_song->artists[0]->artist_title !!}</p>
+                                            <p><i class="fa fa-music"></i> {!! $other_song->song_view !!}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

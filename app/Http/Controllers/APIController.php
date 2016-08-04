@@ -43,7 +43,7 @@ class APIController extends Controller
                     $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
                 },
                 'artists' => function ($query) {
-                    $query->select('artist_title', 'artists.id', 'artist_img_cover','artist_title_slug');
+                    $query->select('artist_title', 'artists.id', 'artist_img_cover', 'artist_title_slug');
                 }
             ]
         )->get();
@@ -102,7 +102,7 @@ class APIController extends Controller
                     $query->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
                 },
                 'artists' => function ($query) {
-                    $query->select('artist_title', 'artists.id','artist_title_slug');
+                    $query->select('artist_title', 'artists.id', 'artist_title_slug');
                 }
             ]
         )->get();
@@ -131,13 +131,13 @@ class APIController extends Controller
     {
 
         $lyric_obj = $song->lyrics()->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC')->first();
-        $img = $song->song_img !== '' ? $song->song_img : 'http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg';
+
         $res[] = [
             'song_id' => $song->id,
             'song_title' => $song->song_title,
             'song_mp3' => $song->song_mp3,
             'song_artist' => $song->song_artists_title_text,
-            'song_img' => $img,
+            'song_img' => $song->artists[0]->artist_img_cover,
             'song_lyric' => $lyric_obj['lyric_content']
         ];
 
@@ -146,15 +146,39 @@ class APIController extends Controller
 
     public function getNontimeLyrics(Song $song)
     {
+        $res = Cache::store('apc')->tags(['song'])->get('song_' . $song->id, function () use ($song) {
+            $lyric = $song->lyrics()->first();
+            if (!$lyric) return '';
+            $lyric_content = preg_replace("/(<br \/>\\r\\n){3,}/", "", Khelper::readbleLyric($lyric->lyric_content));
+            $lyric_content = preg_replace("/(<br \/>\\r\\n){2,}/", "<br />", $lyric_content);
+            $res = [
+                'lyric_content' => $lyric_content,
+                'lyric_user_name' => $lyric->user->name,
+                'lyric_song_title' => $lyric->song->song_title
+            ];
+//            $res = [
+//                "a" => 1,
+//                "b" => 2
+//            ];
+            Cache::store('apc')->tags(['song'])->put('song_' . $song->id, json_encode($res), 5555555);
+            return json_encode($res);
+        });
+        return response()->json(json_decode($res));
+    }
+
+    public function getNontimeLyrics2(Song $song)
+    {
         $lyric = $song->lyrics()->first();
         if (!$lyric) return '';
         $lyric_content = preg_replace("/(<br \/>\\r\\n){3,}/", "", Khelper::readbleLyric($lyric->lyric_content));
         $lyric_content = preg_replace("/(<br \/>\\r\\n){2,}/", "<br />", $lyric_content);
-        return response()->json([
+        $res = [
             'lyric_content' => $lyric_content,
             'lyric_user_name' => $lyric->user->name,
             'lyric_song_title' => $lyric->song->song_title
-        ]);
+        ];
+        return response()->json($res);
+
     }
 
     public function getUserPlaylist($include_guest = "true")
@@ -273,7 +297,6 @@ class APIController extends Controller
             ->orWhere('id', $cate->id)
             ->select('id')
             ->get();
-
 
 
         foreach ($child_cates as $child_cate) {

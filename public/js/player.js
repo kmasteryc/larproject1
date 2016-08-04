@@ -262,8 +262,6 @@ $(document).ready(function () {
             html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ';
 
             html += renderArtists(json_data[x].artists);
-            console.log(json_data[x].artists);
-
             html += '</span>';
             html += '<span class="pull-right">';
             html += '<a href="' + json_data[x].song_mp3 + '"><i class="fa fa-download"></i></a>';
