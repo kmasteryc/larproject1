@@ -117,7 +117,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 });
 
-Route::get('/test', 'ChartController@index');
+Route::get('/test', 'TestController@index');
 
 Route::get('import/import_playlist', 'ImportController@importPlaylist');
 Route::get('import/import_cate', 'ImportController@importCate');
