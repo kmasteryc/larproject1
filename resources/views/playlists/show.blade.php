@@ -1,7 +1,17 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
-
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-md-8" style="position: relative">
@@ -22,6 +32,7 @@
                     <div class="clearfix">
                         <div class="pull-left">
                             <h4>{!! $playlist->playlist_title !!}</h4>
+                            @include("global_partials.like_btn")
                         </div>
                         <div class="pull-right">
                             <h4><i class="fa fa-music fa-1x"> {!! $playlist->playlist_view !!}</i></h4>
@@ -35,13 +46,21 @@
                     </div>
                 </div>
 
+
                 <div class="row">
                     <div class="col-md-12">
                         <div id="lyric-area">
+                            <div id="lyric-btn">
 
+                            </div>
+                            <div id="lyric-content">
+
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                @include("global_partials.facebook_comment")
 
             </div>
             <div class="col-md-4">

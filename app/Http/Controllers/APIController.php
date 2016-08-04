@@ -163,8 +163,10 @@ class APIController extends Controller
     {
         $lyric = $song->lyrics()->first();
         if (!$lyric) return '';
+        $lyric_content = preg_replace("/(<br \/>\\r\\n){3,}/", "", Khelper::readbleLyric($lyric->lyric_content));
+        $lyric_content = preg_replace("/(<br \/>\\r\\n){2,}/", "<br />", $lyric_content);
         return response()->json([
-            'lyric_content' => preg_replace("/(<br \/>\\r\\n){3,}/", "", Khelper::readbleLyric($lyric->lyric_content)),
+            'lyric_content' => $lyric_content,
             'lyric_user_name' => $lyric->user->name,
             'lyric_song_title' => $lyric->song->song_title
         ]);

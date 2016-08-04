@@ -17,9 +17,10 @@ thead{
 a{
   color: $gray;
 }
-a:hover{
+a:hover, a:visited, a:active{
   text-decoration: none;
 }
+
 //h4{
 //  margin-top: 0;
 //  color: black;

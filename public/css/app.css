@@ -5745,7 +5745,7 @@ thead {
 a {
   color: #555555; }
 
-a:hover {
+a:hover, a:visited, a:active {
   text-decoration: none; }
 
 .block {
@@ -6170,6 +6170,7 @@ a:hover {
 #player-playlist {
   display: none;
   border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
   max-height: 300px;
   overflow: auto; }
   #player-playlist i {
@@ -6187,14 +6188,16 @@ a:hover {
       color: white; }
 
 #lyric-area {
-  line-height: 30px;
-  max-height: 250px;
-  padding: 5px;
-  overflow: auto; }
-  #lyric-area #lyric-info {
-    margin-bottom: 10px;
-    border-bottom: 1px solid silver;
-    padding-bottom: 10px; }
+  margin-top: 10px; }
+  #lyric-area #lyric-btn {
+    line-height: 25px; }
+    #lyric-area #lyric-btn h4 {
+      display: inline; }
+  #lyric-area #lyric-content {
+    margin-top: 10px;
+    border-left: 3px solid #1abc9c;
+    padding-left: 10px;
+    line-height: 30px; }
 
 @media (max-width: 480px) {
   #my-player .player-background {

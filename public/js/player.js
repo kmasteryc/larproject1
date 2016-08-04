@@ -291,20 +291,17 @@ $(document).ready(function () {
 
                 if (lyrics_data != '') {
                     if (typeof lyrics_data != undefined) {
-                    // <div id="lyric-info">
-                    //         Lời bài hát: ${lyrics_data.lyric_song_title}<br />
-                    //     Bởi: ${lyrics_data.lyric_user_name}
-                    // </div>
                         var html = `
-                       
-                        <span class="lyric-default">${lyrics_data.lyric_content}</span>'
+                            <div id="lyric-btn"><h4><i class="fa fa-sticky-note"></i> Lời bài hát </h4> <button class="btn btn-primary btn-sm" id="hide-show-lyric-btn">Hiện</button></div>
+                            <div id="lyric-content" style="display: none">
+                                ${lyrics_data.lyric_content}
+                            </div>
                     `;
 
                         $("#lyric-area").html(html);
                     }
                 }
-                else
-                {
+                else {
                     $("#lyric-area").html('');
                 }
             },
@@ -461,6 +458,13 @@ $(document).ready(function () {
         setSong(json_data[current_index]);
         showList();
     });
+
+    $(document).on('click', "#hide-show-lyric-btn", function (event) {
+        event.preventDefault();
+        var html = $(this).html() == 'Hiện' ? 'Ẩn' : 'Hiện';
+        $(this).html(html);
+        $("#lyric-content").toggle();
+    })
 });
 
 

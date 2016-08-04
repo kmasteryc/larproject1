@@ -175,6 +175,7 @@
 #player-playlist{
   display: none;
   border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
   max-height: 300px;
   overflow: auto;
   i{
@@ -205,14 +206,20 @@
 
 }
 #lyric-area{
-  line-height: 30px;
-  max-height: 250px;
-  padding: 5px;
-  overflow: auto;
-  #lyric-info{
-    margin-bottom: 10px;
-    border-bottom: 1px solid silver;
-    padding-bottom: 10px;
+  margin-top: 10px;
+  //border: 1px solid $gray-lighter;
+  #lyric-btn{
+    //padding: 5px;
+    h4{
+      display: inline;
+    }
+    line-height: 25px;
+  }
+  #lyric-content{
+    margin-top: 10px;
+    border-left: 3px solid $brand-mycolor;
+    padding-left: 10px;
+    line-height: 30px;
   }
 }
 

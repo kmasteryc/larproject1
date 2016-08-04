@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\DownloadMP3::class,
         Commands\Truncate::class,
         Commands\FixBrokenSong::class,
+        Commands\FixBrokenPlaylist::class,
         Commands\SeedView::class
     ];
 
