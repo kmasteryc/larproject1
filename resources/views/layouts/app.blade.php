@@ -41,15 +41,15 @@
 
 
 <!-- JavaScripts -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script async src="{{asset('js/jquery.min.js')}}"></script>
+<script async src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>
     base_url = "{{asset('/')}}";
 </script>
-<script src="{{asset('js/master.js')}}"></script>
+<script async src="{{asset('js/master.js')}}"></script>
 @if (isset($myjs))
     @foreach($myjs as $js)
-        <script src="{{asset("js/$js")}}"></script>
+        <script async src="{{asset("js/$js")}}"></script>
     @endforeach
 @endif
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
