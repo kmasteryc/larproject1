@@ -1,6 +1,7 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
+    @include("global_partials.load_fb_sdk")
     <div class="container">
         <div class="row">
             <div class="col-md-8" style="position: relative">
