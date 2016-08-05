@@ -18,7 +18,8 @@ class Kernel extends ConsoleKernel
         Commands\Truncate::class,
         Commands\FixBrokenSong::class,
         Commands\FixBrokenPlaylist::class,
-        Commands\SeedView::class
+        Commands\SeedView::class,
+        Commands\GenerateSearchData::class
     ];
 
     /**

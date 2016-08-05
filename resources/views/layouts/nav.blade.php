@@ -25,7 +25,8 @@
 
                 <form class="navbar-form navbar-left" id="top-search-form" role="search" onsubmit="return false;">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="top-search-text" placeholder="Tìm kiếm....">
+                        {{--<input type="text" class="form-control" id="top-search-text" placeholder="Tìm kiếm....">--}}
+                        <input type="text" class="form-control" id="autocomplete" placeholder="Tìm kiếm....">
                     </div>
                     <p id="top-search-result"></p>
                 </form>

@@ -126,6 +126,7 @@ Route::post('import/import_cate', 'ImportController@storeCate');
 Route::get('import/sync_artistimg', 'ImportController@syncArtistImage');
 
 Route::get('radio/{cate?}', 'RadioController@index');
+Route::get('api/test', 'APIController@test');
 
 Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
 Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');

@@ -9,7 +9,9 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/line-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('css/easy-autocomplete.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/easy-autocomplete.themes.min.css')}}">
+    {{--<link rel="stylesheet" href="{{asset('css/line-icons.css')}}">--}}
     {{--<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">--}}
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -42,6 +44,7 @@
 
 <!-- JavaScripts -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>
     base_url = "{{asset('/')}}";

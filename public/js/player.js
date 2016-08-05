@@ -78,6 +78,8 @@ $(document).ready(function () {
     }
 
     function reset() {
+        $(".lyric-1").html('');
+        $(".lyric-2").html('');
         old_lyr = '';
         cur_lyr = '';
         active = 1;
@@ -375,7 +377,7 @@ $(document).ready(function () {
 
     // Process seeking
     $('#seek').click(function (e) {
-
+        reset();
         // Set cursor
         var player_width = $("#my-player").innerWidth();
         var click_X = e.pageX - $("#my-player").offset().left;

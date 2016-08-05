@@ -8,26 +8,69 @@ $(document).ready(function () {
     }
 
     // LAZY LOADING IMG
-    $("img[data-src^='http']").each(function(){
-        $(this).attr('src',$(this).data('src'));
+    $("img[data-src^='http']").each(function () {
+        $(this).attr('src', $(this).data('src'));
     });
 
     var api = base_url + 'api/search';
     var input = $("#top-search-text");
     var result_box = $("#top-search-result");
 
-    $("#top-search-form").hover(function () {
-        if (input.val()!='') {
-            result_box.show();
-        }
-    }, function(){
-        result_box.hide();
-    });
+    // $("#top-search-form").hover(function () {
+    //     if (input.val() != '') {
+    //         result_box.show();
+    //     }
+    // }, function () {
+    //     result_box.hide();
+    // });
 
-    // $("#top-search-btn").click(function () {
-    input.keyup(function () {
+    console.log(base_url + 'json/search_data.json');
+    var options = {
 
-        if (input.val()!='') {
+        url: base_url + 'json/search_data.json',
+
+        getValue: "title",
+
+        list: {
+            match: {
+                enabled: true
+            }
+        },
+
+        template: {
+            type: "links",
+            fields: {
+                link: "link"
+            }
+        },
+
+        theme: "blue-light"
+    };
+
+    $("#autocomplete").easyAutocomplete(options);
+
+    // console.log(result);
+    // $('#autocomplete').autocomplete({
+    //     lookup: result,
+    //     onSelect: function (suggestion) {
+    //         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    //     }
+    // });
+
+    // var request_search = $.get(base_url + 'json/search_data.json');
+    // request_search.success(function (res) {
+    //     $('#autocomplete').autocomplete({
+    //         lookup: res,
+    //         onSelect: function (suggestion) {
+    //             alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    //         }
+    //     })
+    // });
+
+
+    $('inputaaa').keyup(function () {
+
+        if (input.val() != '') {
             result_box.show();
             result_box.html(showAjaxIcon());
 
@@ -67,7 +110,7 @@ $(document).ready(function () {
                     if (res.songs.length > 0) {
                         html += "<i class='fa fa-music'> Bài hát</i><ol>";
                         for (var index in res.songs) {
-                            html += "<a href='" + base_url + "song/" + res.songs[index].id + "'><li>" + res.songs[index].song_title + " <br /> <span class='search-artist'>"+res.songs[index].artists[0].artist_title+"</span></li></a>";
+                            html += "<a href='" + base_url + "song/" + res.songs[index].id + "'><li>" + res.songs[index].song_title + " <br /> <span class='search-artist'>" + res.songs[index].artists[0].artist_title + "</span></li></a>";
                         }
                         html += "</ol>";
                     }
@@ -83,13 +126,11 @@ function showAjaxIcon() {
     return '<img class="reload" src="' + base_url + 'img/reload.gif"/>';
 }
 
-function renderArtists(artists){
+function renderArtists(artists) {
     var html = '';
-    for(let x in artists)
-    {
+    for (let x in artists) {
         html += '<a href="' + base_url + 'nghe-si/' + artists[x].artist_title_slug + '.html">' + artists[x].artist_title + '</a>';
-        if (x != (artists.length - 1))
-        {
+        if (x != (artists.length - 1)) {
             html += ', ';
         }
     }

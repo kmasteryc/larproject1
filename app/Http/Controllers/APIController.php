@@ -326,6 +326,7 @@ class APIController extends Controller
     public function search()
     {
         $search = request()->get('search');
+        $keywords = explode(" ",$search);
         $type = request()->get('type');
 
         switch ($type) {
@@ -354,20 +355,48 @@ class APIController extends Controller
                     ->toArray();
                 break;
             default:
-                $res['songs'] = Song::where('song_title', 'like', "%$search%")
-                    ->orWhere('song_title_eng', 'like', "%$search%")
+//                $res['songs'] = Song::where('song_title', 'like', "%$search%")
+//                    ->orWhere('song_title_eng', 'like', "%$search%")
+//                    ->with(['artists' => function ($query) {
+//                        $query->select('artists.id', 'artist_title');
+//                    }])
+//                    ->select('id', 'song_title')->take(5)->get()->toArray();
+
+                $res['songs'] = Song::where('song_title', 'like', "$search%")
+                    ->orWhere('song_title_eng', 'like', "$search%")
+                    ->orWhere(function($query) use ($keywords){
+                        foreach ($keywords as $keyword)
+                        {
+                            $query->where('song_title', 'like', "%$keyword%")
+                                ->where('song_title_eng', 'like', "%$keyword%");
+                        }
+                    })
                     ->with(['artists' => function ($query) {
                         $query->select('artists.id', 'artist_title');
                     }])
                     ->select('id', 'song_title')->take(5)->get()->toArray();
-                $res['playlists'] = Playlist::where('playlist_title', 'like', "%$search%")
-                    ->orWhere('playlist_title_eng', 'like', "%$search%")
+
+                $res['playlists'] = Playlist::where('playlist_title', 'like', "$search%")
+                    ->orWhere('playlist_title_eng', 'like', "$search%")
+                    ->orWhere(function($query) use ($keywords) {
+                        foreach ($keywords as $keyword) {
+                            $query->where('playlist_title', 'like', "%$keyword%")
+                                ->where('playlist_title_eng', 'like', "%$keyword%");
+                        }
+                    })
                     ->select('id', 'playlist_title')
                     ->take(5)
                     ->get()
                     ->toArray();
+
                 $res['artists'] = Artist::where('artist_title', 'like', "%$search%")
                     ->orWhere('artist_title_eng', 'like', "%$search%")
+                    ->orWhere(function($query) use ($keywords) {
+                        foreach ($keywords as $keyword) {
+                            $query->where('artist_title', 'like', "%$keyword%")
+                                ->where('artist_title_eng', 'like', "%$keyword%");
+                        }
+                    })
                     ->select('id', 'artist_title')
                     ->take(5)
                     ->get()
@@ -379,6 +408,13 @@ class APIController extends Controller
 
     }
 
+    public function test(){
+        $json = file_get_contents(base_path().'/public/json/search_data.json');
+        echo "<pre>";
+        print_r(json_decode($json));
+        echo "</pre>";
+//        return response($json);
+    }
     public function getSongsByArtist(Artist $artist)
     {
         return $artist->songs()->with('artists')->paginate(10);
