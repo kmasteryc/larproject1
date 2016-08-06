@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Events\EventCateChange;
+use App\Events\EventPlaylistChange;
+use App\Events\EventUserPlaylistChange;
+use App\Events\EventSongChange;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\ServiceProvider;
-
-use App\Tools\Menu;
-
+use Tools\Khelper;
+use App\Song;
+use App\Playlist;
+use App\Cate;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +21,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        Song::saved(function(){
+           event(new EventSongChange());
+        });
+        Song::deleted(function(){
+           event(new EventSongChange());
+        });
+        Playlist::saved(function(){
+            event(new EventPlaylistChange());
+            event(new EventUserPlaylistChange());
+        });
+        Playlist::deleted(function(){
+            event(new EventPlaylistChange());
+            event(new EventUserPlaylistChange());
+        });
+        Cate::saved(function(){
+            event(new EventCateChange());
+        });
+        Cate::deleted(function(){
+            event(new EventCateChange());
+        });
     }
 
     /**
@@ -26,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('helper',function(){
+           return Khelper::class; 
+        });
     }
 }

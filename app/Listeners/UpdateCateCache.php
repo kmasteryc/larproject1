@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\CateChange;
+use App\Events\EventCateChange;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Cache;
@@ -25,7 +25,7 @@ class UpdateCateCache
      * @param  CateChange  $event
      * @return void
      */
-    public function handle(CateChange $event)
+    public function handle(EventCateChange $event)
     {
         $cates = \App\Cate::select('id','cate_title','cate_parent','cate_chart','cate_title_slug')->get();
         Cache::put('cate',$cates, 999999);

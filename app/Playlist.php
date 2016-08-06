@@ -123,6 +123,7 @@ class Playlist extends Model
 
     static function getUserPlaylist($include_guest)
     {
+//        @todo: Event this.
         $playlists = Cache::get('user_playlists['.request()->getClientIp().']', function() use ($include_guest){
             $playlists = [];
             $user_playlists = [];

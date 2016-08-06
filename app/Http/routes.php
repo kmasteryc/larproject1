@@ -148,5 +148,8 @@ Route::post('api/import-playlist-to-playlist/', 'APIController@importPlaylistToP
 Route::post('api/search', 'APIController@search');
 //Route::resource('API/{type}','APIController');
 Route::auth();
+Route::get('logout', 'Auth\AuthController@getCustomLogout');
+Route::post('login', 'Auth\AuthController@postCustomLogin');
+
 Route::get('/home', 'HomeController@index');
 

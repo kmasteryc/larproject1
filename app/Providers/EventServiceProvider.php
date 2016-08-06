@@ -16,6 +16,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\EventCateChange' => [
             'App\Listeners\UpdateCateCache',
         ],
+        'App\Events\EventSongChange' => [
+            'App\Listeners\UpdateSongCache',
+        ],
+        'App\Events\EventPlaylistChange' => [
+            'App\Listeners\UpdatePlaylistCache',
+        ],
+        'App\Events\EventUserPlaylistChange' => [
+            'App\Listeners\UpdateUserPlaylistCache',
+        ],
     ];
 
     /**

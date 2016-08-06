@@ -66,4 +66,11 @@ class Khelper
             "D");
         return str_replace($marTViet, $marKoDau, $str);
     }
+
+    static function console_log($var)
+    {
+        echo "<script>";
+        echo "console.log('$var');";
+        echo "</script>";
+    }
 }

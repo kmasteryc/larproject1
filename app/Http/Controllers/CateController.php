@@ -33,9 +33,7 @@ class CateController extends Controller
 
 //		Delete itseft
         $cate->delete();
-
-        Event::fire(new EventCateChange());
-
+        
         return back();
     }
 
@@ -57,11 +55,11 @@ class CateController extends Controller
         $cate->cate_title = $request->cate_title;
         $cate->cate_title_slug = str_slug($request->cate_title);
         $cate->cate_parent = $request->cate_parent;
-        $cate->cate_chart = $request->cate_char;
+        $cate->cate_chart = $request->cate_chart;
 
         $cate->save();
         $request->session()->flash('succeeds', 'Your done!');
-        Event::fire(new EventCateChange());
+
         return back();
     }
 
@@ -81,7 +79,7 @@ class CateController extends Controller
         ]);
 
         $request->session()->flash('succeeds', 'Your done!');
-        Event::fire(new EventCateChange());
+
         return back();
     }
 

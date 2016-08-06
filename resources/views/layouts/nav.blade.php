@@ -14,6 +14,7 @@
 
             @include('layouts.partials.li_userplaylist')
 
+            @include('layouts.partials.li_auth')
         </ul>
     </div>
     <div class="container">

@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Song;
 use App\Chart;
 use Cache;
+use Tools\Khelper;
+use App;
 
 class HomeController extends Controller
 {
