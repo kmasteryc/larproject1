@@ -10,7 +10,6 @@ use App\Song;
 use App\Chart;
 use App\Http\Requests;
 use Tools\Khelper;
-
 //use Tools\Khelper;
 
 class APIController extends Controller
@@ -141,7 +140,7 @@ class APIController extends Controller
         return response()->json($res);
     }
 
-    public function getNontimeLyrics(Song $song)
+    public function getNontimeLyricsWithCache(Song $song)
     {
         $res = Cache::store('apc')->tags(['song'])->get('song_' . $song->id, function () use ($song) {
             $lyric = $song->lyrics()->first();
@@ -153,17 +152,14 @@ class APIController extends Controller
                 'lyric_user_name' => $lyric->user->name,
                 'lyric_song_title' => $lyric->song->song_title
             ];
-//            $res = [
-//                "a" => 1,
-//                "b" => 2
-//            ];
+
             Cache::store('apc')->tags(['song'])->put('song_' . $song->id, json_encode($res), 5555555);
             return json_encode($res);
         });
         return response()->json(json_decode($res));
     }
 
-    public function getNontimeLyrics2(Song $song)
+    public function getNontimeLyrics(Song $song)
     {
         $lyric = $song->lyrics()->first();
         if (!$lyric) return '';

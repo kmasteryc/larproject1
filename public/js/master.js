@@ -1,14 +1,14 @@
 /**
  * Created by kmasteryc on 5/26/16.
  */
-$(document).ready(function () {
+$(document).ready(function() {
 
     if ($(".datatable").length) {
         $(".datatable").dynatable();
     }
 
     // LAZY LOADING IMG
-    $("img[data-src^='http']").each(function () {
+    $("img[data-src^='http']").each(function() {
         $(this).attr('src', $(this).data('src'));
     });
 
@@ -34,8 +34,21 @@ $(document).ready(function () {
         list: {
             match: {
                 enabled: true
+            },
+
+            showAnimation: {
+                type: "fade", //normal|slide|fade
+                time: 300,
+                callback: function() {}
+            },
+
+            hideAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 300,
+                callback: function() {}
             }
         },
+        adjustWidth: false,
 
         template: {
             type: "links",
@@ -68,7 +81,7 @@ $(document).ready(function () {
     // });
 
 
-    $('inputaaa').keyup(function () {
+    $('inputaaa').keyup(function() {
 
         if (input.val() != '') {
             result_box.show();
@@ -81,7 +94,7 @@ $(document).ready(function () {
                 data: 'search=' + input.val()
             });
 
-            request.success(function (res) {
+            request.success(function(res) {
                 console.log(res);
                 var html = '';
 
