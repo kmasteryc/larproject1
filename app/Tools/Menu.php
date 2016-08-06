@@ -21,12 +21,6 @@ class Menu
 	protected $_result="";
 	protected $_select='';
 
-//	public function __construct($config=""){
-//		if($config != ""){
-//			$this->setOption($config);
-//		}
-//	}
-
 	public function setOption($config){
 		foreach($config as $k=>$value){
 			$method="set".ucfirst($k);
@@ -175,4 +169,31 @@ class Menu
 		}
 		return $this->_result;
 	}
+
+    public function call_menu_nav3($cate_parent=0)
+    {
+
+        if (isset($this->_data[$cate_parent])) {
+
+            foreach ($this->_data[$cate_parent] as $value) {
+
+                $id = $value['id'];
+                $this->_result .= '<li class="dropdown hidden-xs">';
+                $this->_result .= '<a href="'.url('/chu-de/'.$value['cate_title_slug'].'.html').'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'</a>';
+                $this->_result .= '<ul class="dropdown-menu">';
+                foreach ($this->_data2 as $child)
+                {
+                    if ($child['cate_parent'] == $id)
+                    {
+                        $this->_result .= '<li><a href="'.url('/chu-de/'.$child['cate_title_slug'].'.html').'">'.$child['cate_title'].'</a></li>';
+                    }
+                }
+                $this->_result .= '<li role="separator" class="divider"></li>';
+                $this->_result .= '<li><a href="'.url('/chu-de/'.$value['cate_title_slug'].'.html').'">'.$value['cate_title'].'</a></li>';
+                $this->_result .= '</ul></li>';
+            }
+
+        }
+        return $this->_result;
+    }
 }
