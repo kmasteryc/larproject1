@@ -6,24 +6,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 use App\Http\Requests;
-use App\Cate;
 use App\Playlist;
 use App\Artist;
 use Carbon\Carbon;
+
+use App\Http\Requests\Playlists\StoreRequest;
+use App\Http\Requests\Playlists\UpdateRequest;
 
 class PlaylistController extends Controller
 {
     public function index()
     {
-
         if (Gate::check('is-admin')) {
-            $playlists = Playlist::orderBy('updated_at', 'desc')->with('songs','cate')->get();
+            $playlists = Playlist::orderBy('updated_at', 'desc')
+                ->with('songs', 'cate')
+                ->get();
         } else {
-            $playlists = Playlist::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->with('songs','cate')->get();
+            $playlists = Playlist::where('user_id', auth()->user()->id)
+                ->orderBy('updated_at', 'desc')
+                ->with('songs', 'cate')
+                ->get();
         }
 
         return view('playlists.index', [
-            'myjs' => ['jquery.dynatable.js'],
+            'myjs' => ['jquery.dynatable.js','playlists/index.js'],
             'mycss' => ['jquery.dynatable.css'],
             'playlists' => $playlists,
             'cp' => true
@@ -33,26 +39,17 @@ class PlaylistController extends Controller
     public function create()
     {
         return view('playlists.create', [
-            'artists' => Artist::where('id','<>',1)->orderBy('artist_title','ASC')->get(),
+            'artists' => Artist::where('id', '<>', 1)->orderBy('artist_title', 'ASC')->get(),
             'myjs' => ['playlists/create.js'],
             'cp' => true
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $this->validate($request, [
-            'playlist_title' => 'required|unique:playlists,playlist_title',
-            'cate_id' => 'required|integer',
-            'playlist_songs' => 'required',
-            'playlist_info' => 'string',
-            'artist_id' => 'integer|required',
-            'playlist_img' => 'required|mimetypes:image/jpeg,image/png'
-        ]);
-
         // Move upload image to appriciate location
-        $playlist_img = $request->file('playlist_img');
-        $playlist_img_name = rand(1,99999).$playlist_img->getClientOriginalName();
+        $playlist_img = request()->file('playlist_img');
+        $playlist_img_name = rand(1, 99999) . $playlist_img->getClientOriginalName();
         $playlist_img->move(base_path('public/uploads/imgs/playlists'), $playlist_img_name);
 
         // After uploading was done. Do insert info to DB
@@ -62,13 +59,13 @@ class PlaylistController extends Controller
 
         $artist = Artist::find($artist_id);
         $artist_title_slug = $artist->artist_title_slug;
-        $randstring = substr(md5(rand(1,999)),0,5);
+        $randstring = substr(md5(rand(1, 999)), 0, 5);
 
 
         $playlist = new Playlist;
         $playlist->playlist_title = $request->playlist_title;
-        $playlist->playlist_title_slug = str_slug($playlist->playlist_title).'-'.$artist_title_slug.'-'.$randstring;
-        $playlist->playlist_title_eng = str_replace('-',' ',$playlist->playlist_title_slug);
+        $playlist->playlist_title_slug = str_slug($playlist->playlist_title) . '-' . $artist_title_slug . '-' . $randstring;
+        $playlist->playlist_title_eng = str_replace('-', ' ', $playlist->playlist_title_slug);
         $playlist->playlist_img = $link;
         $playlist->playlist_info = $request->playlist_info;
         $playlist->cate_id = $request->cate_id;
@@ -92,47 +89,37 @@ class PlaylistController extends Controller
     public function edit(Playlist $playlist)
     {
         if (!Gate::check('is-admin') && auth()->user()->id != $playlist->user_id) {
-            session()->flash('my_errors', 'Bạn không có quyền truy cập Danh sách nhạc của người khác!');
-            return back();
+            session()->flash('my_errors', 'Bạn không có quyền chỉnh sửa Danh sách nhạc của người khác!');
+            return redirect()->route('home');
         }
 
         return view('playlists.edit', [
             'myjs' => ['playlists/create.js'],
-            'artists' => Artist::orderBy('artist_title','ASC')->get(),
+            'artists' => Artist::orderBy('artist_title', 'ASC')->get(),
             'playlist' => $playlist,
             'cp' => true
         ]);
     }
 
-    public function update(Request $request, Playlist $playlist)
+    public function update(UpdateRequest $request, Playlist $playlist)
     {
         if (!Gate::check('is-admin') && auth()->user()->id != $playlist->user_id) {
-            session()->flash('my_errors', 'Bạn không có quyền truy cập Danh sách nhạc của người khác!');
-            return back();
+            session()->flash('my_errors', 'Bạn không có quyền chỉnh sửa danh sách nhạc của người khác!');
+            return redirect()->route('home');
         }
-        $this->validate($request, [
-            'playlist_title' => 'required|unique:playlists,playlist_title,' . $playlist->id,
-            'cate_id' => 'required|integer',
-            'playlist_songs' => 'required',
-            'playlist_info' => 'string',
-            'artist_id' => 'integer|required',
-            'playlist_img' => 'mimetypes:image/jpeg,image/png'
-        ]);
-
 
         $artist_id = $request->artist_id === 0 ? 1 : $request->artist_id;
 
         $artist = Artist::find($artist_id);
         $artist_title_slug = $artist->artist_title_slug;
-        $randstring = substr(md5(rand(1,999)),0,5);
+        $randstring = substr(md5(rand(1, 999)), 0, 5);
 
         $playlist->playlist_info = $request->playlist_info;
         $playlist->playlist_title = $request->playlist_title;
-        $playlist->playlist_title_slug = str_slug($playlist->playlist_title).'-'.$artist_title_slug.'-'.$randstring;
-        $playlist->playlist_title_eng = str_replace('-',' ',$playlist->playlist_title_slug);
+        $playlist->playlist_title_slug = str_slug($playlist->playlist_title) . '-' . $artist_title_slug . '-' . $randstring;
+        $playlist->playlist_title_eng = str_replace('-', ' ', $playlist->playlist_title_slug);
         $playlist->artist_id = $artist_id;
         $playlist->cate_id = $request->cate_id;
-
 
 
         $playlist_img = $request->file('playlist_img');
@@ -142,7 +129,7 @@ class PlaylistController extends Controller
             @unlink(base_path('public/uploads/imgs/' . $temp[1]));
 
             // Move upload image to appriciate location
-            $playlist_img_name = rand(1,99999).$playlist_img->getClientOriginalName();
+            $playlist_img_name = rand(1, 99999) . $playlist_img->getClientOriginalName();
             $playlist_img->move(base_path('public/uploads/imgs/playlists'), $playlist_img_name);
 
             // After uploading was done. Do insert info to DB
@@ -197,9 +184,9 @@ class PlaylistController extends Controller
                 ])
                 ->orWhere([
                     ['id', '<>', $playlist->id],
-                    ['cate_id',$playlist->cate->cate_parent ]
+                    ['cate_id', $playlist->cate->cate_parent]
                 ])
-            ->inRandomOrder()->take(5)->with('artist')->get();
+                ->inRandomOrder()->take(5)->with('artist')->get();
 
             return view('playlists.show', [
                 'title' => $playlist->playlist_title,
@@ -210,8 +197,7 @@ class PlaylistController extends Controller
                 'api_url_2' => url("api/get-nontime-lyrics/"),
             ]);
 
-        }
-        else { // Else it is temporary playlist
+        } else { // Else it is temporary playlist
 
             return view('playlists.guest_show', [
                 'myjs' => ['player.js', 'playlists/guest_show.js'],
@@ -222,11 +208,10 @@ class PlaylistController extends Controller
 
     }
 
-    public function show_chart($cate,$week_or_month='tuan',$index='')
+    public function show_chart($cate, $week_or_month = 'tuan', $index = '')
     {
 //        dd(func_get_args());
         switch ($week_or_month):
-
             case 'tuan': // Default for week and otherwise
                 $index = $index == '' ? Carbon::now()->subWeek(1)->weekOfYear : $index;
                 $index = $index < 1 ? 1 : $index;
@@ -246,24 +231,23 @@ class PlaylistController extends Controller
                 $max_interval = 12;
                 $time_unit = 'THÁNG';
                 break;
-
         endswitch;
 
-            return view('playlists.chart_show', [
-                'title' => 'BẢNG XẾP HẠNG',
-                'myjs' => ['player.js', 'playlists/show.js'],
-                'api_url_1' => url("api/get-songs-in-chart/$cate->cate_title_slug/$week_or_month/$index"),
-                'api_url_2' => url("api/get-nontime-lyrics/"),
-                'timeinfo' => [
-                    'time_unit' => $time_unit,
-                    'max_interval' => $max_interval,
-                    'index' => $index,
-                    'cur_real_index' => $cur_real_index,
-                    'start_date' => $start_date,
-                    'end_date' => $end_date,
-                ],
-                'cate' => $cate,
-            ]);
+        return view('playlists.chart_show', [
+            'title' => 'BẢNG XẾP HẠNG',
+            'myjs' => ['player.js', 'playlists/show.js'],
+            'api_url_1' => url("api/get-songs-in-chart/$cate->cate_title_slug/$week_or_month/$index"),
+            'api_url_2' => url("api/get-nontime-lyrics/"),
+            'timeinfo' => [
+                'time_unit' => $time_unit,
+                'max_interval' => $max_interval,
+                'index' => $index,
+                'cur_real_index' => $cur_real_index,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+            ],
+            'cate' => $cate,
+        ]);
 
     }
 }

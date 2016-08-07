@@ -5821,6 +5821,15 @@ body {
   word-spacing: 1.6px;
   color: #555555; }
 
+thead tr th {
+  color: #555555; }
+  thead tr th a {
+    cursor: pointer;
+    color: #222222; }
+    thead tr th a:hover {
+      color: #222222;
+      text-decoration: none; }
+
 .fog {
   display: none; }
 

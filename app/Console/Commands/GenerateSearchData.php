@@ -50,7 +50,8 @@ class GenerateSearchData extends Command
             $song_records[] = [
                 'title' => $song->song_title,
                 'title_eng' => $song->song_title_eng,
-                'link' => env('APP_URL') . '/bai-hat/' . $song->song_title_slug.'.html'
+                'link' => env('APP_URL') . '/bai-hat/' . $song->song_title_slug.'.html',
+                'link_edit' => env('APP_URL') . '/song/' . $song->id.'/edit',
             ];
         }
 
@@ -65,7 +66,8 @@ class GenerateSearchData extends Command
             $playlist_records[] = [
                 'title' => $playlist->playlist_title,
                 'title_eng' => $playlist->playlist_title_eng,
-                'link' => env('APP_URL') . '/playlist/' . $playlist->playlist_title_slug.'.html'
+                'link' => env('APP_URL') . '/playlist/' . $playlist->playlist_title_slug.'.html',
+                'link_edit' => env('APP_URL') . '/playlist/' . $playlist->id.'/edit'
             ];
         }
 
@@ -80,28 +82,30 @@ class GenerateSearchData extends Command
             $artist_records[] = [
                 'title' => $artist->artist_title,
                 'title_eng' => $artist->artist_title_eng,
-                'link' => env('APP_URL') . '/nghe-si/' . $artist->artist_title_slug .'.html'
+                'link' => env('APP_URL') . '/nghe-si/' . $artist->artist_title_slug .'.html',
+                'link_edit' => env('APP_URL') . '/artist/' . $artist->id.'/edit'
             ];
         }
 
 
         $this->info("--Writing to file....");
 
-//        $all = array_merge($song1, $song2, $playlist1, $playlist2);
         $all = array_merge($song_records, $playlist_records, $artist_records);
-//        asort($all);
-//        $final = [];
-//        foreach ($all as $k => $v) {
-//            $final[] = (object)[
-//                'title' => htmlspecialchars($k),
-//                'slug' => htmlspecialchars($v)
-//            ];
-//        }
 
+        $content_all = json_encode($all);
+        $content_song = json_encode($song_records);
+        $content_artist = json_encode($artist_records);
+        $content_playlist = json_encode($playlist_records);
 
-        $content = json_encode($all);
-        $path = base_path() . '/public/json/search_data.json';
-        file_put_contents($path, $content);
+        $path_all = base_path() . '/public/json/search_data.json';
+        $path_song = base_path() . '/public/json/search_song_data.json';
+        $path_artist = base_path() . '/public/json/search_artist_data.json';
+        $path_playlist = base_path() . '/public/json/search_playlist_data.json';
+
+        file_put_contents($path_all, $content_all);
+        file_put_contents($path_song, $content_song);
+        file_put_contents($path_artist, $content_artist);
+        file_put_contents($path_playlist, $content_playlist);
 
         $this->info("--Complete writing!");
     }

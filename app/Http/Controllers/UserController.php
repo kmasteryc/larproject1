@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Hash;
 use App\User;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Cache;
+
+use App\Http\Requests\Users\UpdateRequest;
 
 class UserController extends Controller
 {
     public function index()
     {
-        echo User::all();
         return view('users.index', [
             'myjs' => ['jquery.dynatable.js'],
             'mycss' => ['jquery.dynatable.css'],
@@ -33,70 +34,29 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create', [
-            'cp' => true
-        ]);
+        return redirect('auth/login');
     }
 
     public function edit(User $user)
     {
-        $user = User::find($user->id)->with('playlists')->first();
+        $playlists = \App\Playlist::where('user_id',$user->id)->withCount('songs')->paginate(10);
+
         return view('users.edit', [
             'myjs' => ['jquery.dynatable.js'],
             'mycss' => ['jquery.dynatable.css'],
             'user' => $user,
+            'playlists' => $playlists,
             'cp' => true
         ]);
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
-        $this->validate($request, [
-            'user_title' => 'string|required|unique:users,user_title,' . $user->id,
-            'user_name' => 'string|required|unique:users,user_name,' . $user->id,
-            'user_info' => 'string|required|min:10',
-            'user_birthday' => 'required',
-            'user_gender' => 'integer|required',
-            'user_nation' => 'integer|required',
-            'user_img_small' => 'image',
-            'user_img_cover' => 'image'
-        ]);
-
-        $user->user_title = $request->input('user_title');
-        $user->user_title_slug = str_slug($user->user_title);
-        $user->user_title_eng = str_replace('-',' ',$user->user_title_slug);
-        $user->user_name = $request->input('user_name');
-        $user->user_info = $request->input('user_info');
-        $user->user_birthday = $request->input('user_birthday');
-        $user->user_gender = $request->input('user_gender');
-        $user->user_nation = $request->input('user_nation');
-
-
-        if ($request->hasFile('user_img_small')) {
-            //Remove old img
-            @unlink(base_path('public/uploads/imgs/users/'.basename($user->user_img_small)));
-
-            $user_img_small = $request->file('user_img_small');
-            $user_img_small_name = rand(1,99999999).$user_img_small->getClientOriginalName();
-            $user_img_small->move(base_path('public/uploads/imgs/users/'), $user_img_small_name);
-            $user_img_small_link = asset('uploads/imgs/users/' . $user_img_small_name);
-            $user->user_img_small = $user_img_small_link;
+        if ($request->has('password')){
+            $request->password = Hash::make($request->password);
         }
 
-        // After uploading was done. Do insert info to DB
-
-        if ($request->hasFile('user_img_cover')) {
-            //Remove old img
-            @unlink(base_path('public/uploads/imgs/users/'.basename($user->user_img_cover)));
-
-            $user_img_cover = $request->file('user_img_cover');
-            $user_img_cover_name = rand(1,99999999).$user_img_cover->getClientOriginalName();
-            $user_img_cover->move(base_path('public/uploads/imgs/users/'), $user_img_cover_name);
-            $user_img_cover_link = asset('uploads/imgs/users/' . $user_img_cover_name);
-            $user->user_img_cover = $user_img_cover_link;
-        }
-
-        $user->save();
+        $user->update($request->all());
         $request->session()->flash('succeeds', 'Your done!');
         return back();
     }
@@ -120,8 +80,8 @@ class UserController extends Controller
 
         $user_img_small = $request->file('user_img_small');
         $user_img_cover = $request->file('user_img_cover');
-        $user_img_small_name = rand(1,99999999).$user_img_small->getClientOriginalName();
-        $user_img_cover_name = rand(1,99999999).$user_img_cover->getClientOriginalName();
+        $user_img_small_name = rand(1, 99999999) . $user_img_small->getClientOriginalName();
+        $user_img_cover_name = rand(1, 99999999) . $user_img_cover->getClientOriginalName();
         $user_img_small->move(base_path('public/uploads/imgs/users/'), $user_img_small_name);
         $user_img_cover->move(base_path('public/uploads/imgs/users/'), $user_img_cover_name);
 
@@ -133,7 +93,7 @@ class UserController extends Controller
 
         $user->user_title = $request->input('user_title');
         $user->user_title_slug = str_slug($user->user_title);
-        $user->user_title_eng = str_replace('-',' ',$user->user_title_slug);
+        $user->user_title_eng = str_replace('-', ' ', $user->user_title_slug);
         $user->user_name = $request->input('user_name');
         $user->user_info = $request->input('user_info');
         $user->user_birthday = $request->input('user_birthday');

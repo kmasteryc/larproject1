@@ -4,10 +4,21 @@ body{
   word-spacing: 1.6px;
   color: #555555;
 }
-//thead{
-//  background: blueviolet;
-//  //background: $color2;
-//}
+thead{
+  tr{
+    th{
+      color: $gray;
+      a{
+        cursor: pointer;
+        color: $gray-darker;
+        &:hover{
+          color: $gray-darker;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
 .content{
   //padding: 5px;
 }

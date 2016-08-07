@@ -351,12 +351,6 @@ class APIController extends Controller
                     ->toArray();
                 break;
             default:
-//                $res['songs'] = Song::where('song_title', 'like', "%$search%")
-//                    ->orWhere('song_title_eng', 'like', "%$search%")
-//                    ->with(['artists' => function ($query) {
-//                        $query->select('artists.id', 'artist_title');
-//                    }])
-//                    ->select('id', 'song_title')->take(5)->get()->toArray();
 
                 $res['songs'] = Song::where('song_title', 'like', "$search%")
                     ->orWhere('song_title_eng', 'like', "$search%")

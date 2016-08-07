@@ -8,13 +8,8 @@
                 <h3 class="panel-title">Danh sách bài hát</h3>
             </div>
             <div class="panel-body">
-                <div style="text-align: center">
-                    {!! $songs->links() !!}
-                    <a href="{{url('song/create')}}">
-                        <button class="btn btn-success">
-                            Thêm bài hát mới
-                        </button>
-                    </a>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="autocomplete" placeholder="Tìm kiếm">
                 </div>
                 {{--Bang: nghe si--}}
                 <div class="table-responsive">
@@ -45,12 +40,22 @@
                                         <a href="{{url("artist/$artist->id/edit")}}">{{$artist->artist_title}}</a>
                                     @endforeach
                                 </td>
-                                <td><a href="{!! url("cate/".$song->cate->id."/edit") !!}">{{$song->cate->cate_title}}</a></td>
+                                <td>
+                                    <a href="{!! url("cate/".$song->cate->id."/edit") !!}">{{$song->cate->cate_title}}</a>
+                                </td>
                                 <td>{{$song->song_view}}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+
+                    <div style="text-align: center">
+                        {!! $songs->links() !!} <br/>
+                        <a href="{{url('song/create')}}" class="btn btn-success">
+                            Thêm bài hát mới
+                        </a>
+                    </div>
+
                 </div>
                 {{--/ Bang: nghe si--}}
 

@@ -9,12 +9,15 @@ use App\Http\Requests;
 use App\Artist;
 use Illuminate\Support\Facades\Gate;
 
+use App\Http\Requests\Artists\UpdateRequest;
+use App\Http\Requests\Artists\StoreRequest;
+
 class ArtistController extends Controller
 {
     public function index()
     {
         return view('artists.index', [
-            'myjs' => ['jquery.dynatable.js'],
+            'myjs' => ['jquery.dynatable.js','artists/index.js'],
             'mycss' => ['jquery.dynatable.css'],
             'artists' => Artist::all(),
             'cp' => true
@@ -48,19 +51,8 @@ class ArtistController extends Controller
         ]);
     }
 
-    public function update(Request $request, Artist $artist)
+    public function update(UpdateRequest $request, Artist $artist)
     {
-        $this->validate($request, [
-            'artist_title' => 'string|required|unique:artists,artist_title,' . $artist->id,
-            'artist_name' => 'string|required|unique:artists,artist_name,' . $artist->id,
-            'artist_info' => 'string|required|min:10',
-            'artist_birthday' => 'required',
-            'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required',
-            'artist_img_small' => 'image',
-            'artist_img_cover' => 'image'
-        ]);
-
         $artist->artist_title = $request->input('artist_title');
         $artist->artist_title_slug = str_slug($artist->artist_title);
         $artist->artist_title_eng = str_replace('-',' ',$artist->artist_title_slug);
@@ -69,7 +61,6 @@ class ArtistController extends Controller
         $artist->artist_birthday = $request->input('artist_birthday');
         $artist->artist_gender = $request->input('artist_gender');
         $artist->artist_nation = $request->input('artist_nation');
-
 
         if ($request->hasFile('artist_img_small')) {
             //Remove old img
@@ -100,22 +91,8 @@ class ArtistController extends Controller
         return back();
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $this->validate($request, [
-            'artist_title' => 'string|required|unique:artists',
-            'artist_name' => 'string|required|unique:artists',
-            'artist_info' => 'string|required|min:10',
-            'artist_birthday' => 'required',
-            'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required',
-            'artist_img_small' => 'required|mimetypes:image/jpeg,image/png',
-            'artist_img_cover' => 'required|mimetypes:image/jpeg,image/png'
-        ]);
-
-//        if (!$request->file('artist_img_small')->isValid() || $request->file('artist_img_cover')->isValid()){
-//            return back()->withErrors('Upload Images Error!');
-//        }
 
         $artist_img_small = $request->file('artist_img_small');
         $artist_img_cover = $request->file('artist_img_cover');

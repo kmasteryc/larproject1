@@ -9,6 +9,8 @@ use App\Http\Requests;
 
 use App\Song;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\Songs\StoreRequest;
+use App\Http\Requests\Songs\UpdateRequest;
 
 class SongController extends Controller
 {
@@ -40,7 +42,7 @@ class SongController extends Controller
     {
         $songs = Song::with('artists', 'cate')->orderBy('song_title')->paginate(10);
         return view('songs.index', [
-            'myjs' => ['jquery.dynatable.js'],
+            'myjs' => ['jquery.dynatable.js','songs/index.js'],
             'mycss' => ['jquery.dynatable.css'],
             'songs' => $songs,
             'cp' => true
@@ -55,16 +57,8 @@ class SongController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        // Validate required field
-        $this->validate($request, [
-            'song_title' => 'required|unique:songs,song_title',
-            'uploaded_mp3' => 'mimetypes:audio/mpeg',
-            'cate_id' => 'required|integer',
-            'song_artists' => 'required'
-        ]);
-
         // Move upload file to appriciate location
         $upload_mp3 = $request->file('uploaded_mp3');
         $upload_mp3->move(base_path('public/uploads/mp3'), $upload_mp3->getClientOriginalName());
@@ -119,15 +113,8 @@ class SongController extends Controller
         ]);
     }
 
-    public function update(Request $request, Song $song)
+    public function update(UpdateRequest $request, Song $song)
     {
-        $this->validate($request, [
-            'song_title' => "required|unique:songs,song_title,$song->id,id",
-            'uploaded_mp3' => 'mimetypes:audio/mpeg',
-            'cate_id' => 'required|integer',
-            'song_artists' => 'required'
-        ]);
-
         // If upload new file
         if ($request->hasFile('uploaded_mp3')) {
             // Remove old mp3 file

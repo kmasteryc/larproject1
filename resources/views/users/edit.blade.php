@@ -5,11 +5,43 @@
     <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Danh sách người sử dụng</h3>
+                <h3 class="panel-title">Edit user</h3>
             </div>
             <div class="panel-body">
 
-                {{--Bang: nghe si--}}
+
+                <form class="form-horizontal" action="{!! url("user/$user->id") !!}" method="POST" role="form">
+                    {!! csrf_field() !!}
+                    {!! method_field('PUT') !!}
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" name="email" class="form-control" value="{!! $user->email !!}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Password</label>
+
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Level</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="level">
+                                <option value="1" <?= $user->level == 1 ? 'selected' : '' ?>>Member</option>
+                                <option value="2" <?= $user->level == 2 ? 'selected' : '' ?>>Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
 
             </div>
         </div>
@@ -19,8 +51,11 @@
                 <h3 class="panel-title">Danh sách nhạc của {!! $user->name !!}</h3>
             </div>
             <div class="panel-body">
+                <div style="text-align: center">
+                    {!! $playlists->links() !!}
+                </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered datatable">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -32,7 +67,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($user->playlists as $playlist)
+                        @foreach($playlists as $playlist)
                             <tr>
                                 <td>{{$playlist->id}}</td>
                                 <td><a href="{{url("playlist/$playlist->id/edit")}}">Sửa</a> - <a
@@ -42,7 +77,7 @@
                                         {{$playlist->playlist_title}}
                                     </a>
                                 </td>
-                                <td>{{count($playlist->songs)}}</td>
+                                <td>{{$playlist->songs_count}}</td>
                                 <td>{{$playlist->playlist_view}}</td>
                                 <td>{{$playlist->updated_at}}</td>
                             </tr>

@@ -8,7 +8,9 @@
                 <h3 class="panel-title">Danh sách bài hát</h3>
             </div>
             <div class="panel-body">
-
+                <div class="form-group">
+                    <input class="form-control" type="text" id="autocomplete" placeholder="Tìm kiếm">
+                </div>
                 {{--Bang: nghe si--}}
                 <div class="table-responsive">
                     <table class="table table-bordered datatable">

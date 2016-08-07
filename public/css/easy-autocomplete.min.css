@@ -42,6 +42,11 @@
 .easy-autocomplete.eac-blue-light ul li.selected, .easy-autocomplete.eac-blue-light ul .eac-category.selected {
     background-color: #ecf5fc
 }
+////
+.easy-autocomplete.eac-blue-light ul li.selected .eac-item a span{
+    color: #ecf5fc !important;
+}
+////
 .easy-autocomplete.eac-green-light input:hover, .easy-autocomplete.eac-green-light input:focus {
     border-color: #41DB00;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(146, 237, 107, 0.6)

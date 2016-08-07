@@ -25,25 +25,20 @@ $(document).ready(function() {
     });
 
     // SEARCH INPUT
-    var api = base_url + 'api/search';
+    // var api = base_url + 'api/search';
 
     var options = {
-
         url: base_url + 'json/search_data.json',
-
         getValue: "title",
-
         list: {
             match: {
                 enabled: true
             },
-
             showAnimation: {
                 type: "fade", //normal|slide|fade
                 time: 300,
                 callback: function() {}
             },
-
             hideAnimation: {
                 type: "slide", //normal|slide|fade
                 time: 300,
@@ -51,19 +46,16 @@ $(document).ready(function() {
             }
         },
         adjustWidth: false,
-
         template: {
             type: "links",
             fields: {
                 link: "link"
             }
         },
-
         theme: "blue-light"
     };
 
     $(".autocomplete").easyAutocomplete(options);
-
 });
 
 function showAjaxIcon() {

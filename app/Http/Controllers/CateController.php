@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Cate;
-
 use Gate;
-use Cache;
-use Event;
-use App\Events\EventCateChange;
+use App\Http\Requests\Cates\StoreRequest;
+use App\Http\Requests\Cates\UpdateRequest;
+
 
 class CateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware([]);
+    }
+
     public function index()
     {
         return view('cates.index', [
@@ -47,11 +49,8 @@ class CateController extends Controller
         ]);
     }
 
-    public function update(Request $request, Cate $cate)
-    {
-        $this->validate($request, [
-            'cate_title' => 'required|unique:cates,cate_title,' . $cate->id
-        ]);
+    public function update(UpdateRequest $request, Cate $cate)
+    {;
         $cate->cate_title = $request->cate_title;
         $cate->cate_title_slug = str_slug($request->cate_title);
         $cate->cate_parent = $request->cate_parent;
