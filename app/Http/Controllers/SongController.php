@@ -38,28 +38,7 @@ class SongController extends Controller
 
     public function index()
     {
-//        $songs = Song::with('artists')->get();
-////        dd($songs[0]->artists);
-//        foreach ($songs as $song)
-//        {
-//            $artists = $song->artists;
-//            $i=1;
-//            $artists_str = '';
-//            foreach ($artists as $artist)
-//            {
-//                $artists_str .= $artist->artist_title_slug;
-//                if ($i != count($artists))
-//                {
-//                    $artists_str .= '-ft-';
-//                }
-//                $i++;
-//            }
-//            $rand = substr(md5(rand(1,999)),0,5);
-//
-//            $song->song_title_slug = str_slug($song->song_title).'-'.$artists_str.'-'.$rand;
-//            $song->save();
-//        }
-        $songs = Song::with('artists', 'cate')->get();
+        $songs = Song::with('artists', 'cate')->orderBy('song_title')->paginate(10);
         return view('songs.index', [
             'myjs' => ['jquery.dynatable.js'],
             'mycss' => ['jquery.dynatable.css'],

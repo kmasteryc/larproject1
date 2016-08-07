@@ -62,7 +62,7 @@ $(document).ready(function() {
         theme: "blue-light"
     };
 
-    $("#autocomplete").easyAutocomplete(options);
+    $(".autocomplete").easyAutocomplete(options);
 
 });
 

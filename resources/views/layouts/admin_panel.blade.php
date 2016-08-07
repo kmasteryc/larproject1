@@ -7,7 +7,7 @@
                         <i class="fa fa-2x fa-music"></i>
                     </div>
                     <div class="pull-left">
-                        Manage songs
+                        Quản lý bài hát
                     </div>
                 </div>
             </a>
@@ -19,7 +19,7 @@
                         <i class="fa fa-2x fa-database"></i>
                     </div>
                     <div class="pull-left">
-                        Manage playlists
+                        Quản lý danh sách nhạc
                     </div>
                 </div>
             </a>
@@ -31,7 +31,7 @@
                         <i class="fa fa-2x fa-street-view"></i>
                     </div>
                     <div class="pull-left">
-                        Manage artists
+                        Quản lý nghệ sĩ
                     </div>
                 </div>
             </a>
@@ -43,7 +43,7 @@
                         <i class="fa fa-2x fa-list-ol"></i>
                     </div>
                     <div class="pull-left">
-                        Manage categories
+                        Quản lý chủ đề
                     </div>
                 </div>
             </a>
@@ -55,7 +55,7 @@
                         <i class="fa fa-2x fa-user"></i>
                     </div>
                     <div class="pull-left">
-                        Manage users
+                        Quản lý người dùng
                     </div>
                 </div>
             </a>

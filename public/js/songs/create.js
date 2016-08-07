@@ -36,7 +36,7 @@ $(document).on('click', '.a_choose_artist', function () {
     var arr_cur_artists = cur_artists.split(',');
 
     if (arr_cur_artists.indexOf(artist_choose.toString()) == -1) {
-        var artist_field = '<a href="#" class="badge a_remove_artist" data-id="' + $(this).data('id') + '">' + $(this).data('artist_title') + '</a>';
+        var artist_field = '<a href="#" class="a_remove_artist" data-id="' + $(this).data('id') + '">' + $(this).data('artist_title') + ' <span class="fa fa-close"></span></a>   ';
 
         new_artists = cur_artists + artist_choose + ',';
         $("#song_artists").val(new_artists);

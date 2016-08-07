@@ -60,7 +60,6 @@ Route::group(['prefix' => 'bang-xep-hang'], function () {
 });
 
 Route::group(['prefix' => 'artist', 'middleware' => 'auth'], function () {
-
     Route::get('{artist}/edit', 'ArtistController@edit');
     Route::get('/', 'ArtistController@index');
     Route::get('create', 'ArtistController@create');
@@ -69,8 +68,17 @@ Route::group(['prefix' => 'artist', 'middleware' => 'auth'], function () {
     Route::put('{artist}', 'ArtistController@update');
     Route::post('store', 'ArtistController@store');
     Route::get('ajax_search/{search?}', 'ArtistController@ajax_search');
-
 });
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('{user}/edit', 'UserController@edit');
+    Route::get('/', 'UserController@index');
+    Route::get('create', 'UserController@create');
+    Route::get('{user}/delete', 'UserController@delete');
+    Route::put('{user}', 'UserController@update');
+    Route::post('store', 'UserController@store');
+});
+
 Route::get('nghe-si/{artist}', 'ArtistController@show');
 Route::get('bai-hat/{song}', 'SongController@show');
 
@@ -126,30 +134,31 @@ Route::post('import/import_cate', 'ImportController@storeCate');
 Route::get('import/sync_artistimg', 'ImportController@syncArtistImage');
 
 Route::get('radio/{cate?}', 'RadioController@index');
-Route::get('api/test', 'APIController@test');
 
-Route::get('api/get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
-Route::get('api/get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
-//Route::get('api/get-songs-in-chart/{song_or_playlist}/{week_or_month}/{index}', 'APIController@getSongsInChart');
-Route::get('api/get-songs-in-chart/{cate}/{week_or_month}/{index}', 'APIController@getSongsInChart');
-Route::get('api/get-song/{song}', 'APIController@getSong');
-Route::get('api/get-songs-by-artist/{artist}', 'APIController@getSongsByArtist');
+Route::group(['prefix' => 'api', 'middleware' => 'api'], function () {
 
+    Route::get('test', 'APIController@test');
+    Route::get('get-songs-in-cate/{cate}', 'APIController@getSongsInCate');
+    Route::get('get-songs-in-playlist/{playlist}', 'APIController@getSongsInPlaylist');
+    Route::get('get-songs-in-chart/{cate}/{week_or_month}/{index}', 'APIController@getSongsInChart');
+    Route::get('get-song/{song}', 'APIController@getSong');
+    Route::get('get-songs-by-artist/{artist}', 'APIController@getSongsByArtist');
 
-Route::get('api/get-user-playlists/{include_guest?}', 'APIController@getUserPlaylist');
-Route::get('api/reset-temp-playlist', 'APIController@resetTempPlaylist');
-Route::get('api/get-ajax-hot-song/{cate}/{page?}', 'APIController@getAjaxHotSong');
-Route::get('api/get-ajax-hot-playlist/{cate}/{page?}', 'APIController@getAjaxHotPlaylist');
-Route::get('api/get-albums-by-artist/{artist}', 'APIController@getAlbumsByArtist');
-Route::get('api/get-nontime-lyrics/{song}', 'APIController@getNontimeLyrics');
+    Route::get('get-user-playlists/{include_guest?}', 'APIController@getUserPlaylist');
+    Route::get('reset-temp-playlist', 'APIController@resetTempPlaylist');
+    Route::get('get-ajax-hot-song/{cate}/{page?}', 'APIController@getAjaxHotSong');
+    Route::get('get-ajax-hot-playlist/{cate}/{page?}', 'APIController@getAjaxHotPlaylist');
+    Route::get('get-albums-by-artist/{artist}', 'APIController@getAlbumsByArtist');
+    Route::get('get-nontime-lyrics/{song}', 'APIController@getNontimeLyrics');
 
-Route::post('api/add-song-to-playlist/', 'APIController@addSongToPlaylist');
-Route::post('api/import-playlist-to-playlist/', 'APIController@importPlaylistToPlaylist');
-Route::post('api/search', 'APIController@search');
-//Route::resource('API/{type}','APIController');
+    Route::post('add-song-to-playlist/', 'APIController@addSongToPlaylist');
+    Route::post('import-playlist-to-playlist/', 'APIController@importPlaylistToPlaylist');
+    Route::post('search', 'APIController@search');
+});
+
 Route::auth();
 Route::get('logout', 'Auth\AuthController@getCustomLogout');
 Route::post('login', 'Auth\AuthController@postCustomLogin');
 
-Route::get('/home', 'HomeController@index');
+
 

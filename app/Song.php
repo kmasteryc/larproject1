@@ -31,16 +31,16 @@ class Song extends Model
 	{
 		return $this->morphMany(View::class,'viewable');
 	}
-//	public function str_artists()
-//	{
-//		$song_artists = $this->artists;
-//		$str_song_artists = '';
-//		foreach ($song_artists as $song_artist)
-//		{
-//			$str_song_artists .= $song_artist->id.',';
-//		}
-//		return $str_song_artists;
-//	}
+	public function str_artists()
+	{
+		$song_artists = $this->artists;
+		$str_song_artists = '';
+		foreach ($song_artists as $song_artist)
+		{
+			$str_song_artists .= $song_artist->id.',';
+		}
+		return $str_song_artists;
+	}
 //	public function getSongArtistsTitleAttribute()
 //	{
 //		$song_artists = $this->artists;

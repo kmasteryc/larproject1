@@ -5,7 +5,7 @@
     <div class="col-md-9">
         <div class="panel panel-primary ">
             <div class="panel-heading">
-                Chinh sua chu de {{$cate->cate_title}}
+                Sửa chủ đề {{$cate->cate_title}}
             </div>
             <div class="panel-body">
                 <form action="{{url("cate/$cate->id")}}" class="form-horizontal" method="POST">
@@ -13,8 +13,8 @@
                     {!! method_field('PUT') !!}
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Chu de cha</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">Chủ đề  cha</label>
+                        <div class="col-sm-9">
                             <select name="cate_parent" id="" class="form-control">
                                 <option value="0">ROOT</option>
                                 {!! $menu->make($cates, 'slc', $cate->cate_parent) !!}
@@ -23,36 +23,34 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Ten chu de</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">Tên chủ đề </label>
+                        <div class="col-sm-9">
                             <input type="text" name="cate_title" class="form-control" value="{{$cate->cate_title}}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Bang xep hang cho chu de nay?</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">Tạo bảng xếp hạng cho chủ đề  này?</label>
+                        <div class="col-sm-9">
                             <select name="cate_chart" class="form-control">
-                                <option value="0" {!! $sl= $cate->cate_chart == 0 ? 'selected' : '' !!}>Khong</option>
-                                <option value="1" {!! $sl= $cate->cate_chart == 1 ? 'selected' : '' !!}>Co</option>
+                                <option value="0" {!! $sl= $cate->cate_chart == 0 ? 'selected' : '' !!}>Không</option>
+                                <option value="1" {!! $sl= $cate->cate_chart == 1 ? 'selected' : '' !!}>Có</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button class="btn btn-info" type="submit">Cap nhat</button>
-                            <a class="btn btn-danger" href="{{url('cate')}}">Huy</a>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button class="btn btn-success" type="submit">Cập nhật</button>
+                            <a class="btn btn-danger" href="{{url('cate')}}">Hủy</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-md-9">
         <div class="panel panel-primary">
         	  <div class="panel-heading">
-        			<h3 class="panel-title">Danh sach nhac thuoc {{$cate->cate_title}}</h3>
+        			<h3 class="panel-title">Danh sách album thuộc chủ đề {{$cate->cate_title}}</h3>
         	  </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -60,20 +58,24 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Hanh dong</th>
-                            <th>Ten danh sach bai hat</th>
-                            <th>So bai hat</th>
-                            <th>Luot nghe</th>
-                            <th>Cap nhat cuoi</th>
+                            <th>Hành động</th>
+                            <th>Tên album</th>
+                            <th>Số bài hát</th>
+                            <th>Lượt nghe</th>
+                            <th>Cập nhật cuối</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($cate->playlists as $playlist)
                             <tr>
                                 <td>{{$playlist->id}}</td>
-                                <td><a href="{{url("playlist/$playlist->id/edit")}}">Edit</a> - <a
-                                            href="{{url("playlist/$playlist->id/delete")}}">Delete</a></td>
-                                <td>{{$playlist->playlist_title}}</td>
+                                <td><a href="{{url("playlist/$playlist->id/edit")}}">Sửa</a> - <a
+                                            href="{{url("playlist/$playlist->id/delete")}}">Xóa</a></td>
+                                <td>
+                                    <a href="{{url("playlist/$playlist->playlist_title_slug")}}">
+                                        {{$playlist->playlist_title}}
+                                    </a>
+                                </td>
                                 <td>{{count($playlist->songs)}}</td>
                                 <td>{{$playlist->playlist_view}}</td>
                                 <td>{{$playlist->updated_at}}</td>
@@ -84,5 +86,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @stop

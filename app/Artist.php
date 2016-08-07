@@ -15,7 +15,7 @@ class Artist extends Model
 
 	public function getArtistGenderAttribute($value)
 	{
-		return $value == 1 ? "Nam" : "Nu";
+		return $value == 1 ? "Nam" : "Nữ";
 	}
 
     public function getArtistImgSmallAttribute($value)
@@ -58,7 +58,7 @@ class Artist extends Model
             if (self::where('artist_title', $artist_title)->first() == '') {
                 $faker = Faker\Factory::create();
                 $artist = new Artist;
-                
+
                 $artist->artist_title = $artist_title;
                 $artist->artist_name = $artist_title;
                 $artist->artist_info = $faker->sentence(100);

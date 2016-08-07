@@ -1,11 +1,9 @@
 <div class="navbar-more-overlay"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top animate">
     <div class="container navbar-more visible-xs">
-        <form class="navbar-form navbar-left" role="search" onsubmit="return false;">
-            <div class="form-group">
-                <input type="text" class="form-control" id="autocomplete" placeholder="Tìm kiếm....">
-            </div>
-        </form>
+
+        @include('layouts.partials.li_search',['display'=>'visible-xs'])
+
         <ul class="nav navbar-nav">
 
             @include('layouts.partials.li_chart')
@@ -26,6 +24,7 @@
         </div>
 
         <ul class="nav navbar-nav mobile-bar">
+            @include('layouts.partials.li_search',['display'=>'hidden-xs'])
             @include('layouts.partials.li_chart', ['display'=>'hidden-xs'])
             @include('layouts.partials.li_cate', ['nav_type' => 'nav3'])
             @include('layouts.partials.li_userplaylist', ['display'=>'hidden-xs'])

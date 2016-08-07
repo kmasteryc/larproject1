@@ -3,21 +3,21 @@
     <div class="col-md-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Sua nghe si {!!$artist->artist_title!!}</h3>
+                <h3 class="panel-title">Sửa nghệ sĩ {!!$artist->artist_title!!}</h3>
             </div>
             <div class="panel-body">
                 <form action="{!!url('artist/'.$artist->id)!!}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
                     {!!csrf_field()!!}
                     {!!method_field('PUT')!!}
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Ten nghe si</label>
+                        <label class="col-sm-2 control-label">Tên nghệ sĩ</label>
 
                         <div class="col-sm-10">
                             <input type="text" name="artist_name" class="form-control" value="{!!$artist->artist_name!!}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Nghe danh</label>
+                        <label class="col-sm-2 control-label">Nghệ danh</label>
 
                         <div class="col-sm-10">
                             <input type="text" name="artist_title" class="form-control"
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Nam sinh</label>
+                        <label class="col-sm-2 control-label">Năm sinh</label>
 
                         <div class="col-sm-10">
                             <input type="date" name="artist_birthday" class="form-control"
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Anh dai dien
+                            Ảnh đại diện
                             <img src="{!! $artist->artist_img_small !!}" height="100px" width="auto" alt="">
                         </label>
                         <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
-                            Anh cover
+                            Ảnh cover
                             <img src="{!! $artist->artist_img_cover !!}" height="100px" width="auto" alt="">
                         </label>
                         <div class="col-sm-10">
@@ -53,31 +53,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Thong tin</label>
+                        <label class="col-sm-2 control-label">Thông tin</label>
 
                         <div class="col-sm-10">
-                            <textarea name="artist_info" class="form-control">{!!$artist->artist_info!!}</textarea>
+                            <textarea name="artist_info" rows="5" class="form-control">{!!$artist->artist_info!!}</textarea>
                         </div>
                     </div>
 
 
-                    
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Gioi tinh</label>
+                        <label class="col-sm-2 control-label">Giới tính</label>
 
                         <div class="col-sm-10">
                             <?php
                             $select1 = $artist->artist_gender == "Nam" ? "selected" : "";
-                            $select2 = $artist->artist_gender == "Nu" ? "selected" : "";
+                            $select2 = $artist->artist_gender == "Nữ" ? "selected" : "";
                             ?>
                             <select class="form-control" name="artist_gender">
                                 <option value="1" {!!$select1!!}>Nam</option>
-                                <option value="0" {!!$select2!!}>Nu</option>
+                                <option value="0" {!!$select2!!}>Nữ</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Quoc gia</label>
+                        {{-- @todo: TODO: Nation module --}}
+                        <label class="col-sm-2 control-label">Quốc gia</label>
 
                         <div class="col-sm-10">
                             <select class="form-control" name="artist_nation" id="">
@@ -91,34 +92,68 @@
 
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-success">
-                                Sua nghe si
+                                Sửa nghệ sĩ
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Cac bai hat cua {!!$artist->artist_title!!}
+                Album của nghệ sĩ {!!$artist->artist_title!!}
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-bordered datatable">
                         <thead>
                         <tr>
-                            <th>Hanh dong</th>
-                            <th>Ten bai hat</th>
-                            <th>Ngay dang</th>
-                            <th>Luot nghe</th>
+                            <th>Hành động</th>
+                            <th>Tên album</th>
+                            <th>Ngày đăng</th>
+                            <th>Lượt nghe</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($artist->playlists as $playlist)
+                            <tr>
+                                <td>
+                                    <a href="{!!url("playlist/$playlist->id/edit")!!}">Sửa</a>
+                                    - <a href="{!!url("playlist/$playlist->id/delete")!!}">Xóa</a>
+                                </td>
+                                <td>{!!$playlist->playlist_title!!}</td>
+                                <td>{!!$playlist->created_at!!}</td>
+                                <td></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Các bài hát nghệ sĩ {!!$artist->artist_title!!} thể hiện
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered datatable">
+                        <thead>
+                        <tr>
+                            <th>Hành động</th>
+                            <th>Tên bài hát</th>
+                            <th>Ngày đăng</th>
+                            <th>Lượt nghe</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($artist->songs as $song)
                             <tr>
                                 <td>
-                                    <a href="{!!url("song/$song->id/edit")!!}">Edit</a>
-                                    - <a href="{!!url("song/$song->id/delete")!!}">Delete</a>
+                                    <a href="{!!url("song/$song->id/edit")!!}">Sửa</a>
+                                    - <a href="{!!url("song/$song->id/delete")!!}">Xóa</a>
                                 </td>
                                 <td>{!!$song->song_title!!}</td>
                                 <td>{!!$song->created_at!!}</td>
@@ -130,5 +165,7 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 @stop
