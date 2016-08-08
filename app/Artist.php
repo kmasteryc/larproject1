@@ -43,6 +43,10 @@ class Artist extends Model
         return $dt->format('m/d/Y');
     }
 
+    public function nation(){
+        return $this->belongsTo(Nation::class);
+    }
+
 	public function songs()
 	{
 		return $this->belongsToMany(Song::class);

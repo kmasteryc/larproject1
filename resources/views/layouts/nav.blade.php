@@ -27,7 +27,7 @@
             @include('layouts.partials.li_search',['display'=>'hidden-xs'])
             @include('layouts.partials.li_chart', ['display'=>'hidden-xs'])
             @include('layouts.partials.li_cate', ['nav_type' => 'nav3'])
-            @include('layouts.partials.li_userplaylist', ['display'=>'hidden-xs'])
+
         </ul>
         <ul class="nav navbar-nav navbar-right mobile-bar">
             <li class="visible-xs">
@@ -37,6 +37,7 @@
                 </a>
             </li>
 
+            @include('layouts.partials.li_userplaylist', ['display'=>'hidden-xs'])
             @include('layouts.partials.li_auth', ['display'=>'hidden-xs'])
 
             <li class="visible-xs">

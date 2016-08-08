@@ -292,8 +292,8 @@ $(document).ready(function () {
                 if (lyrics_data != '') {
                     if (typeof lyrics_data != undefined) {
                         var html = `
-                            <div id="lyric-btn"><h4><i class="fa fa-sticky-note"></i> Lời bài hát </h4> <button class="btn btn-primary btn-sm" id="hide-show-lyric-btn">Hiện</button></div>
-                            <div id="lyric-content" style="display: none">
+                            <div id="lyric-btn"><h4><i class="fa fa-sticky-note"></i> Lời bài hát </h4> <button class="btn btn-primary btn-sm" id="hide-show-lyric-btn">Ẩn</button></div>
+                            <div id="lyric-content">
                                 ${lyrics_data.lyric_content}
                             </div>
                     `;

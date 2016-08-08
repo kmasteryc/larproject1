@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Artist;
+use App\Nation;
 use Illuminate\Support\Facades\Gate;
 
 use App\Http\Requests\Artists\UpdateRequest;
@@ -37,7 +38,8 @@ class ArtistController extends Controller
     public function create()
     {
         return view('artists.create', [
-            'cp' => true
+            'cp' => true,
+            'nations' => Nation::all()
         ]);
     }
 
@@ -47,6 +49,7 @@ class ArtistController extends Controller
             'myjs' => ['jquery.dynatable.js'],
             'mycss' => ['jquery.dynatable.css'],
             'artist' => $artist,
+            'nations' => Nation::all(),
             'cp' => true
         ]);
     }
@@ -60,7 +63,7 @@ class ArtistController extends Controller
         $artist->artist_info = $request->input('artist_info');
         $artist->artist_birthday = $request->input('artist_birthday');
         $artist->artist_gender = $request->input('artist_gender');
-        $artist->artist_nation = $request->input('artist_nation');
+        $artist->nation_id = $request->input('nation_id');
 
         if ($request->hasFile('artist_img_small')) {
             //Remove old img
@@ -114,7 +117,7 @@ class ArtistController extends Controller
         $artist->artist_info = $request->input('artist_info');
         $artist->artist_birthday = $request->input('artist_birthday');
         $artist->artist_gender = $request->input('artist_gender');
-        $artist->artist_nation = $request->input('artist_nation');
+        $artist->nation_id = $request->input('nation_id');
         $artist->artist_img_small = $artist_img_small_link;
         $artist->artist_img_cover = $artist_img_cover_link;
 

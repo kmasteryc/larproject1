@@ -20,6 +20,14 @@ Route::group(['prefix' => 'session'], function () {
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::group(['prefix'=>'nation'], function(){
+        Route::get('/', 'NationController@index');
+        Route::post('/', 'NationController@store');
+        Route::get('{nation}/edit', 'NationController@edit');
+        Route::put('{nation}', 'NationController@update');
+        Route::get('{nation}/delete', 'NationController@delete');
+    });
+
     Route::group(['prefix' => 'cate'], function () {
         Route::get('{cate}/edit', 'CateController@edit');
         Route::get('/', 'CateController@index');

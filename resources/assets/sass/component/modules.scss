@@ -89,10 +89,15 @@
   line-height: 17px;
   font-weight: 600;
   max-width: 100%;
-  h4{
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 100%;
+  .clearfix{
+    .pull-left, .pull-right{
+      h4{
+        margin-top: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+    }
   }
 
 

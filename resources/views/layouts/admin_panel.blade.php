@@ -48,6 +48,20 @@
                 </div>
             </a>
         </li>
+
+        <li class="list-group-item">
+            <a href="{!! url('nation') !!}">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <i class="fa fa-2x fa-square"></i>
+                    </div>
+                    <div class="pull-left">
+                        Quản lý quốc gia
+                    </div>
+                </div>
+            </a>
+        </li>
+
         <li class="list-group-item">
             <a href="{!! url('user') !!}">
                 <div class="clearfix">

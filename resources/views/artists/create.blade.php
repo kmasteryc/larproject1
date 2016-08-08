@@ -58,9 +58,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Quốc gia</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="artist_nation" id="">
-                                <option value="84">Việt Nam</option>
-                                <option value="8">USA</option>
+                            <select class="form-control" name="nation_id">
+                                @foreach ($nations as $nation)
+                                    <option value="{!! $nation->id !!}">
+                                        {!! $nation->nation_title !!}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

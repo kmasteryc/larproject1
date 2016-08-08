@@ -1,7 +1,7 @@
 @inject('khelper','Tools\Khelper')
 @extends('layouts.app')
 @section('content')
-
+    @include('global_partials.load_fb_sdk')
     <div class="container">
         <div class="row">
             <div class="col-md-8" style="position: relative">
@@ -40,7 +40,8 @@
 
                     <div class="media">
                         <a class="media-left" href="#">
-                            <img src="http://dummyimage.com/100/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}" height="100px" width="100px">
+                            <img src="http://dummyimage.com/100/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}"
+                                 height="100px" width="100px">
                         </a>
                         <div class="media-body">
                             <h4>BẢNG XẾP
@@ -85,8 +86,8 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="my-media-heading">
-                                                BẢNG XẾP
-                                                HẠNG {!! $cate->cate_title !!} {!! $timeinfo['time_unit'] !!} {!! $bxh !!}
+                                                BẢNG XẾP HẠNG {!! $cate->cate_title !!}
+                                                {!! $timeinfo['time_unit'] !!} {!! $bxh !!}
                                             </h5>
                                             <p>Various Artists</p>
                                         </div>
@@ -102,23 +103,5 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal" id="playlist-popup" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title" id="myModalLabel"> Thêm vào danh sách</h4>
-                </div>
-                <div class="modal-body">
-                    <span id="add-song-alert"></span>
-                    <ul class="list-group">
-
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('global_partials.modal_add_to_playlist')
 @stop

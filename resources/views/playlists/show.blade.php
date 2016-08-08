@@ -21,7 +21,9 @@
                 <div class="row" id="middle-info">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4>{!! $playlist->playlist_title !!}</h4>
+                            <h4>Album {!! $playlist->playlist_title !!} -
+                                <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a>
+                            </h4>
                             @include("global_partials.like_btn")
                         </div>
                         <div class="pull-right">
@@ -61,13 +63,12 @@
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{!! $playlist->playlist_title !!}</h4>
-                            <h5>Nghệ sĩ: {!! $playlist->artist->artist_title !!}</h5>
+                            <h5>Nghệ sĩ: <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a></h5>
                             <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
                             {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
                             {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12">

@@ -20,7 +20,7 @@ class StoreRequest extends Request{
             'artist_info' => 'string|required|min:10',
             'artist_birthday' => 'required',
             'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required',
+            'nation_id' => 'integer|required',
             'artist_img_small' => 'required|mimetypes:image/jpeg,image/png',
             'artist_img_cover' => 'required|mimetypes:image/jpeg,image/png'
         ];

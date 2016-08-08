@@ -21,7 +21,7 @@ class UpdateRequest extends Request{
             'artist_info' => 'string|required|min:10',
             'artist_birthday' => 'required',
             'artist_gender' => 'integer|required',
-            'artist_nation' => 'integer|required',
+            'nation_id' => 'integer|required',
             'artist_img_small' => 'image',
             'artist_img_cover' => 'image'
         ];

@@ -1,6 +1,6 @@
 <li class="dropdown {!! $display or "" !!}">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-        Playlist của bạn <span class="caret"></span>
+        <i class="fa fa-music"></i> <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu">
         @foreach ($menu_playlists as $menu_playlist)
@@ -10,6 +10,7 @@
         @endforeach
         @if (!auth()->guest())
             <li class="divider"></li>
+            <li><a href="{!! url('/playlist/create') !!}"><i class="fa fa-pencil"></i> Thêm danh sách mới</a>
             <li><a href="{!! url('/playlist') !!}"><i class="fa fa-gear"></i> Quản lý danh sách nhạc</a>
             </li>
         @endif

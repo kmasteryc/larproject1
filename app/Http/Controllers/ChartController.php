@@ -20,9 +20,7 @@ class ChartController extends Controller
 {
     public function index()
     {
-        return view('charts.index', [
-            'cp' => true
-        ]);
+        return redirect()->route('home');
     }
 
     public function show($cate, $week_or_month = 'tuan', $index = '')
@@ -54,18 +52,20 @@ class ChartController extends Controller
         endswitch;
 
         $song_records_cache_name = "${cate}-${week_or_month}-${index}";
-        $song_records = Cache::tags(['chart', 'song'])->get($song_records_cache_name, function () use ($time_mode, $cate, $index, $song_records_cache_name) {
-            $song_records = Chart::get_song_records($time_mode, $cate, $index, 30);
-            Cache::tags(['chart', 'song'])->put($song_records_cache_name, $song_records, 500000);
-            return $song_records;
-        });
+        $song_records = Cache::tags(['chart', 'song'])->get($song_records_cache_name,
+            function () use ($time_mode, $cate, $index, $song_records_cache_name) {
+                $song_records = Chart::get_song_records($time_mode, $cate, $index, 30);
+                Cache::tags(['chart', 'song'])->put($song_records_cache_name, $song_records, 500000);
+                return $song_records;
+            });
 
         $playlist_records_cache_name = "${cate}-${week_or_month}-${index}";
-        $playlist_records = Cache::tags(['chart', 'playlist'])->get($playlist_records_cache_name, function () use ($time_mode, $cate, $index, $playlist_records_cache_name) {
-            $playlist_records = Chart::get_playlist_records($time_mode, $cate, $index, 10);
-            Cache::tags(['chart', 'playlist'])->put($playlist_records_cache_name, $playlist_records, 500000);
-            return $playlist_records;
-        });
+        $playlist_records = Cache::tags(['chart', 'playlist'])->get($playlist_records_cache_name,
+            function () use ($time_mode, $cate, $index, $playlist_records_cache_name) {
+                $playlist_records = Chart::get_playlist_records($time_mode, $cate, $index, 10);
+                Cache::tags(['chart', 'playlist'])->put($playlist_records_cache_name, $playlist_records, 500000);
+                return $playlist_records;
+            });
 
         return view('charts.show', [
             'title' => 'Bảng xếp hạng ' . $cate->cate_title,

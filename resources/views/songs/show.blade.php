@@ -21,7 +21,8 @@
                 <div class="row" id="middle-info">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4>{!! $song->song_title !!}</h4>
+                            <h4>{!! $song->song_title !!} - <a href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a></h4>
+                            @include('global_partials.like_btn')
                         </div>
                         <div class="pull-right">
                             <h4><i class="fa fa-music fa-1x"> {!! $song->song_view !!}</i></h4>
@@ -30,9 +31,6 @@
                 </div>
 
                 <div class="row">
-                    {{--@todo: Song tool module--}}
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <div id="lyric-area">
 
@@ -40,8 +38,39 @@
                     </div>
                 </div>
 
+                @include('global_partials.facebook_comment')
+
             </div>
             <div class="col-md-4">
+
+                <div class="row" id="playlist-summary">
+                    <div class="media">
+                        <a class="media-left" href="#">
+                            <img src="{!! $song->artists[0]->artist_img_small !!}" height="100px" width="100px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Bài hát {!! $song->song_title !!}</h4>
+                            <h5>Nghệ sĩ: <a href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a></h5>
+                            <h5>Phát hành: {!! $song->created_at->format('m/Y') !!}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="playlist-detail">
+                            <span class="playlist-info-hidden"
+                                  style="display: none">{!! $song->artists[0]->artist_info !!} <a href="#"
+                                                                                            id="hide-playlist-info">Ẩn đi</a></span>
+                            <span class="playlist-info">{!! str_limit($song->artists[0]->artist_info,200) !!}
+
+                                @if(strlen($song->artists[0]->artist_info)>=200)
+                                    <a href="#" id="show-playlist-info">Xem thêm</a>
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -72,23 +101,5 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal" id="song-popup" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title" id="myModalLabel"> Thêm vào danh sách</h4>
-                </div>
-                <div class="modal-body">
-                    <span id="add-song-alert"></span>
-                    <ul class="list-group">
-
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('global_partials.modal_add_to_playlist')
 @stop

@@ -36,16 +36,33 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Ảnh đại diện
+                        </label>
+                        <div class="col-sm-10">
                             <img src="{!! $artist->artist_img_small !!}" height="100px" width="auto" alt="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Ảnh đại diện mới
                         </label>
                         <div class="col-sm-10">
                             <input type="file" name="artist_img_small" class="form-control">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-2 control-label">
                             Ảnh cover
+                        </label>
+                        <div class="col-sm-10">
                             <img src="{!! $artist->artist_img_cover !!}" height="100px" width="auto" alt="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Ảnh cover mới
                         </label>
                         <div class="col-sm-10">
                             <input type="file" name="artist_img_cover" class="form-control">
@@ -59,8 +76,6 @@
                             <textarea name="artist_info" rows="5" class="form-control">{!!$artist->artist_info!!}</textarea>
                         </div>
                     </div>
-
-
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Giới tính</label>
@@ -76,14 +91,19 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        {{-- @todo: TODO: Nation module --}}
-                        <label class="col-sm-2 control-label">Quốc gia</label>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Quốc gia</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="artist_nation" id="">
-                                <option value="84">Viet Nam</option>
-                                <option value="8">USA</option>
+                            <select class="form-control" name="nation_id">
+                                @foreach ($nations as $nation)
+                                    <option
+                                            value="{!! $nation->id !!}"
+                                            {!! $nation->id == $artist->nation_id ? "selected" : "" !!}
+                                    >
+                                        {!! $nation->nation_title !!}
+                                    </option>
+                                    @endforeach
                             </select>
                         </div>
                     </div>

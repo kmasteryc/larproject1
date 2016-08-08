@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="row">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -67,9 +67,6 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="col-md-5">
-                {{--@todo: Side chart module--}}
             </div>
         </div>
     </div>
