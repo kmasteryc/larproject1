@@ -73,15 +73,8 @@ class PlaylistController extends Controller
         $playlist->artist_id = $artist_id;
         $playlist->save();
 
-        $songs = explode(',', $request->playlist_songs);
-
-        /*Here i have 2 opts:
-        first: $song->artists()->attach($artist)
-        second: $artist->songs()->attach($song->id);*/
-
-        foreach ($songs as $song) {
-            if ($song != '') $playlist->songs()->attach($song);
-        }
+        $song_ids = explode(',', $request->playlist_songs);
+        $playlist->songs()->sync($song_ids);
 
         return back()->with('succeeds', 'Tao danh sach nhac thanh cong!');
     }
@@ -141,17 +134,10 @@ class PlaylistController extends Controller
         $playlist->save();
 
         // Process playlist_songs
-        // First we remove old song_artists
         $playlist->songs()->detach();
-        $songs = explode(',', $request->playlist_songs);
+        $song_ids = explode(',', $request->playlist_songs);
 
-        /*Here i have 2 opts:
-        first: $song->artists()->attach($artist)
-        second: $artist->songs()->attach($song->id);*/
-
-        foreach ($songs as $song) {
-            if ($song != '') $playlist->songs()->attach($song);
-        }
+        $playlist->songs()->sync($song_ids);
 
         return back()->with('succeeds', 'Cap nhat danh sach nhac thanh cong!');
     }

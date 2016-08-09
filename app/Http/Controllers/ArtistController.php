@@ -126,12 +126,6 @@ class ArtistController extends Controller
         return redirect('artist');
     }
 
-    public function ajax_search($search = '')
-    {
-        $result = Artist::where('artist_title', 'like', '%' . $search . '%')->get();
-        return $result;
-    }
-
     public function show(Artist $artist)
     {
         $playlists = $artist->playlists;

@@ -147,6 +147,7 @@ class SongController extends Controller
         $artists = explode(',', $request->song_artists);
 
         $artists_obj = Artist::whereIn('id', $artists)->get();
+
         $i = 1;
         $artists_str = '';
         foreach ($artists_obj as $artist) {
@@ -165,6 +166,7 @@ class SongController extends Controller
         $song->song_mp3 = $link;
         $song->cate_id = $request->cate_id;
         $song->save();
+        $song->artists()->sync($artists);
 
         // Process lyric
         if ($request->lyric_content != '')
@@ -175,14 +177,6 @@ class SongController extends Controller
             $lyric->user_id = $request->user()->id;
             $lyric->song_id = $song->id;
             $song->lyric()->save($lyric);
-        }
-
-        /*Here i have 2 opts:
-        first: $song->artists()->attach($artist)
-        second: $artist->songs()->attach($song->id);*/
-
-        foreach ($artists as $artist) {
-            if ($artist != '') $song->artists()->attach($artist);
         }
 
         return redirect('song')->with('succeeds', 'Tao bai hat thanh cong!');
@@ -225,8 +219,8 @@ class SongController extends Controller
         }
 
         // Process song_artists
-        // First we remove old song_artists
-        $song->artists()->detach();
+//        // First we remove old song_artists
+//        $song->artists()->detach();
 
         // Then process new song_artists
         $artists = explode(',', $request->song_artists);
@@ -248,13 +242,7 @@ class SongController extends Controller
         $song->song_title_slug = str_slug($song->song_title) . '-' . $artists_str . '-' . $rand;
         $song->song_title_eng = str_replace('-', ' ', str_slug($song->song_title));
 
-        /*Here i have 2 opts:
-        first: $song->artists()->attach($artist)
-        second: $artist->songs()->attach($song->id);*/
-
-        foreach ($artists as $artist) {
-            if ($artist != '') $song->artists()->attach($artist);
-        }
+        $song->artists()->sync($artists);
 
         $song->save();
 
@@ -276,14 +264,5 @@ class SongController extends Controller
         $request->session()->flash('succeeds', 'Your done!');
         return back();
     }
-
-    /**
-     * @param string $search
-     * @return mixed
-     */
-    public function ajax_search($search = '')
-    {
-        $result = Song::where('song_title', 'like', '%' . $search . '%')->get();
-        return $result;
-    }
+    
 }

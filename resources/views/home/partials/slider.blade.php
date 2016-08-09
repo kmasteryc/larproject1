@@ -13,7 +13,7 @@
         @foreach($new_songs as $song)
             <div class="item {!! $i==1 ? 'active' : '' !!}">
                 <a href="{!! url("bai-hat/$song->song_title_slug.html") !!}">
-                    <img data-src="{!! $song->artists[0]->artist_img_cover !!}" src="{!! asset('img/850.png') !!}">
+                    <img data-src="" src="{!! asset('img/850.png') !!}">
                     <div class="carousel-caption">
                         {!! $song->song_title !!}
                     </div>
