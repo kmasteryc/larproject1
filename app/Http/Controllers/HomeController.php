@@ -29,19 +29,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $new_songs = Cache::get('new_songs', function () {
+        $new_songs = Cache::store('file')->get('new_songs', function () {
             $new_songs = Song::orderBy('created_at', 'DESC')->take(3)->with('artists')->get();
-            Cache::put('new_songs', $new_songs, 86400);
+            Cache::store('file')->put('new_songs', $new_songs, 86400);
             return $new_songs;
         });
-        $chart_songs = Cache::get('chart_songs', function () {
+        $chart_songs = Cache::store('file')->get('chart_songs', function () {
             $chart_songs = Chart::get_song_records(Chart::TIME_WEEK, Cate::where('cate_title_slug', 'viet-nam')->first(), 30, 10);
-            Cache::put('chart_songs', $chart_songs, 86400);
+            Cache::store('file')->put('chart_songs', $chart_songs, 86400);
             return $chart_songs;
         });
-        $chart_playlists = Cache::get('chart_playlists', function () {
+        $chart_playlists = Cache::store('file')->get('chart_playlists', function () {
             $chart_playlists = Chart::get_playlist_records(Chart::TIME_WEEK, Cate::where('cate_title_slug', 'viet-nam')->first(), 30, 8);
-            Cache::put('chart_playlists', $chart_playlists, 86400);
+            Cache::store('file')->put('chart_playlists', $chart_playlists, 86400);
             return $chart_playlists;
         });
 

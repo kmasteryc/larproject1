@@ -25,8 +25,6 @@ class ChartController extends Controller
 
     public function show($cate, $week_or_month = 'tuan', $index = '')
     {
-//        $cate = Cate::fromSlug($cate_title_slug);
-
         switch ($week_or_month):
 
             case 'tuan': // Default for week and otherwise
@@ -35,7 +33,7 @@ class ChartController extends Controller
                 $time_mode = Chart::TIME_WEEK;
                 $start_date = Carbon::createFromFormat('z', $index * 7)->startOfWeek()->format('d/m');
                 $end_date = Carbon::createFromFormat('z', $index * 7)->endOfWeek()->format('d/m');
-                $max_interval = 52;
+                $max_interval = $index;
                 $time_unit = 'TUẦN';
                 break;
 
@@ -45,7 +43,7 @@ class ChartController extends Controller
                 $time_mode = Chart::TIME_MONTH;
                 $start_date = Carbon::createFromFormat('m', $index)->startOfMonth()->format('d/m');
                 $end_date = Carbon::createFromFormat('m', $index)->endOfMonth()->format('d/m');
-                $max_interval = 12;
+                $max_interval = $index;
                 $time_unit = 'THÁNG';
                 break;
 
@@ -55,7 +53,7 @@ class ChartController extends Controller
         $song_records = Cache::tags(['chart', 'song'])->get($song_records_cache_name,
             function () use ($time_mode, $cate, $index, $song_records_cache_name) {
                 $song_records = Chart::get_song_records($time_mode, $cate, $index, 30);
-                Cache::tags(['chart', 'song'])->put($song_records_cache_name, $song_records, 500000);
+                Cache::tags(['chart', 'song'])->put($song_records_cache_name, $song_records, 86400);
                 return $song_records;
             });
 
@@ -63,7 +61,7 @@ class ChartController extends Controller
         $playlist_records = Cache::tags(['chart', 'playlist'])->get($playlist_records_cache_name,
             function () use ($time_mode, $cate, $index, $playlist_records_cache_name) {
                 $playlist_records = Chart::get_playlist_records($time_mode, $cate, $index, 10);
-                Cache::tags(['chart', 'playlist'])->put($playlist_records_cache_name, $playlist_records, 500000);
+                Cache::tags(['chart', 'playlist'])->put($playlist_records_cache_name, $playlist_records, 86400);
                 return $playlist_records;
             });
 

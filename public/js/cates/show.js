@@ -31,7 +31,6 @@ $(document).ready(function () {
             var html = '';
 
             songs = response.data;
-            console.log(songs);
 
             for (var x in songs) {
                 html += `
@@ -70,7 +69,7 @@ $(document).ready(function () {
             var html = '';
 
             var playlists = response.data;
-            console.log(url);
+
             for (var x in playlists) {
 
                 html += `
@@ -90,7 +89,7 @@ $(document).ready(function () {
                         </div>
                     </div>
                 `;
-                // console.log(html);
+
             }
 
             hot_album_box.html(html);
@@ -102,17 +101,47 @@ $(document).ready(function () {
         if (json_data_song.next_page_url == null && json_data_song.prev_page_url == null) {
             return;
         }
+        console.log(json_data_song);
         var html = '<nav><ul class="pagination">';
 
         html += json_data_song.prev_page_url ? '<li> <a href="#" class="ajax-load" data-type="song" data-api="' + json_data_song.prev_page_url + '"> Trước </a> </li> ' : '';
 
-        for (var i = 1; i <= json_data_song.last_page; i++) {
+        var start = 1;
+        var end = json_data_song.last_page;
+
+        if(json_data_song.last_page >10){
+            start = json_data_song.current_page - 5;
+            for (let i = start; i <= json_data_song.current_page; i++)
+            {
+                if (i>0){
+                    start = i;
+                    break;
+                }
+            }
+            end = start + 10;
+
+            if (end > json_data_song.last_page) end = json_data_song.last_page;
+
+            if (json_data_song.current_page > (json_data_song.last_page/2)) {
+                html += '<li><a href="#" class="ajax-load" data-type="song" data-api="' + api_2 + '?page=' + start + '">' + 1 + '</a></li>';
+                html += '<li class="disabled"><span>...</span></li>';
+                // start++;
+            }
+        }
+
+        for (let i = start; i <= end; i++) {
             if (i == json_data_song.current_page) {
                 html += '<li class="active"><a href="#">' + i + '</a></li>';
             } else {
                 html += '<li><a href="#" class="ajax-load" data-type="song" data-api="' + api_1 + '?page=' + i + '">' + i + '</a></li>';
             }
         }
+
+        if (json_data_song.current_page <= (json_data_song.last_page/2) ) {
+            html += '<li class="disabled"><span>...</span></li>';
+            html += '<li><a href="#" class="ajax-load" data-type="song" data-api="' + api_2 + '?page=' + json_data_song.last_page + '">' + json_data_song.last_page + '</a></li>';
+        }
+
         html += json_data_song.next_page_url ? '<li> <a href="#" class="ajax-load" data-type="song" data-api="' + json_data_song.next_page_url + '"> Sau </a> </li> ' : '';
         html += '</ul></nav>';
 
@@ -128,13 +157,42 @@ $(document).ready(function () {
 
         html += json_data_playlist.prev_page_url ? '<li> <a href="#" class="ajax-load" data-type="playlist" data-api="' + json_data_playlist.prev_page_url + '"> Trước </a> </li> ' : '';
 
-        for (var i = 1; i <= json_data_playlist.last_page; i++) {
+        var start = 1;
+        var end = json_data_playlist.last_page;
+
+        if(json_data_playlist.last_page >10){
+            start = json_data_playlist.current_page - 5;
+            for (let i = start; i <= json_data_playlist.current_page; i++)
+            {
+                if (i>0){
+                    start = i;
+                    break;
+                }
+            }
+            end = start + 10;
+
+            if (end > json_data_playlist.last_page) end = json_data_playlist.last_page;
+
+            if (json_data_playlist.current_page > (json_data_playlist.last_page/2)) {
+                html += '<li><a href="#" class="ajax-load" data-type="playlist" data-api="' + api_2 + '?page=' + start + '">' + 1 + '</a></li>';
+                html += '<li class="disabled"><span>...</span></li>';
+                // start++;
+            }
+        }
+
+        for (var i = start; i <= end; i++) {
             if (i == json_data_playlist.current_page) {
                 html += '<li class="active"><a href="#">' + i + '</a></li>';
             } else {
                 html += '<li><a href="#" class="ajax-load" data-type="playlist" data-api="' + api_2 + '?page=' + i + '">' + i + '</a></li>';
             }
         }
+
+        if (json_data_playlist.current_page <= (json_data_playlist.last_page/2) ) {
+            html += '<li class="disabled"><span>...</span></li>';
+            html += '<li><a href="#" class="ajax-load" data-type="playlist" data-api="' + api_2 + '?page=' + json_data_playlist.last_page + '">' + json_data_playlist.last_page + '</a></li>';
+        }
+
         html += json_data_playlist.next_page_url ? '<li> <a href="#" class="ajax-load" data-type="playlist" data-api="' + json_data_playlist.next_page_url + '"> Sau </a> </li> ' : '';
         html += '</ul></nav>';
 

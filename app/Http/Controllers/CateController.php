@@ -88,8 +88,7 @@ class CateController extends Controller
 //        dd(Cache::get('user_playlists['.request()->getClientIp().']'));
         return view('cates.show', [
             'title' => 'Chủ đề ' . $cate->cate_title,
-            'mycss' => ['lightslider.css'],
-            'myjs' => ['lightslider.js', 'cates/show.js', 'playlists/show.js'],
+            'myjs' => ['cates/show.js', 'playlists/show.js'],
             'cate' => $cate,
         ]);
     }

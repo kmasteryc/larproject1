@@ -86,12 +86,9 @@ Route::group(['prefix' => 'bang-xep-hang'], function () {
             'song_or_playlist' => '[a-zA-Z\-]+'
         ]);
 });
-//@todo: Refactor this
-//Route::get('artist/ajax_search/{search?}', 'ArtistController@ajax_search');
 
 Route::group(['prefix' => 'api', 'middleware' => ['api','ajax']], function () {
 
-//    Route::get('song/ajax_search/{search?}', 'SongController@ajax_search');
     Route::get('increase_view_song/{song}', 'MashController@increase_view_song');
 
     Route::get('test', 'APIController@test');

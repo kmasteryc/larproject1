@@ -70,7 +70,8 @@ class SeedView extends Command
                     $new_view->viewable_type = 'App\Playlist';
                     $new_view->viewable_id = $playlist->id;
                     $new_view->view_count = rand(1,222);
-                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->endOfYear()->toDateTimeString());
+                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->toDateTimeString());
+//                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->endOfYear()->toDateTimeString());
 
                     $new_view->save();
                 }
@@ -97,7 +98,8 @@ class SeedView extends Command
                     $new_view->viewable_type = 'App\Song';
                     $new_view->viewable_id = $song->id;
                     $new_view->view_count = rand(1,241);
-                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->endOfYear()->toDateTimeString());
+                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->toDateTimeString());
+//                    $new_view->view_date = $faker->dateTimeThisYear(\Carbon\Carbon::now()->endOfYear()->toDateTimeString());
 
                     $new_view->save();
                 }

@@ -161,7 +161,7 @@ class PlaylistController extends Controller
         // Is number and > 0 => user playlist
         if ($playlist instanceof Playlist) {
 
-            SessionController::increase_view_playlist($playlist);
+            MashController::increase_view_playlist($playlist);
 
             $other_playlists = Playlist::where(
                 [

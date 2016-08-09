@@ -54,8 +54,13 @@ class MashController extends Controller
             request()->session()->put('last_time_playlist', $cur_ses);
 
             // Update to database
-            $playlist->playlist_view++;
-            $playlist->save();
+            $view = View::firstOrNew([
+                'viewable_type'=>Playlist::class,
+                'viewable_id'=>$playlist->id,
+                'view_date'=>date('Y-m-d'),
+            ]);
+            $view->view_count++;
+            $view->save();
         }
     }
 
