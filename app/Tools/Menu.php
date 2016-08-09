@@ -115,7 +115,6 @@ class Menu
 		}
 		return $this->_result;
 	}
-
 	public function call_menu_nav($cate_parent=0)
 	{
 //		dd($this->_data);
@@ -151,13 +150,14 @@ class Menu
 			foreach ($this->_data[$cate_parent] as $value) {
 
 				$id = $value['id'];
-				$this->_result .= '<li class="dropdown">';
+				$this->_result .= '<li class="dropdown dropdown-large">';
 				$this->_result .= '<a href="'.url('/chu-de/'.$value['cate_title_slug'].'.html').'" class="dropdown-toggle" data-toggle="dropdown" role="button">'.$value['cate_title'].'</a>';
-				$this->_result .= '<ul class="dropdown-menu">';
+				$this->_result .= '<ul class="dropdown-menu dropdown-menu-large row">';
 				foreach ($this->_data2 as $child)
 				{
 					if ($child['cate_parent'] == $id)
 					{
+                        $this->_result .= '';
 						$this->_result .= '<li><a href="'.url('/chu-de/'.$child['cate_title_slug'].'.html').'">'.$child['cate_title'].'</a></li>';
 					}
 				}

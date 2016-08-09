@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        dd(\App\Cate::all());
         $new_songs = Cache::store('file')->get('new_songs', function () {
             $new_songs = Song::orderBy('created_at', 'DESC')->take(3)->with('artists')->get();
             Cache::store('file')->put('new_songs', $new_songs, 86400);

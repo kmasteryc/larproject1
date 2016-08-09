@@ -70,7 +70,7 @@ class Playlist extends Model
 
     static function getUserPlaylist($include_guest)
     {
-        $playlists = Cache::get('user_playlists['.request()->getClientIp().']', function() use ($include_guest){
+        $playlists = Cache::get('user_playlists[' . request()->getClientIp() . ']', function () use ($include_guest) {
             $playlists = [];
             $user_playlists = [];
 
@@ -82,7 +82,7 @@ class Playlist extends Model
                 $temp_playlist = [
                     'id' => 0,
                     'playlist_title' => 'Danh sách tạm thời',
-//                'total_songs' => 0,
+                    'total_songs' => 0,
                     'playlist_songs_id' => ''
                 ];
                 session()->put('temp_playlist', $temp_playlist);
@@ -99,8 +99,8 @@ class Playlist extends Model
 
                 // Awesome Eager loading!
                 $user_playlists = Playlist::where('user_id', auth()->user()->id)
-                    ->select('playlist_title', 'playlists.id','playlist_title_slug')
-                    ->with('songs')
+                    ->select('playlist_title', 'playlists.id', 'playlist_title_slug')
+                    ->with('songs', 'views')
                     ->get();
 
                 foreach ($user_playlists as $user_playlist) {
@@ -113,7 +113,7 @@ class Playlist extends Model
                         'id' => $user_playlist->id,
                         'playlist_title' => $user_playlist->playlist_title,
                         'playlist_title_slug' => $user_playlist->playlist_title_slug,
-//                    'total_songs' => $user_playlist->total_songs,
+                        'total_songs' => $user_playlist->views()->sum('view_count'),
                         'playlist_songs_id' => $songs_id
                     ];
                     $playlists[] = $hehe;
@@ -122,7 +122,7 @@ class Playlist extends Model
             return $playlists;
         });
 
-        Cache::put('user_playlists['.request()->getClientIp().']', $playlists, 1000000);
+        Cache::put('user_playlists[' . request()->getClientIp() . ']', $playlists, 1000000);
         return $playlists;
     }
 }

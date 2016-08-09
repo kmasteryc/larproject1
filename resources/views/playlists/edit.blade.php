@@ -101,7 +101,8 @@
 
                         <div class="col-sm-9">
                             <button type="submit" class="btn btn-success">Sửa</button>
-                            <a href="{{url('playlist')}}" class='btn btn-danger'>Hủy</a>
+                            <a href="{{url('playlist')}}" class='btn btn-warning'>Hủy</a>
+                            <a href="{{url("playlist/$playlist->id/delete")}}" class='btn btn-danger'>Xóa</a>
                         </div>
                     </div>
 

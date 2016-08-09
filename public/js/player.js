@@ -2,7 +2,7 @@
  * Created by kmasteryc on 6/30/16.
  */
 $(document).ready(function () {
-    // Get JSON from server! or from old cookie
+    // Get JSON from server!
     var json_data = getJson();
     var totalIndex = json_data.length;
     var current_index = 0;
@@ -59,6 +59,7 @@ $(document).ready(function () {
         }
 
         $(".player-background").css('background-image', "url('" + song.song_img + "')");
+        // $(".player-background").css('background-size', "contain");
 
         player.trigger('stop');
         player.trigger('load');
@@ -232,6 +233,7 @@ $(document).ready(function () {
             async: false,
             success: function (response) {
                 json_data = response;
+                console.log(response);
 
                 // Both User playlist and temp playlist are empty!
                 if (json_data == '') {

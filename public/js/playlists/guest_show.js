@@ -40,7 +40,7 @@ $(document).ready(function () {
                 loadPlaylist();
                 $('#add-song-alert').removeClass('text-danger');
                 $('#add-song-alert').addClass('text-success');
-                $('#add-song-alert').html("Nhập bài hát thành công! <br />"+response.new+" bài hát mới, "+response.duplicate+' trùng');
+                $('#add-song-alert').html("Nhập bài hát thành công!");
             }
         });
         
@@ -54,18 +54,20 @@ $(document).ready(function () {
             method: 'GET',
             async: true,
             success: function (response) {
+
                 var html = '';
                 playlists = response;
                 // console.log(playlists);
                 save_me_too = playlists;
                 for (var index in playlists) {
-                    html += "<li class='list-group-item add-this-playlist-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
+                    html += "<li class='list-group-item clearfix'>";
+                    html += "<span class='pull-left add-this-playlist-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
                     html += playlists[index].playlist_title;
-                    html += " (" + playlists[index].total_songs + " bài)";
+                    // html += " (" + playlists[index].total_songs + " bài)";
+                    html += "</span>";
                     html += "<span class='pull-right'>";
-                    html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play'></i></a>";
-                    html += "<a href='" + base_url + "playlist/" + playlists[index].id + "/edit'><i class='fa fa-gear'></i></a>"
-                    html += "</span><div class='clearfix'></div>";
+                    html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play-circle'></i></a>";
+                    html += "</span>";
                     html += "</li>";
                 }
                 list_box.html(html);

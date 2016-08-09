@@ -18,22 +18,15 @@ class APIController extends Controller
     public function getSongsInPlaylist($playlist)
     {
         if (!($playlist instanceof Playlist)) {
-            $playlist = session()->get('temp_playlist');
-//            dd($playlist);
-            if (!$playlist['playlist_songs_id']) {
+
+            if (!session()->has('temp_playlist')) {
                 return '';
             }
+            $playlist = session()->get('temp_playlist');
             $song_ids = explode(',', $playlist['playlist_songs_id']);
             $songs = Song::whereIn('id', $song_ids);
         } else {
-//            $playlist = Playlist::find($playlist);
             $songs = $playlist->songs();
-//            $songs_in_playlist_cache_name = 'songs_in_playlist_'.$playlist->id;
-//            $songs = Cache::tags(['playlist'])->get($songs_in_playlist_cache_name,function() use($playlist, $songs_in_playlist_cache_name){
-//                $songs = $playlist->songs;
-//                Cache::tags(['playlist'])->put($songs_in_playlist_cache_name, $songs, 5000000);
-//                return $songs;
-//            });
         }
 
         // Use Eager loading !
@@ -225,63 +218,15 @@ class APIController extends Controller
 
         $temp_songs_id = explode(',', $temp_playlist['playlist_songs_id']);
 
-        $new = 0;
-        $duplicate = 0;
-        foreach ($temp_songs_id as $temp_song_id) {
-            if ($temp_song_id !== '') {
-                if (!$user_playlist->songs()->find($temp_song_id)) {
-                    $user_playlist->songs()->attach($temp_song_id);
-                    $new++;
-                    $user_playlist->save();
-                } else {
-                    $duplicate++;
-                }
+        $user_playlist->songs()->detach($temp_songs_id);
+        $user_playlist->songs()->attach($temp_songs_id);
 
-            }
-        }
-
-        return response()->json([
-            'duplicate' => $duplicate,
-            'new' => $new
-        ]);
+        return "";
     }
 
     public function resetTempPlaylist()
     {
-        session()->put('temp_playlist', '');
-    }
-
-    public function getAjaxHotSong2(Cate $cate)
-    {
-        $child_cates = Cate::where('cate_parent', $cate->id)
-            ->orWhere('id', $cate->id)
-            ->with([
-                'songs' => function ($q) {
-                    $q->with([
-                        'artists',
-                        'lyrics' => function ($qq) {
-                            $qq->where('lyric_has_time', 1)->orderBy('lyric_vote', 'DESC');
-                        }
-                    ]);
-                }])->get();
-
-        foreach ($child_cates as $child_cate) {
-            foreach ($child_cate->songs as $song) {
-                $img = $song->song_img !== '' ? $song->song_img : 'http://image.mp3.zdn.vn/cover3_artist/f/b/fb32b1dce0d8487b0916284892123f79_1459843495.jpg';
-                $res[] = [
-                    'song_id' => $song->id,
-                    'song_title' => $song->song_title,
-                    'song_mp3' => $song->song_mp3,
-                    'song_artist' => $song->artists->first()->artist_title,
-                    'song_img' => $img,
-                    'song_lyric' => $song->lyrics->first()['lyric_content']
-                ];
-            }
-        }
-
-//        return response()->json($res);
-//        dd($cate->songs());
-        return $cate->songs()->paginate(15);
+        session()->forget('temp_playlist');
     }
 
     public function getAjaxHotSong(Cate $cate)
@@ -316,7 +261,7 @@ class APIController extends Controller
         $playlists = Playlist::whereIn('cate_id', $child_cate_ids)
             ->with('artist');
 
-        return $playlists->paginate(6);
+        return $playlists->paginate(12);
     }
 
     public function search()

@@ -1,5 +1,4 @@
 <?php
-
 Route::auth();
 Route::get('logout', 'Auth\AuthController@getCustomLogout');
 Route::post('login', 'Auth\AuthController@postCustomLogin');
@@ -113,7 +112,8 @@ Route::group(['prefix' => 'api', 'middleware' => ['api','ajax']], function () {
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('nghe-si/{artist}', 'ArtistController@show');
 Route::get('bai-hat/{song}', 'SongController@show');
-Route::get('chu-de/{cate}', 'CateController@show');
+Route::get('chu-de/{cate}/bai-hat', 'CateController@showSong');
+Route::get('chu-de/{cate}/album', 'CateController@showAlbum');
 Route::get('cate/{cate}', 'CateController@show');
 Route::get('playlist/{playlist}', 'PlaylistController@show');
 Route::get('artist/{artist}', 'ArtistController@show');

@@ -194,6 +194,9 @@
   //    color: $gray-darker;
   //  }
   //}
+  .pull-left{
+    white-space: nowrap;
+  }
 
   .list-group-item-info{
     background-color: $brand-mycolor;
@@ -227,13 +230,14 @@
 
 @media (max-width: 480px) {
   #my-player{
-    .player-background{
-      display: none;
-    }
-    .player-mask{
-      //background: #6A7ACF;
-      background: $brand-mycolor;
-    }
+    //.player-background{
+    //  background-size: cover;
+    //  background-repeat: no-repeat;
+    //}
+    //.player-mask{
+    //  //background: #6A7ACF;
+    //  background: $brand-mycolor;
+    //}
   }
   .process-bar{
     display: none;
@@ -245,9 +249,9 @@
 
 @media (min-width: 481px) and (max-width: 767px) {
   #my-player{
-    .player-mask{
-      background: #6A7ACF;
-    }
+    //.player-mask{
+    //  background: #6A7ACF;
+    //}
     .lyric-bar{
       //padding-top: 6%;
       font-size: 18px;

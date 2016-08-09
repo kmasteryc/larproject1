@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Cate;
+use App\Playlist;
+use App\Song;
 use Gate;
 use App\Http\Requests\Cates\StoreRequest;
 use App\Http\Requests\Cates\UpdateRequest;
@@ -62,14 +64,8 @@ class CateController extends Controller
         return back();
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $this->validate($request, [
-            'cate_title' => 'unique:cates,cate_title|required',
-            'cate_chart' => 'integer|required',
-            'cate_parent' => 'integer|required'
-        ]);
-
         Cate::create([
             'cate_title' => $request->cate_title,
             'cate_title_slug' => str_slug($request->cate_title),
@@ -82,15 +78,46 @@ class CateController extends Controller
         return back();
     }
 
-    public function show(Cate $cate)
+    public function showSong(Cate $cate)
     {
+        $child_cates = Cate::where('cate_parent', $cate->id)
+            ->orWhere('id', $cate->id)
+            ->select('id')
+            ->get();
 
-//        dd(Cache::get('user_playlists['.request()->getClientIp().']'));
-        return view('cates.show', [
+        foreach ($child_cates as $child_cate) {
+            $child_cate_ids[] = $child_cate->id;
+        }
+
+        $songs = Song::whereIn('cate_id', $child_cate_ids)
+            ->with('artists','views')->paginate(20);
+
+        return view('cates.show_song', [
             'title' => 'Chủ đề ' . $cate->cate_title,
-            'myjs' => ['cates/show.js', 'playlists/show.js'],
+            'myjs' => ['playlists/show.js'],
+            'hot_songs' => $songs,
             'cate' => $cate,
         ]);
     }
 
+    public function showAlbum(Cate $cate, $type='album')
+    {
+        $child_cates = Cate::where('cate_parent', $cate->id)
+            ->orWhere('id', $cate->id)
+            ->select('id')
+            ->get();
+
+        foreach ($child_cates as $child_cate) {
+            $child_cate_ids[] = $child_cate->id;
+        }
+
+        $playlists = Playlist::whereIn('cate_id', $child_cate_ids)
+            ->with('artist')->paginate(18);
+
+        return view('cates.show_album', [
+            'title' => 'Chủ đề ' . $cate->cate_title,
+            'hot_playlists' => $playlists,
+            'cate' => $cate,
+        ]);
+    }
 }

@@ -19,6 +19,12 @@ thead{
     }
   }
 }
+b{
+  font-weight: 600;
+}
+h3{
+  margin-bottom: 20px;
+}
 .content{
   //padding: 5px;
 }
@@ -32,12 +38,9 @@ a:hover, a:visited, a:active{
   text-decoration: none;
 }
 
-//h4{
-//  margin-top: 0;
-//  color: black;
-//  font-size: 20px;
-//  text-transform: uppercase;
-//}
+.pull-left{
+  white-space: nowrap;
+}
 
 .block{
   display: block;

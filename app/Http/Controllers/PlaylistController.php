@@ -153,7 +153,7 @@ class PlaylistController extends Controller
         $playlist->delete();
 
         $request->session()->flash('succeeds', 'Your done!');
-        return back();
+        return redirect(url('playlist'));
     }
 
     public function show($playlist)
@@ -184,9 +184,10 @@ class PlaylistController extends Controller
             ]);
 
         } else { // Else it is temporary playlist
-
+            $other_playlists = Playlist::inRandomOrder()->take(5)->with('artist','views')->get();
             return view('playlists.guest_show', [
                 'myjs' => ['player.js', 'playlists/guest_show.js'],
+                'other_playlists' => $other_playlists,
                 'api_url_1' => url("api/get-songs-in-playlist/danh-sach-tam"),
                 'api_url_2' => url("api/get-nontime-lyrics/")
             ]);

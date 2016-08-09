@@ -4,7 +4,7 @@
     <ul class="dropdown-menu">
         @foreach($cates as $cate)
             @if($cate->cate_chart==1)
-                <li>
+                <li class="dropdown-header">
                     <a href="{!! url("bang-xep-hang/$cate->cate_title_slug.html") !!}">{!! $cate->cate_title !!}</a>
                 </li>
             @endif

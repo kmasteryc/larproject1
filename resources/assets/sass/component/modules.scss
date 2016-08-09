@@ -227,13 +227,13 @@
 
 .add-this-song-to-me, .add-this-playlist-to-me {
   cursor: pointer;
-  &:hover {
-    color: white;
-    background-color: $brand-mycolor;
-    a {
-      color: white;
-    }
-  }
+  //&:hover {
+  //  color: white;
+  //  background-color: $brand-mycolor;
+  //  a {
+  //    color: white;
+  //  }
+  //}
 }
 
 .reload {
