@@ -6087,6 +6087,9 @@ a:hover, a:visited, a:active {
   .thumbnail-row .thumbnail .caption h5 a {
     color: #222222; }
 
+.hide-me-pls {
+  display: none; }
+
 #my-player {
   position: relative;
   width: 100%;

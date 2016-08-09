@@ -186,7 +186,7 @@ class PlaylistController extends Controller
                     ['id', '<>', $playlist->id],
                     ['cate_id', $playlist->cate->cate_parent]
                 ])
-                ->inRandomOrder()->take(5)->with('artist')->get();
+                ->inRandomOrder()->take(5)->with('artist','views')->get();
 
             return view('playlists.show', [
                 'title' => $playlist->playlist_title,

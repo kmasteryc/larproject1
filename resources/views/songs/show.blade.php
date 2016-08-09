@@ -21,11 +21,13 @@
                 <div class="row" id="middle-info">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4>{!! $song->song_title !!} - <a href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a></h4>
+                            <h4>{!! $song->song_title !!} - <a
+                                        href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a>
+                            </h4>
                             @include('global_partials.like_btn')
                         </div>
                         <div class="pull-right">
-                            <h4><i class="fa fa-music fa-1x"> {!! $song->song_view !!}</i></h4>
+                            <h4><i class="fa fa-music fa-1x"> {!! $song->views()->sum('view_count') !!}</i></h4>
                         </div>
                     </div>
                 </div>
@@ -50,7 +52,9 @@
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">Bài hát {!! $song->song_title !!}</h4>
-                            <h5>Nghệ sĩ: <a href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a></h5>
+                            <h5>Nghệ sĩ: <a
+                                        href="{!! url("nghe-si/".$song->artists[0]->artist_title_slug.".html") !!}">{!! $song->artists[0]->artist_title !!}</a>
+                            </h5>
                             <h5>Phát hành: {!! $song->created_at->format('m/Y') !!}</h5>
                         </div>
                     </div>
@@ -61,7 +65,7 @@
                         <div class="playlist-detail">
                             <span class="playlist-info-hidden"
                                   style="display: none">{!! $song->artists[0]->artist_info !!} <a href="#"
-                                                                                            id="hide-playlist-info">Ẩn đi</a></span>
+                                                                                                  id="hide-playlist-info">Ẩn đi</a></span>
                             <span class="playlist-info">{!! str_limit($song->artists[0]->artist_info,200) !!}
 
                                 @if(strlen($song->artists[0]->artist_info)>=200)
@@ -87,7 +91,9 @@
                                         <div class="media-body">
                                             <h5 class="my-media-heading">{!! $other_song->song_title !!}</h5>
                                             <p>{!! $other_song->artists[0]->artist_title !!}</p>
-                                            <p><i class="fa fa-music"></i> {!! $other_song->song_view !!}</p>
+                                            <p>
+                                                <i class="fa fa-music"></i> {!! $other_song->views()->sum('view_count') !!}
+                                            </p>
                                         </div>
                                     </div>
                                 </a>

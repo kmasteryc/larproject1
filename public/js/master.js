@@ -7,6 +7,8 @@ $(document).ready(function() {
         $(".datatable").dynatable();
     }
 
+    $("#alert-modal").modal('show');
+
     // LAZY LOADING IMG
     $("img[data-src^='http']").each(function() {
         $(this).attr('src', $(this).data('src'));
@@ -25,37 +27,7 @@ $(document).ready(function() {
     });
 
     // SEARCH INPUT
-    // var api = base_url + 'api/search';
-
-    var options = {
-        url: base_url + 'json/search_data.json',
-        getValue: "title",
-        list: {
-            match: {
-                enabled: true
-            },
-            showAnimation: {
-                type: "fade", //normal|slide|fade
-                time: 300,
-                callback: function() {}
-            },
-            hideAnimation: {
-                type: "slide", //normal|slide|fade
-                time: 300,
-                callback: function() {}
-            }
-        },
-        adjustWidth: false,
-        template: {
-            type: "links",
-            fields: {
-                link: "link"
-            }
-        },
-        theme: "blue-light"
-    };
-
-    $(".autocomplete").easyAutocomplete(options);
+    getAutocomplete(".autocomplete",base_url + 'json/search_data.json','link');
 });
 
 function showAjaxIcon() {
@@ -71,4 +43,44 @@ function renderArtists(artists) {
         }
     }
     return html;
+}
+
+function getAutocomplete(element, json, link_return){
+    var options = {
+        url: json,
+        getValue: function(item){
+            return item.title+' <span class="hide-me-pls">'+item.title_eng+"</span>";
+        },
+        list: {
+            match: {
+                enabled: true
+            },
+            onSelectItemEvent: function() {
+                var title = $(element).getSelectedItemData().title;
+                $(element).val(title);
+            },
+            showAnimation: {
+                type: "fade", //normal|slide|fade
+                time: 300,
+                callback: function () {
+                }
+            },
+            hideAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 300,
+                callback: function () {
+                }
+            }
+        },
+        adjustWidth: false,
+        template: {
+            type: "links",
+            fields: {
+                link: link_return
+            }
+        },
+        theme: "blue-light"
+    };
+
+    $(element).easyAutocomplete(options);
 }

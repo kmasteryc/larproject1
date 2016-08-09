@@ -18,9 +18,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\EventSongChange' => [
             'App\Listeners\UpdateSongCache',
+            'App\Listeners\CallGenerateSearchData',
         ],
         'App\Events\EventPlaylistChange' => [
             'App\Listeners\UpdatePlaylistCache',
+            'App\Listeners\CallGenerateSearchData',
         ],
         'App\Events\EventUserPlaylistChange' => [
             'App\Listeners\UpdateUserPlaylistCache',

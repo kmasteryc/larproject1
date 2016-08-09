@@ -53,10 +53,13 @@ class UserController extends Controller
     public function update(UpdateRequest $request, User $user)
     {
         if ($request->has('password')){
-            $request->password = Hash::make($request->password);
+            $user->password = Hash::make($request->password);
         }
+        $user->name = $request->name;
+        $user->level = $request->level;
+        $user->email = $request->email;
+        $user->save();
 
-        $user->update($request->all());
         $request->session()->flash('succeeds', 'Your done!');
         return back();
     }

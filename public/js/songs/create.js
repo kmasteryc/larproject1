@@ -6,8 +6,9 @@ $(document).ready(function () {
         search = $(this).val();
 
         var request = $.ajax({
-            'url': base_url + 'artist/ajax_search/' + search,
-            'method': 'GET'
+            'url': base_url + 'api/search',
+            'data' : 'type=artist&search='+search,
+            'method': 'POST'
         });
 
         request.done(function (response) {
@@ -28,8 +29,9 @@ $(document).ready(function () {
     });
 })
 
-$(document).on('click', '.a_choose_artist', function () {
+$(document).on('click', '.a_choose_artist', function (event) {
 
+    event.preventDefault();
     var artist_choose = $(this).data('id');
     var cur_artists = $("#song_artists").val();
     //if (cur_artists != '') {
@@ -50,7 +52,9 @@ $(document).on('click', '.a_choose_artist', function () {
 
     $(".popup").hide(500);
 });
-$(document).on('click', '.a_remove_artist', function () {
+$(document).on('click', '.a_remove_artist', function (event) {
+    event.preventDefault();
+    
     var artist_choose = $(this).data('id');
     var cur_artists = $("#song_artists").val();
     var arr_cur_artists = cur_artists.split(',');

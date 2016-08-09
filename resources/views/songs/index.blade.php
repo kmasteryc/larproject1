@@ -22,6 +22,7 @@
                             <th>Nghệ sĩ</th>
                             <th>Thể loại</th>
                             <th>Lượt nghe</th>
+                            <th>Lời bài hát</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,6 +45,15 @@
                                     <a href="{!! url("cate/".$song->cate->id."/edit") !!}">{{$song->cate->cate_title}}</a>
                                 </td>
                                 <td>{{$song->song_view}}</td>
+                                <td>
+                                    @if(count($song->lyrics) > 0)
+                                        @foreach($song->lyrics as $lyric)
+                                            <a href="{!! url("song/lyric/$lyric->id") !!}">Lyric {!! $lyric->id !!}</a>
+                                        @endforeach
+                                    @else
+                                        <a href="{!! url("song/$song->id/lyric/create") !!}"><i class="fa fa-plus-square"></i></a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

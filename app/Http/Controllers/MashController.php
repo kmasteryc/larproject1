@@ -7,19 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\View;
 use App\Song;
 
-class SessionController extends Controller
+class MashController extends Controller
 {
-    public function index()
-    {
-        echo 'Session controller!';
-    }
-    public function set(Request $request, $k, $v)
-    {
-        $request->session()->put($k,$v);
-        echo "Set $k to ".$request->session()->get($k);
-    }
     function addSongPlaylist($song_id,$song)
     {
         $temp_playlist = session()->get('temp_playlist');
@@ -39,8 +31,13 @@ class SessionController extends Controller
             request()->session()->put('last_time_song', $cur_ses);
 
             // Update to database
-            $song->song_view++;
-            $song->save();
+            $view = View::firstOrNew([
+                'viewable_type'=>Song::class,
+                'viewable_id'=>$song->id,
+                'view_date'=>date('Y-m-d'),
+            ]);
+            $view->view_count++;
+            $view->save();
         }
     }
     static function increase_view_playlist(Playlist $playlist){

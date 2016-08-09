@@ -10,7 +10,6 @@ use GuzzleHttp;
 class Artist extends Model
 {
     protected $fillable = ['artist_title','artist_name','artist_info','artist_birthday','artist_gender','artist_nation'];
-    protected $appends = ['test'];
 	public $timestamps = false;
 
 	public function getArtistGenderAttribute($value)
@@ -30,16 +29,14 @@ class Artist extends Model
         return $value;
     }
 
-    public function getArtistBirthdayAttribute($value)
+    public function getArtistBirthdayFormatedAttribute()
     {
-        $dt = Carbon::createFromFormat('Y-m-d',$value);
+        $dt = Carbon::createFromFormat('Y-m-d',$this->attributes['artist_birthday']);
         return $dt->format('d/m/Y');
     }
-
-    public function getTestAttribute()
+    public function getArtistBirthdaydAttribute($value)
     {
-        return 123;
-        $dt = Carbon::createFromFormat('Y-m-d',$this->aritst_birthday);
+        $dt = Carbon::createFromFormat('Y-m-d',$value);
         return $dt->format('m/d/Y');
     }
 

@@ -2,20 +2,86 @@
 
 namespace App\Http\Controllers;
 
-use App\Artist;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
-use App\Song;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+
+use App\Artist;
+use App\Lyric;
+use App\Song;
+use App\View;
+
 use App\Http\Requests\Songs\StoreRequest;
 use App\Http\Requests\Songs\UpdateRequest;
 
+/**
+ * Class SongController
+ * @package App\Http\Controllers
+ */
 class SongController extends Controller
 {
+    /**
+     * @param Lyric $lyric
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editLyric(Lyric $lyric){
+        return view('songs.edit_lyric',[
+            'song' => $lyric->song,
+            'lyric' => $lyric,
+            'cp' => true
+        ]);
+    }
+
+    /**
+     * @param Lyric $lyric
+     * @param Request $request
+     * @return mixed
+     */
+    public function updateLyric(Lyric $lyric, Request $request)
+    {
+        $lyric->lyric_content = $request->lyric_content;
+        $lyric->lyric_has_time = $request->lyric_has_time == true ? 1 : 0;
+        $lyric->save();
+        return back()->withSucceeds("Edit complete!");
+    }
+
+    /**
+     * @param Song $song
+     * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function createLyric(Song $song){
+        if (count($song->lyric) > 0){
+            return redirect(url('song/lyric/'.$song->lyric->id))->withErrors("This song already has lyric!");
+        }
+        return view('songs.create_lyric',[
+            'song' => $song,
+            'cp' => true
+        ]);
+    }
+
+    /**
+     * @param Song $song
+     * @param Request $request
+     * @return mixed
+     */
+    public function storeLyric(Song $song, Request $request){
+        $lyric = new Lyric;
+        $lyric->lyric_content = $request->lyric_content;
+        $lyric->lyric_has_time = $request->lyric_has_time == true ? 1 : 0;
+        $lyric->user_id = $request->user()->id;
+        $lyric->song_id = $song->id;
+        $song->lyric()->save($lyric);
+        return redirect(url('song/lyric/'.$lyric->id))->withSucceeds("Add lyric complete!");
+    }
+
+    /**
+     * @param Song $song
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Song $song)
     {
+        $song->load('artists','views');
+
         $other_songs = Song::where(
             [
                 ['cate_id', $song->cate->id],
@@ -25,8 +91,8 @@ class SongController extends Controller
                 ['id', '<>', $song->id],
                 ['cate_id',$song->cate->cate_parent ]
             ])
-            ->inRandomOrder()->take(5)->with('artists')->get();
-        
+            ->inRandomOrder()->take(5)->with('artists','views')->get();
+
         return view('songs.show', [
             'title' => $song->song_title,
             'myjs' => ['player.js', 'songs/show.js'],
@@ -38,9 +104,12 @@ class SongController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $songs = Song::with('artists', 'cate')->orderBy('song_title')->paginate(10);
+        $songs = Song::with('artists', 'cate')->orderBy('id','DESC')->paginate(10);
         return view('songs.index', [
             'myjs' => ['jquery.dynatable.js','songs/index.js'],
             'mycss' => ['jquery.dynatable.css'],
@@ -49,6 +118,9 @@ class SongController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('songs.create', [
@@ -57,6 +129,10 @@ class SongController extends Controller
         ]);
     }
 
+    /**
+     * @param StoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreRequest $request)
     {
         // Move upload file to appriciate location
@@ -65,8 +141,6 @@ class SongController extends Controller
 
         // After uploading was done. Do insert info to DB
         $link = asset('uploads/mp3/' . $upload_mp3->getClientOriginalName());
-
-        // Initialize new Song object to save
 
 
         // Process song_artists
@@ -84,7 +158,6 @@ class SongController extends Controller
         }
         $rand = substr(md5(rand(1, 999)), 0, 5);
 
-
         $song = new Song;
         $song->song_title = $request->song_title;
         $song->song_title_slug = str_slug($song->song_title) . '-' . $artists_str . '-' . $rand;
@@ -92,6 +165,17 @@ class SongController extends Controller
         $song->song_mp3 = $link;
         $song->cate_id = $request->cate_id;
         $song->save();
+
+        // Process lyric
+        if ($request->lyric_content != '')
+        {
+            $lyric = new Lyric;
+            $lyric->lyric_content = $request->lyric_content;
+            $lyric->lyric_has_time = $request->lyric_has_time == true ? 1 : 0;
+            $lyric->user_id = $request->user()->id;
+            $lyric->song_id = $song->id;
+            $song->lyric()->save($lyric);
+        }
 
         /*Here i have 2 opts:
         first: $song->artists()->attach($artist)
@@ -104,6 +188,10 @@ class SongController extends Controller
         return redirect('song')->with('succeeds', 'Tao bai hat thanh cong!');
     }
 
+    /**
+     * @param Song $song
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Song $song)
     {
         return view('songs.edit', [
@@ -113,6 +201,11 @@ class SongController extends Controller
         ]);
     }
 
+    /**
+     * @param UpdateRequest $request
+     * @param Song $song
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRequest $request, Song $song)
     {
         // If upload new file
@@ -168,6 +261,12 @@ class SongController extends Controller
         return back()->with('succeeds', 'Cap nhat bai hat thanh cong!');
     }
 
+    /**
+     * @param Song $song
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function delete(Song $song, Request $request)
     {
         if (!Gate::check('is-admin')) abort(404);
@@ -178,6 +277,10 @@ class SongController extends Controller
         return back();
     }
 
+    /**
+     * @param string $search
+     * @return mixed
+     */
     public function ajax_search($search = '')
     {
         $result = Song::where('song_title', 'like', '%' . $search . '%')->get();

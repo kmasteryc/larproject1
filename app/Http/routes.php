@@ -14,11 +14,6 @@ Route::group(['prefix' => 'playlist','middleware'=>'auth'], function () {
     Route::post('store', 'PlaylistController@store');
 });
 
-Route::group(['prefix' => 'session'], function () {
-    Route::get('set/{k}/{v}', 'SessionController@set');
-    Route::get('get/{k}', 'SessionController@get');
-});
-
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::group(['prefix'=>'nation'], function(){
         Route::get('/', 'NationController@index');
@@ -52,6 +47,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('store', 'UserController@store');
     });
     Route::group(['prefix' => 'song'], function () {
+        Route::get('lyric/{lyric}', 'SongController@editLyric');
+        Route::put('lyric/{lyric}', 'SongController@updateLyric');
+        Route::get('{song}/lyric/create', 'SongController@createLyric');
+        Route::post('{song}/lyric', 'SongController@storeLyric');
         Route::get('{song}/edit', 'SongController@edit');
         Route::get('/', 'SongController@index');
         Route::get('create', 'SongController@create');
@@ -87,11 +86,13 @@ Route::group(['prefix' => 'bang-xep-hang'], function () {
             'song_or_playlist' => '[a-zA-Z\-]+'
         ]);
 });
+//@todo: Refactor this
+//Route::get('artist/ajax_search/{search?}', 'ArtistController@ajax_search');
 
 Route::group(['prefix' => 'api', 'middleware' => ['api','ajax']], function () {
-    Route::get('artist/ajax_search/{search?}', 'ArtistController@ajax_search');
-    Route::get('song/ajax_search/{search?}', 'SongController@ajax_search');
-    Route::get('song/{song}/increase_view', 'SessionController@increase_view_song');
+
+//    Route::get('song/ajax_search/{search?}', 'SongController@ajax_search');
+    Route::get('increase_view_song/{song}', 'MashController@increase_view_song');
 
     Route::get('test', 'APIController@test');
     Route::get('get-songs-in-cate/{cate}', 'APIController@getSongsInCate');

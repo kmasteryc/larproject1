@@ -46,7 +46,7 @@ $(document).ready(function () {
         reset();
 
         $("#song_source").attr('src', song.song_mp3);
-        $.get(base_url + 'song/' + current_song.song_id + '/increase_view');
+        $.get(base_url + 'api/increase_view_song/'+current_song.song_id);
 
         $(".lyric-1").html(song.song_title);
         $(".lyric-2").html(song.song_artist);
@@ -89,7 +89,6 @@ $(document).ready(function () {
     // Handle after loading fully audio
     function proccessSong() {
         player.bind('loadedmetadata', function () {
-            // Increase view song
 
             s_duration = player.prop('duration');
             // Show duration

@@ -14,7 +14,7 @@
                     </a>
                     <div class="media-body media-bottom">
                         <h4 class="media-heading">{!! $artist->artist_title !!} ({!! $artist->artist_name !!})</h4>
-                        Ngày sinh: {!! $artist->artist_birthday !!} <br/>
+                        Ngày sinh: {!! $artist->artist_birthday_formated !!} <br/>
                         Quốc gia: {!! $artist->nation->nation_title !!}
                     </div>
                 </div>

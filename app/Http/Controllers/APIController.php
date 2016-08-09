@@ -408,8 +408,6 @@ class APIController extends Controller
     public function getSongsByArtist(Artist $artist)
     {
         return $artist->songs()->with('artists')->paginate(10);
-//        $songs = $artist->songs;
-//        return response()->json($songs);
     }
 
     public function getAlbumsByArtist(Artist $artist)

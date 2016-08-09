@@ -13,7 +13,7 @@
                 </div>
                 {{--Bang: nghe si--}}
                 <div class="table-responsive">
-                    <table class="table table-bordered datatable">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>

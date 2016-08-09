@@ -51,6 +51,20 @@
                             <input type="file" class="form-control" name="uploaded_mp3">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Lời bài hát</label>
+                        <div class="col-sm-9">
+                            <textarea name="lyric_content" rows="10" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <input type="checkbox" name="lyric_has_time"> Lời bài hát có thời gian?
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-sm-3 control-label"></label>
 

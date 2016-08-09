@@ -27,7 +27,7 @@
                             @include("global_partials.like_btn")
                         </div>
                         <div class="pull-right">
-                            <h4><i class="fa fa-music fa-1x"> {!! $playlist->playlist_view !!}</i></h4>
+                            <h4><i class="fa fa-music fa-1x"> {!! $playlist->views()->sum('view_count') !!}</i></h4>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                                         <div class="media-body">
                                             <h5 class="my-media-heading">{!! $other_playlist->playlist_title !!}</h5>
                                             <p>{!! $other_playlist->artist->artist_title !!}</p>
-                                            <p><i class="fa fa-music"></i> {!! $other_playlist->playlist_view !!}</p>
+                                            <p><i class="fa fa-music"></i> {!! $other_playlist->views()->sum('view_count') !!}</p>
                                         </div>
                                     </div>
                                 </a>

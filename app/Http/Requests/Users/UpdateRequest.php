@@ -16,7 +16,7 @@ class UpdateRequest extends Request{
     public function rules(){
         $id = $this->segment(2);
         return [
-            'password' => 'min_length[5]',
+            'password' => 'min:5',
             'email' => 'required|email|unique:users,email,'.$id,
             'level' => 'required|integer'
         ];
