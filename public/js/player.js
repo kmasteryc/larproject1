@@ -3,10 +3,10 @@
  */
 $(document).ready(function () {
     // Get JSON from server!
-    var json_data = getJson();
-    var totalIndex = json_data.length;
+    var json_data = '';
+    var totalIndex = 0;
     var current_index = 0;
-    var current_song = json_data[current_index];
+    var current_song = 0;
     var player = $('#player');
     var lyric = '';
     var s_duration = '';
@@ -20,15 +20,10 @@ $(document).ready(function () {
     var myInterval = '';
     var old_lyr = '';
     var cur_lyr = '';
-    // 1- Song; 2- Playlist; 3-Radio
-    // var mode = 1;
+
     var mode = player_config.mode;
     var temp_playlist = player_config.temp_playlist ? true : false;
 
-    // Set song for first time
-    if (empty_playlist === false) {
-        setSong(current_song);
-    }
     switch (mode) {
         case 1: // Single song player
             $(".fa-step-backward").hide();
@@ -36,15 +31,17 @@ $(document).ready(function () {
             break;
         case 2: // Playlist
             setPlayType(player_type);
-            showList();
+            // showList();
             break;
         case 3: // Radio
             break;
     }
 
-    function setSong(song) {
-        reset();
+    getJson();
 
+    function setSong(json_data) {
+        reset();
+        var song = json_data[current_index];
         $("#song_source").attr('src', song.song_mp3);
         $.get(base_url + 'api/increase_view_song/'+current_song.song_id);
 
@@ -74,8 +71,123 @@ $(document).ready(function () {
         }
 
         showNontimeLyrics(song.song_id);
-        proccessSong();
+        proccessSong(json_data);
 
+    }
+
+    function getJson() {
+
+        var json_data;
+        $.ajax({
+            url: player_config.api_url_1,
+            method: 'GET',
+            // async: false,
+            success: function (response) {
+                json_data = response;
+                current_index = 0;
+                current_song = json_data[current_index];
+                totalIndex = json_data.length;
+                setSong(json_data);
+                showList(json_data);
+                // Both User playlist and temp playlist are empty!
+                if (json_data == '') {
+                    empty_playlist = true;
+                    $(".control-bar").hide();
+                    $(".seek-bar").hide();
+                    $("#buildin-player").html('Danh sách trống - Vui lòng thêm bài hát');
+                    $(".lyric-1").html('Danh sách trống');
+                    $(".lyric-2").html('Vui lòng thêm bài hát');
+                }
+
+                $(document).on('click', ".changesong", function (event) {
+                    event.preventDefault();
+                    current_index = $(this).data('index');
+                    // console.log(json_data);
+                    setSong(json_data);
+                    showList(json_data);
+                });
+
+                // Process seeking
+                $('#seek').click(function (e) {
+                    reset();
+                    // Set cursor
+                    var player_width = $("#my-player").innerWidth();
+                    var click_X = e.pageX - $("#my-player").offset().left;
+                    var click_percent = click_X * 100 / player_width;
+                    $('#seek #seek-cursor').css('left', click_percent + '%');
+
+                    // Set player time
+                    player.prop('currentTime', click_percent * s_duration / 100);
+                });
+
+                // Process play-pause
+                $(document).on('click', ".fa-play", function () {
+                    player.trigger('play');
+                    var play_pause_icon = $(this);
+                    $(this).removeClass('fa-play');
+                    $(this).addClass('fa-pause');
+                    // $(this).parent().prepend('<i class="fa fa-2x fa-pause"></i>');
+                    // $(this).remove();
+                });
+
+                $(document).on('click', ".fa-pause", function () {
+                    player.trigger('pause');
+                    $(this).removeClass('fa-pause');
+                    $(this).addClass('fa-play');
+                });
+
+                // Process playtype click
+                $(document).on('click', ".fa-thumb-tack", function () {
+                    setPlayType(3, json_data);
+                });
+                $(document).on('click', ".fa-refresh", function () {
+                    setPlayType(2, json_data);
+                });
+                $(document).on('click', ".fa-random", function () {
+                    setPlayType(1, json_data);
+                });
+
+                // Process next click
+                $(document).on('click', ".fa-step-forward", function (event) {
+                    event.preventDefault();
+                    current_index = nextIndex();
+                    setSong(json_data);
+                    showList(json_data);
+                });
+                // Process prev click
+                $(document).on('click', ".fa-step-backward", function (event) {
+                    event.preventDefault();
+                    current_index = prevIndex();
+                    setSong(json_data);
+                    showList(json_data);
+                });
+
+                // Process volume
+                $("#volume").bind('change', function () {
+                    volume = $(this).val() / 100;
+                    player.prop('volume', volume);
+
+                    var volume_icon = $('.volume');
+                    if (volume < 0.5) {
+                        volume_icon.removeClass('fa-volume-up');
+                        volume_icon.removeClass('fa-volume-off');
+                        volume_icon.addClass('fa-volume-down');
+                    }
+                    if (volume > 0.5) {
+                        volume_icon.removeClass('fa-volume-down');
+                        volume_icon.removeClass('fa-volume-off');
+                        volume_icon.addClass('fa-volume-up');
+                    }
+                    if (volume == 0) {
+                        volume_icon.removeClass('fa-volume-up');
+                        volume_icon.removeClass('fa-volume-down');
+                        volume_icon.addClass('fa-volume-off');
+                    }
+                });
+
+            }
+        });
+        return json_data;
     }
 
     function reset() {
@@ -88,7 +200,7 @@ $(document).ready(function () {
     }
 
     // Handle after loading fully audio
-    function proccessSong() {
+    function proccessSong(json_data) {
         player.bind('loadedmetadata', function () {
 
             s_duration = player.prop('duration');
@@ -96,9 +208,8 @@ $(document).ready(function () {
             // Call toMinutes function for converting second to minutes
             var duration = toMinutes(s_duration);
             $(".duration").html(duration);
+
             // Update current time
-
-
             myInterval = setInterval(function () {
                 if (player.prop('paused') === false) {
                     var s_currentTime = player.prop('currentTime');
@@ -140,8 +251,8 @@ $(document).ready(function () {
                     // Finish playing -> next song
                     if (player.prop('ended') === true) {
                         current_index = nextIndex();
-                        setSong(json_data[current_index]);
-                        if (mode == 2) showList();
+                        setSong(json_data);
+                        if (mode == 2) showList(json_data);
                     }
                 }
             }, 50);
@@ -224,41 +335,14 @@ $(document).ready(function () {
         return result;
     }
 
-    function getJson() {
-
-        var json_data;
-        $.ajax({
-            url: player_config.api_url_1,
-            method: 'GET',
-            async: false,
-            success: function (response) {
-                json_data = response;
-                console.log(response);
-
-                // Both User playlist and temp playlist are empty!
-                if (json_data == '') {
-                    empty_playlist = true;
-                    $(".control-bar").hide();
-                    $(".seek-bar").hide();
-                    $("#buildin-player").html('Danh sách trống - Vui lòng thêm bài hát');
-                    $(".lyric-1").html('Danh sách trống');
-                    $(".lyric-2").html('Vui lòng thêm bài hát');
-                }
-            }
-        });
-        return json_data;
-    }
-
-    function showList(noactive) {
+    function showList(json_data) {
         if (mode != 2) {
             return;
         }
         $("#player-playlist").html('');
         var html = '';
         for (x = 0; x < json_data.length; x++) {
-            if (noactive != 1) {
-                var active = current_index == x ? 'list-group-item-info' : '';
-            }
+            var active = current_index == x ? 'list-group-item-info' : '';
             html += '<li class="list-group-item ' + active + '">';
             html += '<div class="clearfix"><span class="pull-left">';
             html += (x + 1) + '. ';
@@ -277,6 +361,7 @@ $(document).ready(function () {
             html += '</div>';
             html += '</li>';
         }
+        // console.log(html);
         $("#player-playlist").html(html);
         $("#player-playlist").show();
     }
@@ -310,7 +395,7 @@ $(document).ready(function () {
         return json_data;
     }
 
-    function setPlayType(type) {
+    function setPlayType(type, json_data) {
         player_type = type;
         var class_icon, play_type_text;
         switch (type) {
@@ -328,7 +413,7 @@ $(document).ready(function () {
                 class_icon = 'fa fa-random';
                 play_type_text = ' Ngẫu nhiên';
                 json_data = shuffleArr(json_data);
-                showList(1);
+                showList(json_data);
                 player.prop('loop', false);
                 break;
         }
@@ -375,90 +460,6 @@ $(document).ready(function () {
 
         return array;
     }
-
-    // Process seeking
-    $('#seek').click(function (e) {
-        reset();
-        // Set cursor
-        var player_width = $("#my-player").innerWidth();
-        var click_X = e.pageX - $("#my-player").offset().left;
-        var click_percent = click_X * 100 / player_width;
-        $('#seek #seek-cursor').css('left', click_percent + '%');
-
-        // Set player time
-        player.prop('currentTime', click_percent * s_duration / 100);
-    });
-
-    // Process play-pause
-    $(document).on('click', ".fa-play", function () {
-        player.trigger('play');
-        var play_pause_icon = $(this);
-        $(this).removeClass('fa-play');
-        $(this).addClass('fa-pause');
-        // $(this).parent().prepend('<i class="fa fa-2x fa-pause"></i>');
-        // $(this).remove();
-    });
-
-    $(document).on('click', ".fa-pause", function () {
-        player.trigger('pause');
-        $(this).removeClass('fa-pause');
-        $(this).addClass('fa-play');
-    });
-
-    // Process playtype click
-    $(document).on('click', ".fa-thumb-tack", function () {
-        setPlayType(3);
-    });
-    $(document).on('click', ".fa-refresh", function () {
-        setPlayType(2);
-    });
-    $(document).on('click', ".fa-random", function () {
-        setPlayType(1);
-    });
-
-    // Process next click
-    $(document).on('click', ".fa-step-forward", function (event) {
-        event.preventDefault();
-        setSong(json_data[nextIndex()]);
-        showList();
-    });
-    // Process prev click
-    $(document).on('click', ".fa-step-backward", function (event) {
-        event.preventDefault();
-        setSong(json_data[prevIndex()]);
-        showList();
-    });
-
-    // Process volume
-    $("#volume").bind('change', function () {
-        volume = $(this).val() / 100;
-        player.prop('volume', volume);
-
-        var volume_icon = $('.volume');
-        if (volume < 0.5) {
-            volume_icon.removeClass('fa-volume-up');
-            volume_icon.removeClass('fa-volume-off');
-            volume_icon.addClass('fa-volume-down');
-        }
-        if (volume > 0.5) {
-            volume_icon.removeClass('fa-volume-down');
-            volume_icon.removeClass('fa-volume-off');
-            volume_icon.addClass('fa-volume-up');
-        }
-        if (volume == 0) {
-            volume_icon.removeClass('fa-volume-up');
-            volume_icon.removeClass('fa-volume-down');
-            volume_icon.addClass('fa-volume-off');
-        }
-    });
-
-    // Change song
-    $(document).on('click', ".changesong", function (event) {
-        event.preventDefault();
-        current_index = $(this).data('index');
-        setSong(json_data[current_index]);
-        showList();
-    });
 
     $(document).on('click', "#hide-show-lyric-btn", function (event) {
         event.preventDefault();
