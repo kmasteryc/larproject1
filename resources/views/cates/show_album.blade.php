@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="row">
         <div class="col-md-12">
 
             <h3><i class="fa fa-list"></i> Album {!! $cate->cate_title !!}</h3>
@@ -27,7 +26,5 @@
             <div class="row">
                 <div style="text-align: center" id="hot-album-pageinate">{!! $hot_playlists->links() !!}</div>
             </div>
-
         </div>
-    </div>
 @stop
