@@ -61,11 +61,10 @@ $(document).ready(function () {
         player.trigger('stop');
         player.trigger('load');
         player.prop('volume', volume);
-        player.trigger('play');
+        player.on('canplay', function(){
+            player.trigger('play');
+        });
 
-        // var play_pause = $(".fa-play");
-        // play_pause.removeClass("fa-play");
-        // play_pause.addClass("fa-pause");
 
         if (typeof myInterval != 'undefined') {
             clearInterval(myInterval);
@@ -469,7 +468,7 @@ $(document).ready(function () {
 
     player.on('play', function () {
         // console.log("Pause event!");
-        alert("Trigger play!");
+        // alert("Trigger play!");
         play_pause.removeClass('fa-play');
         play_pause.addClass('fa-pause');
     });

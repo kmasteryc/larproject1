@@ -1,5 +1,5 @@
 <div id="buildin-player">
-    <audio controls="controls" id="player" autoplay>
+    <audio controls="controls" id="player">
         <source id="song_source" src="">
     </audio>
 </div>
