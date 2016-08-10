@@ -17,7 +17,6 @@
                         @include('standalones.player')
                     </div>
                 </div>
-                @include("global_partials.like_btn")
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="list-group" id="player-playlist"></ul>
