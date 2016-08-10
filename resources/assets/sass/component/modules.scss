@@ -328,7 +328,11 @@
     margin: 0 0 10px 0;
   }
   .caption {
+    overflow: hidden;
+    white-space: nowrap;
     a {
+      overflow: hidden;
+      white-space: nowrap;
       color: $gray;
     }
     h5 {

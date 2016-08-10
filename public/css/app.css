@@ -6041,13 +6041,18 @@ a:hover, a:visited, a:active {
   margin-bottom: 15px; }
   .partial-hot-song h3 {
     margin: 0 0 10px 0; }
-  .partial-hot-song .caption a {
-    color: #555555; }
-  .partial-hot-song .caption h5 {
+  .partial-hot-song .caption {
     overflow: hidden;
     white-space: nowrap; }
-    .partial-hot-song .caption h5 a {
-      color: #222222; }
+    .partial-hot-song .caption a {
+      overflow: hidden;
+      white-space: nowrap;
+      color: #555555; }
+    .partial-hot-song .caption h5 {
+      overflow: hidden;
+      white-space: nowrap; }
+      .partial-hot-song .caption h5 a {
+        color: #222222; }
 
 #hot-song .pull-left {
   margin-right: 5px; }
