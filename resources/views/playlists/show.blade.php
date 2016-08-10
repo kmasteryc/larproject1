@@ -19,16 +19,32 @@
                 </div>
 
                 <div class="row" id="middle-info">
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <h4>Album {!! $playlist->playlist_title !!} -
-                                <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a>
-                            </h4>
-                            @include("global_partials.like_btn")
+                    <div class="col-md-12">
+
+                        <div class="row">
+                            <div class="media">
+                                <div class="media-body" href="#">
+                                    <h4>Album {!! $playlist->playlist_title !!} -
+                                        <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a>
+                                    </h4>
+                                </div>
+                                <div class="media-right media-middle">
+                                        <i class="fa fa-music fa-1x"></i> {!! $playlist->views()->sum('view_count') !!}
+                                </div>
+                            </div>
                         </div>
-                        <div class="pull-right">
-                            <h4><i class="fa fa-music fa-1x"> {!! $playlist->views()->sum('view_count') !!}</i></h4>
-                        </div>
+
+
+                        {{--<div class="clearfix">--}}
+                        {{--<div class="pull-left">--}}
+                        {{----}}
+                        {{--</div>--}}
+                        {{--<div class="pull-right">--}}
+                        {{----}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+
+
                     </div>
                 </div>
 
@@ -57,16 +73,20 @@
             </div>
             <div class="col-md-4">
                 <div class="row" id="playlist-summary">
-                    <div class="media">
-                        <a class="media-left" href="#">
-                            <img src="{!! $playlist->playlist_img !!}" height="100px" width="100px">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">{!! $playlist->playlist_title !!}</h4>
-                            <h5>Nghệ sĩ: <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a></h5>
-                            <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
-                            {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
-                            {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
+                    <div class="col-md-12">
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="{!! $playlist->playlist_img !!}" height="100px" width="100px">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{!! $playlist->playlist_title !!}</h4>
+                                <h5>Nghệ sĩ: <a
+                                            href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a>
+                                </h5>
+                                <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
+                                {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
+                                {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,7 +122,9 @@
                                         <div class="media-body">
                                             <h5 class="my-media-heading">{!! $other_playlist->playlist_title !!}</h5>
                                             <p>{!! $other_playlist->artist->artist_title !!}</p>
-                                            <p><i class="fa fa-music"></i> {!! $other_playlist->views()->sum('view_count') !!}</p>
+                                            <p>
+                                                <i class="fa fa-music"></i> {!! $other_playlist->views()->sum('view_count') !!}
+                                            </p>
                                         </div>
                                     </div>
                                 </a>

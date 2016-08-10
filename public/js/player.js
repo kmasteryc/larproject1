@@ -40,7 +40,7 @@ $(document).ready(function () {
     getJson();
 
     function setSong(json_data) {
-        reset();
+        reset(json_data);
         var song = json_data[current_index];
         $("#song_source").attr('src', song.song_mp3);
         $.get(base_url + 'api/increase_view_song/'+current_song.song_id);
@@ -108,7 +108,7 @@ $(document).ready(function () {
 
                 // Process seeking
                 $('#seek').click(function (e) {
-                    reset();
+                    reset(json_data);
                     // Set cursor
                     player.trigger('seek');
                     var player_width = $("#my-player").innerWidth();
@@ -183,9 +183,16 @@ $(document).ready(function () {
         return json_data;
     }
 
-    function reset() {
-        $(".lyric-1").html('');
-        $(".lyric-2").html('');
+    function reset(json_data) {
+        if (json_data[current_index].song_lyric != null)
+        {
+            $(".lyric-1").html('');
+            $(".lyric-2").html('');
+        }
+
+        player.prop('currentTime',0);
+        $('#seek #seek-cursor').css('left', '0%');
+
         old_lyr = '';
         cur_lyr = '';
         active = 1;

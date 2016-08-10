@@ -5896,18 +5896,14 @@ a:hover, a:visited, a:active {
 
 #middle-info {
   margin: 15px 0 15px 0;
-  font-size: 17px;
-  line-height: 17px;
-  font-weight: 600;
-  max-width: 100%; }
-  #middle-info .clearfix .pull-left h4, #middle-info .clearfix .pull-right h4 {
-    margin-top: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 100%; }
+  font-size: 16px;
+  line-height: 16px;
+  color: #222222; }
+  #middle-info .media-right {
+    white-space: nowrap; }
   #middle-info i {
-    font-size: 18px;
-    font-weight: 600; }
+    font-size: 16px;
+    line-height: 16px; }
 
 #playlist-summary {
   margin: 0; }
@@ -6067,6 +6063,9 @@ a:hover, a:visited, a:active {
 
 .hide-me-pls {
   display: none; }
+
+.nav-tabs {
+  margin-top: 10px; }
 
 #my-player {
   position: relative;

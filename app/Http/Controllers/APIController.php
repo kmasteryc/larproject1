@@ -17,9 +17,10 @@ class APIController extends Controller
 
     public function getSongsInPlaylist($playlist)
     {
+        $res = '';
         if (!($playlist instanceof Playlist)) {
 
-            if (!session()->has('temp_playlist')) {
+            if (!session()->has('temp_playlist') || session()->get('temp_playlist')['total_songs'] == 0) {
                 return '';
             }
             $playlist = session()->get('temp_playlist');
