@@ -14,7 +14,7 @@ $(document).ready(function () {
     var volume = 0.9;
     var player_type = 1;
     var empty_playlist = false;
-
+    var play_pause = $(".play-pause");
     var active = 1;
     var deactive = 2;
     var myInterval = '';
@@ -62,9 +62,9 @@ $(document).ready(function () {
         player.trigger('load');
         player.prop('volume', volume);
 
-        var play_pause = $(".fa-play");
-        play_pause.removeClass("fa-play");
-        play_pause.addClass("fa-pause");
+        // var play_pause = $(".fa-play");
+        // play_pause.removeClass("fa-play");
+        // play_pause.addClass("fa-pause");
 
         if (typeof myInterval != 'undefined') {
             clearInterval(myInterval);
@@ -102,7 +102,6 @@ $(document).ready(function () {
                 $(document).on('click', ".changesong", function (event) {
                     event.preventDefault();
                     current_index = $(this).data('index');
-                    // console.log(json_data);
                     setSong(json_data);
                     showList(json_data);
                 });
@@ -111,6 +110,7 @@ $(document).ready(function () {
                 $('#seek').click(function (e) {
                     reset();
                     // Set cursor
+                    player.trigger('seek');
                     var player_width = $("#my-player").innerWidth();
                     var click_X = e.pageX - $("#my-player").offset().left;
                     var click_percent = click_X * 100 / player_width;
@@ -123,17 +123,10 @@ $(document).ready(function () {
                 // Process play-pause
                 $(document).on('click', ".fa-play", function () {
                     player.trigger('play');
-                    var play_pause_icon = $(this);
-                    $(this).removeClass('fa-play');
-                    $(this).addClass('fa-pause');
-                    // $(this).parent().prepend('<i class="fa fa-2x fa-pause"></i>');
-                    // $(this).remove();
                 });
 
                 $(document).on('click', ".fa-pause", function () {
                     player.trigger('pause');
-                    $(this).removeClass('fa-pause');
-                    $(this).addClass('fa-play');
                 });
 
                 // Process playtype click
@@ -461,6 +454,23 @@ $(document).ready(function () {
         return array;
     }
 
+    player.on('stop', function () {
+        // var play_pause = $(".fa-play");
+        play_pause.removeClass("fa-pause");
+        play_pause.addClass("fa-play");
+    });
+
+    player.on('pause', function () {
+        // console.log("Pause event!");
+        play_pause.removeClass('fa-pause');
+        play_pause.addClass('fa-play');
+    });
+
+    player.on('play', function () {
+        // console.log("Pause event!");
+        play_pause.removeClass('fa-play');
+        play_pause.addClass('fa-pause');
+    });
     $(document).on('click', "#hide-show-lyric-btn", function (event) {
         event.preventDefault();
         var html = $(this).html() == 'Hiện' ? 'Ẩn' : 'Hiện';

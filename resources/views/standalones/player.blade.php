@@ -1,5 +1,5 @@
 <div id="buildin-player">
-    <audio controls="controls" id="player" autoplay>
+    <audio controls="controls" id="player">
         <source id="song_source" src="">
     </audio>
 </div>
@@ -28,7 +28,7 @@
             <a href="">
                 <i class="fa fa-2x fa-step-backward"></i>
             </a>
-            <i class="fa fa-2x fa-pause"></i>
+            <i class="fa fa-2x fa-play play-pause"></i>
             <a href="">
                 <i class="fa fa-2x fa-step-forward"></i>
             </a>
