@@ -61,6 +61,7 @@ $(document).ready(function () {
         player.trigger('stop');
         player.trigger('load');
         player.prop('volume', volume);
+        player.trigger('play');
 
         // var play_pause = $(".fa-play");
         // play_pause.removeClass("fa-play");
