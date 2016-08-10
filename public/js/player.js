@@ -61,9 +61,9 @@ $(document).ready(function () {
         player.trigger('stop');
         player.trigger('load');
         player.prop('volume', volume);
-        player.on('canplay', function(){
+        if(json_data[current_index] != 1){
             player.trigger('play');
-        });
+        }
 
 
         if (typeof myInterval != 'undefined') {
