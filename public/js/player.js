@@ -61,7 +61,7 @@ $(document).ready(function () {
         player.trigger('stop');
         player.trigger('load');
         player.prop('volume', volume);
-        if(json_data[current_index] != 1){
+        if(current_index != 0){
             player.trigger('play');
         }
 
@@ -455,20 +455,16 @@ $(document).ready(function () {
     }
 
     player.on('stop', function () {
-        // var play_pause = $(".fa-play");
         play_pause.removeClass("fa-pause");
         play_pause.addClass("fa-play");
     });
 
     player.on('pause', function () {
-        // console.log("Pause event!");
         play_pause.removeClass('fa-pause');
         play_pause.addClass('fa-play');
     });
 
     player.on('play', function () {
-        // console.log("Pause event!");
-        // alert("Trigger play!");
         play_pause.removeClass('fa-play');
         play_pause.addClass('fa-pause');
     });
