@@ -123,6 +123,7 @@ $(document).ready(function () {
                 // Process play-pause
                 $(document).on('click', ".fa-play", function () {
                     player.trigger('play');
+                    alert("Trigger Play!");
                 });
 
                 $(document).on('click', ".fa-pause", function () {
