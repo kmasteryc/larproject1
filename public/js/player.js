@@ -124,7 +124,6 @@ $(document).ready(function () {
                 // Process play-pause
                 $(document).on('click', ".fa-play", function () {
                     player.trigger('play');
-                    alert("Trigger Play!");
                 });
 
                 $(document).on('click', ".fa-pause", function () {
@@ -470,6 +469,7 @@ $(document).ready(function () {
 
     player.on('play', function () {
         // console.log("Pause event!");
+        alert("Trigger play!");
         play_pause.removeClass('fa-play');
         play_pause.addClass('fa-pause');
     });
