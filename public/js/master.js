@@ -36,7 +36,7 @@ function showAjaxIcon() {
 
 function renderArtists(artists) {
     var html = '';
-    for (let x in artists) {
+    for (var x in artists) {
         html += '<a href="' + base_url + 'nghe-si/' + artists[x].artist_title_slug + '.html">' + artists[x].artist_title + '</a>';
         if (x != (artists.length - 1)) {
             html += ', ';

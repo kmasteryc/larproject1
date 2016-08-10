@@ -5827,17 +5827,16 @@ a:hover, a:visited, a:active {
   display: block; }
 
 ::-webkit-scrollbar {
-  width: 12px; }
+  width: 5px; }
 
 ::-webkit-scrollbar-track {
-  background-color: #eaeaea;
-  border-left: 1px solid #ccc; }
+  background-color: #eaeaea; }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ccc; }
+  background-color: #bc857c; }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #aaa; }
+  background-color: #bc857c; }
 
 .relative {
   position: relative; }

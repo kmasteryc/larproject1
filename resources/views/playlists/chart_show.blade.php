@@ -37,23 +37,24 @@
             </div>
             <div class="col-md-4">
                 <div class="row" id="playlist-summary">
-
-                    <div class="media">
-                        <a class="media-left" href="#">
-                            <img src="http://dummyimage.com/100/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}"
-                                 height="100px" width="100px">
-                        </a>
-                        <div class="media-body">
-                            <h4>BẢNG XẾP
-                                HẠNG {!! $cate->cate_title !!} {!! $timeinfo['time_unit'] !!} {!! $timeinfo['index'] !!}
-                                ({!! $timeinfo['start_date'] !!} - {!! $timeinfo['end_date'] !!})
-                            </h4>
-                            <div class="playlist-detail">
-                                Bảng xếp hạng được tạo tự động dựa trên số lượng lượt nghe trong từng khoảng thời gian.
+                    <div class="col-md-12">
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="http://dummyimage.com/100/1abc9c/ffffff&text={!! 'BXH '.$timeinfo['time_unit'].'+'.$timeinfo['index'] !!}"
+                                     height="100px" width="100px">
+                            </a>
+                            <div class="media-body">
+                                <h4>BẢNG XẾP
+                                    HẠNG {!! $cate->cate_title !!} {!! $timeinfo['time_unit'] !!} {!! $timeinfo['index'] !!}
+                                    ({!! $timeinfo['start_date'] !!} - {!! $timeinfo['end_date'] !!})
+                                </h4>
+                                <div class="playlist-detail">
+                                    Bảng xếp hạng được tạo tự động dựa trên số lượng lượt nghe trong từng khoảng thời
+                                    gian.
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12">
