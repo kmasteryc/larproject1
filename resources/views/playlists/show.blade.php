@@ -34,17 +34,6 @@
                             </div>
                         </div>
 
-
-                        {{--<div class="clearfix">--}}
-                        {{--<div class="pull-left">--}}
-                        {{----}}
-                        {{--</div>--}}
-                        {{--<div class="pull-right">--}}
-                        {{----}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
-
                     </div>
                 </div>
 
