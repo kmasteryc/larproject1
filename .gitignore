@@ -2,11 +2,9 @@
 /config/database.php
 /vendor
 /node_modules
-/public/storage
 /public/uploads
-larproject1.tar.gz
-Homestead.yaml
-Homestead.json
 .env
 /.idea
 _ide_helper.php
+/storage
+bootstrap/cache
