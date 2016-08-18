@@ -95,34 +95,46 @@ class Artist extends Model
 
         $client = new GuzzleHttp\Client();
 
-            $res = $client->request('GET', $url);
+	    try {
+		    $res = $client->request('GET', $url, ['http_errors' => false]);
 
-            if ($res->getStatusCode() == 200) {
-                if ($res->getBody() != '') {
-                    preg_match_all('/container">         <img src="([^"]+)"/', $res->getBody(), $match1);
-                    preg_match_all('/<div class="inside">.*src="([^"]+)"/', $res->getBody(), $match2);
+		    if ($res->getStatusCode() == 200) {
+			    if ($res->getBody() != '') {
+				    preg_match_all('/container">         <img src="([^"]+)"/', $res->getBody(), $match1);
+				    preg_match_all('/<div class="inside">.*src="([^"]+)"/', $res->getBody(), $match2);
 
-                    $cover_img = $match1[1][0];
-                    $small_img = $match2[1][0];
-                    $cover_img_name = rand(1, 999999) . basename($cover_img);
-                    $small_img_name = rand(1, 999999) . basename($cover_img);
+				    $cover_img = $match1[1][0];
+				    $small_img = $match2[1][0];
+				    $cover_img_name = rand(1, 999999) . basename($cover_img);
+				    $small_img_name = rand(1, 999999) . basename($cover_img);
 
-                    $cover_path = base_path('public/uploads/imgs/artists/' . $cover_img_name);
-                    $small_path = base_path('public/uploads/imgs/artists/' . $small_img_name);
+				    $cover_path = base_path('public/uploads/imgs/artists/' . $cover_img_name);
+				    $small_path = base_path('public/uploads/imgs/artists/' . $small_img_name);
 
-                    file_put_contents($cover_path, file_get_contents($cover_img));
-                    file_put_contents($small_path, file_get_contents($small_img));
+				    $cover_img = @file_get_contents($cover_img);
+				    $small_img = @file_get_contents($small_img);
+				    if (!$cover_img) {
+					    $cover_img = "http://placehold.it/250x50";
+				    }
+				    if (!$small_img) {
+					    $small_img = "http://placehold.it/50x50";
+				    }
+				    file_put_contents($cover_path, $cover_img);
+				    file_put_contents($small_path, $small_img);
 
-                    $artist->artist_img_small = asset('uploads/imgs/artists/' . $small_img_name);
-                    $artist->artist_img_cover = asset('uploads/imgs/artists/' . $cover_img_name);
-                    $artist->save();
-                }
-                else{
-                    $artist = '';
-                }
+				    $artist->artist_img_small = asset('uploads/imgs/artists/' . $small_img_name);
+				    $artist->artist_img_cover = asset('uploads/imgs/artists/' . $cover_img_name);
+				    $artist->save();
+			    } else {
+				    $artist = '';
+			    }
 
-            }
-	    
+		    }
+	    }
+	    catch (\Exception $e){
+		    echo $e;
+	    }
+
         return $artist;
     }
 }

@@ -102,7 +102,7 @@ class Import
 		$res = [];
 		foreach ($all->data as $song){
 			var_dump($song);
-			if (empty($song)) break;
+			if (empty($song->source_list)) break;
 			$song_source = $song->source_list[0] == '' ? $song->source_list[1] : $song->source_list[0];
 			$res[] = [
 				'title' => $song->name,
