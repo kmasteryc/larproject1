@@ -101,6 +101,8 @@ class Import
 		$all = json_decode($json_date);
 		$res = [];
 		foreach ($all->data as $song){
+			var_dump($song);
+			if (empty($song)) break;
 			$song_source = $song->source_list[0] == '' ? $song->source_list[1] : $song->source_list[0];
 			$res[] = [
 				'title' => $song->name,

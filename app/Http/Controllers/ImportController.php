@@ -21,7 +21,7 @@ class ImportController extends Controller
 	public $single_artist;
 	public $artists = [];
 	static $cur_song = 0;
-	static $max_song = 70; //~5GB mp3 song
+	static $max_song = 50; //~5GB mp3 song
 
 	public function __construct()
 	{
@@ -124,11 +124,12 @@ class ImportController extends Controller
 		$playlist->save();
 		$playlist->songs()->sync($song_ids);
 
-		if(self::$cur_song>self::$max_song){
-			echo "Maximum ".self::$max_song.' reach!';
-			self::$cur_song = 0;
-			exit();
+		if (self::$cur_song > self::$max_song) {
+			echo "Maximum " . self::$max_song . ' reach!';
+//			self::$cur_song = 0;
+			return false;
 		}
+		return true;
 	}
 
 	public function importCate()
@@ -146,10 +147,9 @@ class ImportController extends Controller
 		if ($res->getStatusCode() == 200) {
 			// Get all album url from specificed category
 			$html = $res->getBody();
-			preg_match_all('/href="(http:\/\/mp3.zing.vn\/album\/[a-zA-Z0-9\-\/]+.html)" class="thumb"/', $html, $match_urls);
-			preg_match_all('/"thumb" title="([^"]+)/', $html, $match_titles);
-			$titles = $match_titles[1];
-			$urls = $match_urls[1];
+
+			$titles = $this->getPlaylistTitle($html);
+			$urls = $this->getLinkPlaylist($html);
 
 			foreach ($urls as $k => $url) {
 				$title = strstr($titles[$k], ' - ', true);
@@ -160,7 +160,8 @@ class ImportController extends Controller
 				$new_request->url = $url;
 				$new_request->playlist_title = $title;
 
-				$this->storePlaylist($new_request);
+				$continue = $this->storePlaylist($new_request);
+				if ($continue == false) break;
 			}
 
 		}
@@ -207,5 +208,17 @@ class ImportController extends Controller
 
 		}
 
+	}
+
+	public function getPlaylistTitle($content)
+	{
+		preg_match_all('/"thumb" title="([^"]+)/', $content, $match_titles);
+		return $match_titles[1];
+	}
+
+	public function getLinkPlaylist($content)
+	{
+		preg_match_all('/href="(http:\/\/mp3.zing.vn\/album\/[a-zA-Z0-9\-\/]+.html)" class="thumb"/', $content, $match_urls);
+		return $match_urls[1];
 	}
 }
