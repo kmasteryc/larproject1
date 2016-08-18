@@ -94,7 +94,7 @@ class Artist extends Model
         $url = "http://mp3.zing.vn/nghe-si/" . str_slug($artist->artist_title);
 
         $client = new GuzzleHttp\Client();
-        try {
+
             $res = $client->request('GET', $url);
 
             if ($res->getStatusCode() == 200) {
@@ -122,10 +122,7 @@ class Artist extends Model
                 }
 
             }
-        } catch (\Exception $e) {
-            echo $e;
-        }
-
+	    
         return $artist;
     }
 }
