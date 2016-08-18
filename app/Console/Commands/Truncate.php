@@ -38,7 +38,6 @@ class Truncate extends Command
      */
     public function handle()
     {
-	    dd();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('songs')->truncate();
         DB::table('playlists')->truncate();
