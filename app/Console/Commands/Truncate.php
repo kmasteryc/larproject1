@@ -43,6 +43,7 @@ class Truncate extends Command
         DB::table('playlists')->truncate();
         DB::table('artists')->truncate();
         DB::table('views')->truncate();
+        DB::table('lyrics')->truncate();
         DB::table('artist_song')->truncate();
         DB::table('playlist_song')->truncate();
 
