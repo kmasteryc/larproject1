@@ -58,9 +58,14 @@ class Truncate extends Command
                 'artist_img_small' => '',
                 'artist_img_cover' => '',
                 'artist_gender' => 1,
-                'artist_nation' => 84
+                'nation_id' => 84
             ]
         );
+		exec("rm -r ".base_path('public/uploads/imgs/playlists'));
+		exec("rm -r ".base_path('public/uploads/imgs/artists'));
+
+	    exec("mkdir ".base_path('public/uploads/imgs/artists'));
+	    exec("mkdir ".base_path('public/uploads/imgs/playlists'));
 
         $this->info("Truncate complete! Ctrl+C to quit...");
     }

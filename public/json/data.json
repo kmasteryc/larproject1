@@ -1,0 +1,130 @@
+{
+  "tracklist": {
+    "type": "playlist",
+    "track": [
+      {
+        "title": {
+          "__cdata": "Vì Yêu Em Nên Anh Chấp Nhận"
+        },
+        "time": {
+          "__cdata": "0:00"
+        },
+        "creator": {
+          "__cdata": "Cao Thái Sơn"
+        },
+        "location": {
+          "__cdata": "http://f9.stream.nixcdn.com/8e16b5853f2176b401a3da7f0972fe39/57aaec8c/NhacCuaTui925/ViYeuEmNenAnhChapNhan-CaoThaiSon-4522999.mp3"
+        },
+        "info": {
+          "__cdata": "http://www.nhaccuatui.com/bai-hat/vi-yeu-em-nen-anh-chap-nhan-cao-thai-son.dIYye6Vslbec.html"
+        },
+        "lyric": {
+          "__cdata": "http://lrc.nct.nixcdn.com/2016/07/26/b/f/9/3/1469502880330.lrc"
+        },
+        "bgimage": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "avatar": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "newtab": {
+          "__cdata": "http://www.nhaccuatui.com/nghe-si-cao-thai-son.html"
+        },
+        "kbit": {
+          "__cdata": "320"
+        },
+        "key": {
+          "__cdata": "dIYye6Vslbec"
+        },
+        "locationHQ": {
+          "__cdata": ""
+        },
+        "hasHQ": {
+          "__cdata": "true"
+        }
+      },
+      {
+        "title": {
+          "__cdata": "Vì Yêu Em Nên Anh Chấp Nhận Beat"
+        },
+        "time": {
+          "__cdata": "0:00"
+        },
+        "creator": {
+          "__cdata": "Cao Thái Sơn"
+        },
+        "location": {
+          "__cdata": "http://f9.stream.nixcdn.com/58bb7a9f5493d70705387493ffe49835/57aaec8c/NhacCuaTui925/ViYeuEmNenAnhChapNhanBeat-CaoThaiSon-4523001.mp3"
+        },
+        "info": {
+          "__cdata": "http://www.nhaccuatui.com/bai-hat/vi-yeu-em-nen-anh-chap-nhan-beat-cao-thai-son.vzmO03d08OeJ.html"
+        },
+        "lyric": {
+          "__cdata": "http://lrc.nct.nixcdn.com/2016/07/26/b/f/9/3/1469504285726.lrc"
+        },
+        "bgimage": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "avatar": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "newtab": {
+          "__cdata": "http://www.nhaccuatui.com/nghe-si-cao-thai-son.html"
+        },
+        "kbit": {
+          "__cdata": "320"
+        },
+        "key": {
+          "__cdata": "vzmO03d08OeJ"
+        },
+        "locationHQ": {
+          "__cdata": ""
+        },
+        "hasHQ": {
+          "__cdata": "true"
+        }
+      },
+      {
+        "title": {
+          "__cdata": "Feel The Beat (Dj Beebb Mashup)"
+        },
+        "time": {
+          "__cdata": "0:00"
+        },
+        "creator": {
+          "__cdata": "Cao Thái Sơn, DJ BeeBB"
+        },
+        "location": {
+          "__cdata": "http://aredir.nixcdn.com/8ba1e1b2bd1d2803c6d0bcc715629472/57aaec8c/NhacCuaTui922/FeelTheBeatDjBeebbMashup-CaoThaiSon-4477931.mp3"
+        },
+        "info": {
+          "__cdata": "http://www.nhaccuatui.com/bai-hat/feel-the-beat-dj-beebb-mashup-cao-thai-son-ft-dj-beebb.erKfQe7E5fWv.html"
+        },
+        "lyric": {
+          "__cdata": "http://lrc.nct.nixcdn.com/2016/06/10/0/3/2/7/1465518404513.lrc"
+        },
+        "bgimage": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "avatar": {
+          "__cdata": "http://avatar.nct.nixcdn.com/singer/avatar/2016/07/27/7/7/c/d/1469606984952.jpg"
+        },
+        "newtab": {
+          "__cdata": "http://www.nhaccuatui.com/nghe-si-cao-thai-son.html"
+        },
+        "kbit": {
+          "__cdata": "320"
+        },
+        "key": {
+          "__cdata": "erKfQe7E5fWv"
+        },
+        "locationHQ": {
+          "__cdata": ""
+        },
+        "hasHQ": {
+          "__cdata": "true"
+        }
+      }
+    ]
+  }
+}

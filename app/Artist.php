@@ -9,7 +9,7 @@ use GuzzleHttp;
 
 class Artist extends Model
 {
-    protected $fillable = ['artist_title','artist_name','artist_info','artist_birthday','artist_gender','artist_nation'];
+    protected $fillable = ['artist_title','artist_name','artist_info','artist_birthday','artist_gender','nation_id'];
 	public $timestamps = false;
 
 	public function getArtistGenderAttribute($value)
@@ -52,6 +52,7 @@ class Artist extends Model
     public function playlists(){
         return $this->hasMany(Playlist::class);
     }
+
 	public static function createAndAttach($artists_title, Song $song)
 	{
         foreach ($artists_title as $artist_title) {
@@ -65,7 +66,7 @@ class Artist extends Model
                 $artist->artist_info = $faker->sentence(100);
                 $artist->artist_birthday = $faker->dateTimeThisCentury->format('Y-m-d');
                 $artist->artist_gender = rand(0, 1);
-                $artist->artist_nation = rand(0, 256);
+                $artist->nation_id = rand(0, 256);
 
                 $artist->save();
             }
@@ -88,7 +89,7 @@ class Artist extends Model
         $artist->artist_info = $faker->sentence(200);
         $artist->artist_birthday = $faker->dateTimeThisCentury->format('Y-m-d');
         $artist->artist_gender = rand(0, 1);
-        $artist->artist_nation = rand(0, 256);
+        $artist->nation_id = 84;
 
         $url = "http://mp3.zing.vn/nghe-si/" . str_slug($artist->artist_title);
 

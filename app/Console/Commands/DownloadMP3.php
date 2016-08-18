@@ -42,8 +42,8 @@ class DownloadMP3 extends Command
         $this->info("Welcome to console! Start downloading " . count($songs) . " songs..");
         $i = 1;
         foreach ($songs as $song) {
-            $this->info("----Downloading song $i/" . count($songs) . PHP_EOL);
-            $this->info("from: " . $song->song_mp3 . PHP_EOL);
+            $this->info($i."/". count($songs)."-- Downloading song $song->song_title. Position:" . PHP_EOL);
+            $this->info("+ from: " . $song->song_mp3 . PHP_EOL);
             $song_img_name = rand(1, 99999) . $song->song_title_slug . '.mp3';
 
             $client = new GuzzleHttp\Client();
@@ -53,11 +53,11 @@ class DownloadMP3 extends Command
                 if ($res->getStatusCode() == 200) {
                     $source = $res->getBody();
                     file_put_contents(base_path('public/uploads/mp3/') . $song_img_name, $source);
-                    $this->info("to: " . $song_img_name);
+                    $this->info("+ to: " . $song_img_name);
                     $song->song_mp3 = asset('uploads/mp3/' . $song_img_name);
                     $song->save();
-
                 }
+
             } catch (\Exception $e) {
                 $this->error("----FAILED: Downloading song $i/" . count($songs) . PHP_EOL);
             }
