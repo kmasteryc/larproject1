@@ -26,7 +26,7 @@ class UpdatePlaylistCache
      */
     public function handle(EventPlaylistChange $event)
     {
-        $chart_playlists = \App\Chart::get_playlist_records(\App\Chart::TIME_WEEK, \App\Cate::where('cate_title_slug', 'viet-nam')->first(), 30, 8);
-        Cache::put('chart_playlists', $chart_playlists, 86400);
+//        $chart_playlists = \App\Chart::get_playlist_records(\App\Chart::TIME_WEEK, \App\Cate::where('cate_title_slug', 'viet-nam')->first(), 30, 8);
+//        Cache::put('chart_playlists', $chart_playlists, 86400);
     }
 }

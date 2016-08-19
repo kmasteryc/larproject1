@@ -1,27 +1,32 @@
-<li class="dropdown dropdown-large">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> ALBUM</a>
-    <ul class="dropdown-menu dropdown-menu-large row">
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-list"></i> ALBUM
+    </a>
+    <ul class="dropdown-menu">
 
-        <?php foreach ($cates as $kk => $cate): ?>
         <?php
+        $i = 1;
+        foreach ($cates as $kk => $cate):
             if ($cate->cate_parent == 0) {
-                echo '<li class="col-sm-6">';
-                echo '<ul>';
-                echo "<li class='dropdown-header'>$cate->cate_title</li>";
-                echo "<li class='divider'></li>";
+                if ($i != 1) {
+                    echo "<li class='divider'></li>";
+                }
+                echo "<li>
+                        <a href='" . url("chu-de/$cate->cate_title_slug/album") . "'>
+                            <b>$cate->cate_title</b>
+                        </a>
+                    </li>";
+
                 foreach ($cates as $sub_cate) {
                     if ($cate->id == $sub_cate->cate_parent) {
-                        echo "<li><a href='" . url("chu-de/$sub_cate->cate_title_slug/album") . "'>$sub_cate->cate_title</a></li>";
+                        echo "<li>
+                            <a href='" . url("chu-de/$sub_cate->cate_title_slug/album") . "'>$sub_cate->cate_title</a>
+                        </li>";
                     }
                 }
-                echo '</ul>';
-                echo '</li>';
+                $i++;
             }
-            ?>
-
-        <?php
-//        $cates->splice($kk);
-        endforeach
+        endforeach;
         ?>
     </ul>
 </li>

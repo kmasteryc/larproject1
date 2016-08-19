@@ -25,7 +25,7 @@
 <body id="app-layout">
 <div id="fb-root"></div>
 
-@include('layouts.nav')
+@include('layouts.nav_backup')
 @include('layouts.alert')
 
 <div class="container">

@@ -6096,17 +6096,17 @@ a:hover, a:visited, a:active {
   #my-player .seek-bar {
     position: absolute;
     bottom: 45px;
-    height: 5px;
+    height: 3px;
     cursor: pointer;
     width: 100%;
     background: white; }
     #my-player .seek-bar #seek {
-      height: 5px;
+      height: 3px;
       position: relative; }
       #my-player .seek-bar #seek #seek-cursor {
         color: white;
-        height: 5px;
-        line-height: 5px;
+        height: 3px;
+        line-height: 3px;
         z-index: 89;
         position: absolute; }
   #my-player .lyric-bar {

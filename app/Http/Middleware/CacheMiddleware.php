@@ -15,7 +15,6 @@ class CacheMiddleware
      */
     public function handle($request, Closure $next)
     {
-//	    dd($request);
 	    $uri = $request->getRequestUri();
 	    $response = Cache::driver('file')->get($uri, function() use($next, $request, $uri){
 		    $response = $next($request);
