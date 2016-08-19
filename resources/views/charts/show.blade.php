@@ -16,18 +16,19 @@
                                 </h4>
                             </div>
                             <div class="media-right media-middle">
-                                    <select id="index_choose" class="btn" name="index"
-                                            data-cate-title-slug='{!! $cate->cate_title_slug !!}'
-                                            data-unit-slug='{!! strtolower(str_slug($timeinfo['time_unit']))!!}'>
-                                        <?php
-                                        for ($i = 1; $i <= $timeinfo['max_interval']; $i++):
-                                            $opt = $i == $timeinfo['index'] ? 'selected' : '';
-                                            echo "<option $opt value='$i'>";
-                                            echo "$timeinfo[time_unit] $i";
-                                            echo "</option>";
-                                        endfor;
-                                        ?>
-                                    </select>
+                                <select id="index_choose" class="btn" name="index"
+                                        data-cate-title-slug='{!! $cate->cate_title_slug !!}'
+                                        data-unit-slug='{!! strtolower(str_slug($timeinfo['time_unit']))!!}'>
+                                    <?php
+//                                        dd($timeinfo['max_interval']);
+                                    for ($i = 1; $i <= $timeinfo['max_interval']; $i++):
+                                        $opt = $i == $timeinfo['index'] ? 'selected' : '';
+                                        echo "<option $opt value='$i'>";
+                                        echo "$timeinfo[time_unit] $i";
+                                        echo "</option>";
+                                    endfor;
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>

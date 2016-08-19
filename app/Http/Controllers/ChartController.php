@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
-use App\Song;
 use App\Chart;
-use App\Playlist;
-use App\Cate;
 
 use Carbon\Carbon;
 
-;
 use Cache;
 
 class ChartController extends Controller
@@ -33,7 +27,7 @@ class ChartController extends Controller
                 $time_mode = Chart::TIME_WEEK;
                 $start_date = Carbon::createFromFormat('z', $index * 7)->startOfWeek()->format('d/m');
                 $end_date = Carbon::createFromFormat('z', $index * 7)->endOfWeek()->format('d/m');
-                $max_interval = $index;
+                $max_interval = Carbon::now()->weekOfYear;
                 $time_unit = 'TUẦN';
                 break;
 
@@ -43,7 +37,7 @@ class ChartController extends Controller
                 $time_mode = Chart::TIME_MONTH;
                 $start_date = Carbon::createFromFormat('m', $index)->startOfMonth()->format('d/m');
                 $end_date = Carbon::createFromFormat('m', $index)->endOfMonth()->format('d/m');
-                $max_interval = $index;
+                $max_interval = Carbon::now()->month;
                 $time_unit = 'THÁNG';
                 break;
 
