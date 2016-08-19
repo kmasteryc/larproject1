@@ -29,7 +29,7 @@
                                     </h4>
                                 </div>
                                 <div class="media-right media-middle">
-                                        <i class="fa fa-music fa-1x"></i> {!! $playlist->views()->sum('view_count') !!}
+                                    <i class="fa fa-music fa-1x"></i> {!! $playlist->views()->sum('view_count') !!}
                                 </div>
                             </div>
                         </div>
@@ -69,12 +69,12 @@
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading">{!! $playlist->playlist_title !!}</h4>
-                                <h5>Nghệ sĩ: <a
-                                            href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">{!! $playlist->artist->artist_title !!}</a>
+                                <h5>Nghệ sĩ:
+                                    <a href="{!! url("nghe-si/".$playlist->artist->artist_title_slug.".html") !!}">
+                                        {!! $playlist->artist->artist_title !!}
+                                    </a>
                                 </h5>
                                 <h5>Phát hành: {!! $playlist->created_at->format('m/Y') !!}</h5>
-                                {{--<h5>Thể loại: {!! $playlist->cate->cate_title !!}</h5>--}}
-                                {{--<h5>Upload: {!! $playlist->user->name !!}</h5>--}}
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div id="other-playlist">
