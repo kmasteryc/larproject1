@@ -56,7 +56,7 @@ class SeedView extends Command
 
         $this->info("Begin seed playlist view!".PHP_EOL);
 
-        for ($i=1; $i<=20; $i++)
+        for ($i=1; $i<=50; $i++)
         {
             foreach ($playlists as $playlist)
             {
@@ -84,7 +84,7 @@ class SeedView extends Command
 
         $this->info("Begin seed song view!".PHP_EOL);
 
-        for ($i=1;$i<=3;$i++)
+        for ($i=1;$i<=20;$i++)
         {
             foreach ($songs as $song)
             {
