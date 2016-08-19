@@ -25,6 +25,15 @@
                             </div>
 
                         </div>
+
+                    @else
+                        <div class="col-md-12">
+                            <div class="row">
+                                <h4>Danh sách nhạc tạm thời của bạn</h4>
+                                <h5>Danh sách trống. Vui lòng thêm bài hát</h5>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -46,37 +55,30 @@
                 <ul class="list-group" id="player-playlist"></ul>
             </div>
         </div>
-        @else
-            <h4>Danh sách nhạc tạm thời của bạn</h4>
-            <h5>Danh sách trống. Vui lòng thêm bài hát</h5>
-        @endif
+
     </div>
 
     <div class="col-md-4">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="other-playlist">
-                    <h4><i class="fa fa-bookmark"></i> Playlist ngẫu nhiên</h4>
-                    @foreach($other_playlists as $other_playlist)
-                        <a href="{!! url("playlist/$other_playlist->playlist_title_slug.html") !!}">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <img class="media-object"
-                                         src="{!! $other_playlist->playlist_img !!}" height="80px"
-                                         width="auto">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="my-media-heading">{!! $other_playlist->playlist_title !!}</h5>
-                                    <p>{!! $other_playlist->artist->artist_title !!}</p>
-                                    <p>
-                                        <i class="fa fa-music"></i> {!! $other_playlist->views()->sum('view_count') !!}
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
+        <div id="other-playlist">
+            <h4><i class="fa fa-bookmark"></i> Playlist ngẫu nhiên</h4>
+            @foreach($other_playlists as $other_playlist)
+                <a href="{!! url("playlist/$other_playlist->playlist_title_slug.html") !!}">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <img class="media-object"
+                                 src="{!! $other_playlist->playlist_img !!}" height="80px"
+                                 width="auto">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="my-media-heading">{!! $other_playlist->playlist_title !!}</h5>
+                            <p>{!! $other_playlist->artist->artist_title !!}</p>
+                            <p>
+                                <i class="fa fa-music"></i> {!! $other_playlist->views()->sum('view_count') !!}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
         </div>
     </div>
 

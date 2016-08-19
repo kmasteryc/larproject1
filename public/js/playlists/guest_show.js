@@ -57,18 +57,18 @@ $(document).ready(function () {
 
                 var html = '';
                 playlists = response;
-                // console.log(playlists);
                 save_me_too = playlists;
                 for (var index in playlists) {
-                    html += "<li class='list-group-item clearfix'>";
-                    html += "<span class='pull-left add-this-playlist-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
-                    html += playlists[index].playlist_title;
-                    // html += " (" + playlists[index].total_songs + " bài)";
-                    html += "</span>";
-                    html += "<span class='pull-right'>";
-                    html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play-circle'></i></a>";
-                    html += "</span>";
-                    html += "</li>";
+                    if (playlists[index].id != 0) {
+                        html += "<li class='list-group-item clearfix'>";
+                        html += "<span class='pull-left add-this-playlist-to-me' data-playlistindex='" + index + "' data-playlistid='" + playlists[index].id + "'>";
+                        html += playlists[index].playlist_title;
+                        html += "</span>";
+                        html += "<span class='pull-right'>";
+                        html += "<a href='" + base_url + "playlist/" + playlists[index].id + "'><i class='fa fa-play-circle'></i></a>";
+                        html += "</span>";
+                        html += "</li>";
+                    }
                 }
                 list_box.html(html);
             }

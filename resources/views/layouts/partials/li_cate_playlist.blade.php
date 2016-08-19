@@ -5,7 +5,7 @@
         <?php foreach ($cates as $kk => $cate): ?>
         <?php
             if ($cate->cate_parent == 0) {
-                echo '<li class="col-sm-4">';
+                echo '<li class="col-sm-6">';
                 echo '<ul>';
                 echo "<li class='dropdown-header'>$cate->cate_title</li>";
                 echo "<li class='divider'></li>";
