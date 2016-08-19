@@ -27,7 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
 			'App\Http\ViewComposer\CateComposer');
 		view()->composer(
 			[
-				'layouts.nav_backup'
+				'layouts.nav'
 			],
 			'App\Http\ViewComposer\PlaylistComposer'
 		);
