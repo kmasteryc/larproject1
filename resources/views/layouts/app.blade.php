@@ -8,13 +8,14 @@
     <title>{!! $title or 'Laravel MP3' !!}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/easy-autocomplete.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/easy-autocomplete.themes.min.css')}}">
-    {{--<link rel="stylesheet" href="{{asset('css/line-icons.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">--}}
+    {{--<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">--}}
+    {{--<link rel="stylesheet" href="{{asset('css/easy-autocomplete.min.css')}}">--}}
+    {{--<link rel="stylesheet" href="{{asset('css/easy-autocomplete.themes.min.css')}}">--}}
+    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+
     @if (isset($mycss))
         @foreach($mycss as $css)
             <link rel="stylesheet" href="{{asset("css/$css")}}">
@@ -43,18 +44,20 @@
 
 
 <!-- JavaScripts -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script>
     base_url = "{{asset('/')}}";
 </script>
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>
 <script src="{{asset('js/master.js')}}"></script>
+
 @if (isset($myjs))
     @foreach($myjs as $js)
         <script src="{{asset("js/$js")}}"></script>
     @endforeach
 @endif
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
 </body>
 </html>
