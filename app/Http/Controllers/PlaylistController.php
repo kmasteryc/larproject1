@@ -222,7 +222,8 @@ class PlaylistController extends Controller
 
         return view('playlists.chart_show', [
             'title' => 'BẢNG XẾP HẠNG',
-            'myjs' => ['player.js', 'playlists/show.js'],
+//            'myjs' => ['player.js', 'playlists/show.js'],
+            'myjs' => ['playlists/show.js'],
             'api_url_1' => url("api/get-songs-in-chart/$cate->cate_title_slug/$week_or_month/$index"),
             'api_url_2' => url("api/get-nontime-lyrics/"),
             'timeinfo' => [

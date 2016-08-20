@@ -14,8 +14,9 @@ elixir(function(mix) {
     // mix.browserSync({
     //     proxy: 'homestead.app'
     // });
-    mix.sass('app.scss');
-    mix.styles(['./public/css/*.css']);
+    // mix.sass('app.scss');
+    // mix.styles(['./public/css/*.css']);
+    mix.scripts(['./public/js/*.js']);
 });
 // var gulp = require('gulp');
 // var cleanCSS = require('gulp-clean-css');
