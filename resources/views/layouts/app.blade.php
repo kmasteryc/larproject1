@@ -54,6 +54,7 @@
 {{--<script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
 {{--<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>--}}
 {{--<script src="{{asset('js/master.js')}}"></script>--}}
+{{--<script src="{{asset('js/player.js')}}"></script>--}}
 
 <script src="{{asset('js/all.js')}}"></script>
 

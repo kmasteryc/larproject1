@@ -2147,7 +2147,7 @@ $(document).ready(function () {
         for (x = 0; x < json_data.length; x++) {
             var active = current_index == x ? 'list-group-item-info' : '';
             html += '<li class="list-group-item ' + active + '">';
-            html += '<div class="clearfix"><span class="pull-left">';
+            html += '<div class="clearfix"><span class="pull-left" style="overflow: hidden; white-space: nowrap; max-width: 100%">';
             html += (x + 1) + '. ';
             html += '<a href="#" class="changesong" data-index="' + x + '">' + json_data[x].song_title + '</a> - ';
 
