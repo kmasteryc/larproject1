@@ -19,6 +19,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                @include('layouts.partials.li_userplaylist')
                 @include('layouts.partials.li_auth')
             </ul>
         </div>

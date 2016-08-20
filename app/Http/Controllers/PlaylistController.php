@@ -176,8 +176,8 @@ class PlaylistController extends Controller
 
             return view('playlists.show', [
                 'title' => $playlist->playlist_title,
-//                'myjs' => ['player.js', 'playlists/show.js'],
-                'myjs' => ['playlists/show.js'],
+                'myjs' => ['player.js', 'playlists/show.js'],
+//                'myjs' => ['playlists/show.js'],
                 'playlist' => $playlist,
                 'other_playlists' => $other_playlists,
                 'api_url_1' => url("api/get-songs-in-playlist/$playlist->id"),
@@ -187,7 +187,7 @@ class PlaylistController extends Controller
         } else { // Else it is temporary playlist
             $other_playlists = Playlist::inRandomOrder()->take(5)->with('artist','views')->get();
             return view('playlists.guest_show', [
-                'myjs' => ['playlists/guest_show.js'],
+                'myjs' => ['player.js','playlists/guest_show.js'],
                 'other_playlists' => $other_playlists,
                 'api_url_1' => url("api/get-songs-in-playlist/danh-sach-tam"),
                 'api_url_2' => url("api/get-nontime-lyrics/")
@@ -223,8 +223,8 @@ class PlaylistController extends Controller
 
         return view('playlists.chart_show', [
             'title' => 'BẢNG XẾP HẠNG',
-//            'myjs' => ['player.js', 'playlists/show.js'],
-            'myjs' => ['playlists/show.js'],
+            'myjs' => ['player.js', 'playlists/show.js'],
+//            'myjs' => ['playlists/show.js'],
             'api_url_1' => url("api/get-songs-in-chart/$cate->cate_title_slug/$week_or_month/$index"),
             'api_url_2' => url("api/get-nontime-lyrics/"),
             'timeinfo' => [

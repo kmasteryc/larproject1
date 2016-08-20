@@ -6,25 +6,28 @@
             <div class="col-md-12">
                 <div id="playlist-summary">
                     @if(session()->has('temp_playlist') && session()->get('temp_playlist')['total_songs'] != 0)
-                        <h4>Danh sách nhạc tạm thời của bạn</h4>
-                        <h5>Danh sách tự động xóa sau 1 ngày</h5>
-                        <h5>Hãy đăng nhập để lưu lại danh sách</h5>
+                        @if(auth()->check() == false)
+                            <h4>Danh sách nhạc tạm thời của bạn</h4>
+                            <h5>Danh sách tự động xóa sau 1 ngày</h5>
+                            <h5>Hãy đăng nhập để lưu lại danh sách</h5>
 
-                        <div id="temp_playlist_tool">
-                            <!-- Split button -->
+                        @else
+                            <div id="temp_playlist_tool">
+                                <!-- Split button -->
 
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"
-                                        id="import-temp-playlist">Nhập vào danh sách khác
-                                </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm"
+                                            id="import-temp-playlist">Nhập vào danh sách khác
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm"
+                                            id="delete-temp-playlist">Xóa danh sách tạm
+                                    </button>
+                                </div>
+
                             </div>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"
-                                        id="delete-temp-playlist">Xóa danh sách tạm
-                                </button>
-                            </div>
-
-                        </div>
+                        @endif
 
                     @else
                         <div class="col-md-12">

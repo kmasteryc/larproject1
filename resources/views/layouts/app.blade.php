@@ -50,13 +50,12 @@
     base_url = "{{asset('/')}}";
 </script>
 
-{{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-{{--<script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
-{{--<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>--}}
-{{--<script src="{{asset('js/master.js')}}"></script>--}}
-{{--<script src="{{asset('js/player.js')}}"></script>--}}
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery.easy-autocomplete.min.js')}}"></script>
+<script src="{{asset('js/master.js')}}"></script>
 
-<script src="{{asset('js/all.js')}}"></script>
+{{--<script src="{{asset('js/all.js')}}"></script>--}}
 
 @if (isset($myjs))
     @foreach($myjs as $js)
