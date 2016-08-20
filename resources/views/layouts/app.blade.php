@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="fb:admins" content="{100003845746305}"/>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="public">
+
     <title>{!! $title or 'Laravel MP3' !!}</title>
 
     <!-- Fonts -->
